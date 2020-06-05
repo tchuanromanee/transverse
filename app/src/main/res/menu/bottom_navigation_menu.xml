@@ -5,14 +5,14 @@
         android:icon="@drawable/ic_book"/>
     <item android:title="@string/page_add_new"
         android:id="@+id/bottomNavigationAddnewMenuId"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_add"/>
     <item android:title="@string/page_statistics"
         android:id="@+id/bottomNavigationStatisticsMenuId"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/ic_chart"/>
     <item android:title="@string/page_self_help"
         android:id="@+id/bottomNavigationSelfHelpMenuId"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_heart"/>
     <item android:title="@string/page_settings"
         android:id="@+id/bottomNavigationSettingsMenuId"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_gear"/>
 </menu>

@@ -12,7 +12,7 @@
         </style>
 
     <style name="BottomNavigation" parent="Theme.AppCompat.Light">
-        <item name="android:background">@color/colorWhite</item>
+        <item name="android:background">@color/colorNavBG</item>
     </style>
 
 
