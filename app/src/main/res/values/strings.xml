@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Transverse</string>
+    <string name="page_encyclopedia">Encyclopedia</string>
+    <string name="page_add_new">Add New Entry</string>
+    <string name="page_statistics">Statistics</string>
+    <string name="page_self_help">Self-Help</string>
+    <string name="page_settings">Settings</string>
+</resources>
