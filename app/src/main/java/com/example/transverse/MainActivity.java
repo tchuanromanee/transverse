@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) { //getItemID will say what was selected
             case R.id.bottomNavigationAddnewMenuId:
-                addNewEntry();
+                //addNewEntry();
                 return true;
             case R.id.bottomNavigationEncyclopediaMenuId:
-                showEncyclopedia();
+                //showEncyclopedia();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
