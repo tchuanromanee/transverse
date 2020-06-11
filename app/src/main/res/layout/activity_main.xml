@@ -26,24 +26,59 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toptoolbar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:background="@color/colorWhite"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:contentInsetStart="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:navigationIcon="@drawable/ic_logo_solidvector"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/app_name"
-            tools:layout_editor_absoluteX="333dp"
-            tools:layout_editor_absoluteY="18dp" />
+        <RelativeLayout android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:id="@+id/solid_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/ic_logo_solidvector" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/app_name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="333dp"
+                tools:layout_editor_absoluteY="18dp" />
+
+            <!--<View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="55dp"
+                android:background="@color/colorPrimary"
+                tools:layout_editor_absoluteX="-2dp" />-->
+
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="64dp"
+                android:background="@color/colorPrimary"
+                tools:layout_editor_absoluteX="-2dp"
+                />
+        </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -62,6 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toptoolbar" />-->
 
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="415dp"
@@ -69,9 +105,12 @@
         android:text="@string/page_encyclopedia"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toptoolbar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
