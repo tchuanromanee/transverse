@@ -11,6 +11,9 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     @Override
@@ -24,6 +27,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.bottomNav);
         navigation.setOnNavigationItemSelectedListener(this);
+
+        //Load JSON assets
+        try {
+            String entries = loadJSONFromAsset("entries.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            String selfHelpMethods = loadJSONFromAsset("selfhelp.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -69,5 +84,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
         }
         return loadFragment(fragment);
+    }
+
+    public String loadJSONFromAsset(String jsonFileName) throws IOException {
+        String json = null;
+        InputStream is = this.getAssets().open(jsonFileName);//"yourfilename.json");
+        int size = is.available();
+        byte[] buffer = new byte[size];
+        is.read(buffer);
+        is.close();
+        json = new String(buffer, "UTF-8");
+        return json;
     }
 }
