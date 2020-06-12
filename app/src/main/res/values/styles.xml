@@ -6,11 +6,25 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/colorWhite</item>
+
+
+        <item name="android:textColor">@color/colorCharcoal</item>
+        <item name="android:textSize">12sp</item>
+
     </style>
 
-        <style name="GreenText" parent="TextAppearance.AppCompat">
-            <item name="android:textColor">#00FF00</item>
-        </style>
+    <style name="GreenText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#00FF00</item>
+    </style>
+
+    <style name="HeaderText" parent="AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingLeft">@dimen/largePadding</item>
+    </style>
+
+    <style name="EncyclopediaEntry" parent="AppTheme">
+        <item name="android:textSize">16sp</item>
+    </style>
 
     <style name="BottomNavigation" parent="Theme.AppCompat.Light">
         <item name="android:background">@color/colorNavBG</item>

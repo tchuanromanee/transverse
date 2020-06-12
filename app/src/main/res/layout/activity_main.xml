@@ -100,8 +100,8 @@
 
     <FrameLayout
         android:id="@+id/fragment_container"
-        android:layout_width="415dp"
-        android:layout_height="708dp"
+        android:layout_width="fill_parent"
+        android:layout_height="643dp"
         android:text="@string/page_encyclopedia"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -10,30 +16,220 @@
     <TextView
         android:id="@+id/basicsHeader"
         android:layout_width="wrap_content"
-        android:layout_height="12dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
         android:text="Basics"
-        android:layout_weight="2" />
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        tools:ignore="RtlSymmetry" />
 
 
     <TextView
         android:id="@+id/transBasics"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
         android:text="Transgender"
-        android:layout_weight="1" />
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
 
     <TextView
         android:id="@+id/dysphoriaBasics"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
         android:text="Dysphoria"
-        android:layout_weight="1" />
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
 
     <TextView
         android:id="@+id/sVgBasics"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
         android:text="Sex vs. gender"
-        android:layout_weight="1" />
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/comingOutBasics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Coming Out"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/transitioningBasics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Transitioning"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <!--SECTION BREAK-->
+
+    <TextView
+        android:id="@+id/FAQsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
+        android:text="FAQs"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        tools:ignore="RtlSymmetry" />
+
+
+    <TextView
+        android:id="@+id/transFAQs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="How do I know if I'm trans?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/transitioningFAQs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="What does transitioning involve??"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/comingOutFAQs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Do I have to come out to everyone?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/FAQsCommunity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Where can I find other trans people to talk to?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/FAQsInsurance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Does insurance pay for hormones/surgery/etc?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/FAQsPlaceholder1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Placeholder1?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/FAQsPlaceholder2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:background="@drawable/text_border_bottom"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Placeholder2?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
+
+    <TextView
+        android:id="@+id/FAQsPlaceholder3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/encyclopediaSpacing"
+        android:layout_marginEnd="@dimen/encyclopediaSpacing"
+        android:layout_marginTop="@dimen/noSpacing"
+        android:layout_marginBottom="@dimen/smallPadding"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/encyclopediaSpacing"
+        android:text="Placeholder3?"
+        android:textAppearance="@style/EncyclopediaEntry"
+        android:textSize="@dimen/textLarge" />
 
 </LinearLayout>
+</ScrollView>

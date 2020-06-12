@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="smallPadding">6dp</dimen>
+    <dimen name="largePadding">18dp</dimen>
+    <dimen name="encyclopediaSpacing">18dp</dimen>
+    <dimen name="noSpacing">0dp</dimen>
+
+    <!--Font sizes-->
+    <dimen name="textH1">24sp</dimen>
+    <dimen name="textLarge">16sp</dimen>
+    <dimen name="textNormal">12sp</dimen>
+</resources>
