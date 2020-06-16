@@ -9,4 +9,9 @@
     <dimen name="textH1">24sp</dimen>
     <dimen name="textLarge">16sp</dimen>
     <dimen name="textNormal">12sp</dimen>
+
+    <!--Icon sizes-->
+    <dimen name="icon">50dp</dimen>
+    <dimen name="iconHSpacing">14dp</dimen>
+    <dimen name="iconVSpacing">28dp</dimen>
 </resources>

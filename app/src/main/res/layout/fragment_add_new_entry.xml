@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".AddNewEntryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <TextView
+            android:id="@+id/basicsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/largePadding"
+            android:layout_marginStart="@dimen/largePadding"
+            android:layout_marginTop="@dimen/largePadding"
+            android:text="@string/ane_mood_header"
+            android:textAppearance="@style/HeaderText"
+            android:textSize="@dimen/textH1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/mood1Button"
+            android:layout_width="@dimen/icon"
+            android:layout_height="@dimen/icon"
+            android:layout_marginStart="@dimen/iconHSpacing"
+            android:layout_marginTop="@dimen/iconVSpacing"
+            android:contentDescription="The worst mood"
+            android:src="@drawable/ic_mood1"
+            android:backgroundTint="@color/colorWhite"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <ImageView
+            android:id="@+id/mood2Button"
+            android:layout_width="@dimen/icon"
+            android:layout_height="@dimen/icon"
+            android:layout_marginStart="@dimen/iconHSpacing"
+            android:layout_marginTop="@dimen/iconVSpacing"
+            android:contentDescription="The second worst mood"
+            android:src="@drawable/ic_mood2"
+            android:backgroundTint="@color/colorWhite"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/mood1Button"
+            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <ImageView
+            android:id="@+id/mood3Button"
+            android:layout_width="@dimen/icon"
+            android:layout_height="@dimen/icon"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="@dimen/iconVSpacing"
+            android:backgroundTint="@color/colorWhite"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_mood3"
+            app:layout_constraintStart_toEndOf="@+id/mood2Button"
+            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <ImageView
+            android:id="@+id/mood4Button"
+            android:layout_width="@dimen/icon"
+            android:layout_height="@dimen/icon"
+            android:layout_marginStart="@dimen/iconHSpacing"
+            android:layout_marginTop="@dimen/iconVSpacing"
+            android:src="@drawable/ic_mood4"
+            android:adjustViewBounds="true"
+            android:backgroundTint="@color/colorWhite"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toEndOf="@+id/mood3Button"
+            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <ImageView
+            android:id="@+id/mood5Button"
+            android:layout_width="@dimen/icon"
+            android:layout_height="@dimen/icon"
+            android:layout_marginStart="@dimen/iconHSpacing"
+            android:layout_marginTop="@dimen/iconVSpacing"
+            android:adjustViewBounds="true"
+            android:backgroundTint="@color/colorWhite"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_mood5"
+            app:layout_constraintStart_toEndOf="@+id/mood4Button"
+            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/hello_blank_fragment"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

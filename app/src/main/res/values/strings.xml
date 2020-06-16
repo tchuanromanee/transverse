@@ -5,6 +5,8 @@
     <string name="page_statistics">Statistics</string>
     <string name="page_self_help">Self-Help</string>
     <string name="page_settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- ADD NEW ENTRY FRAGMENT -->
+    <string name="ane_mood_header">How are you feeling?</string>
+    <string name="hello_blank_fragment">UwU</string>
 </resources>
