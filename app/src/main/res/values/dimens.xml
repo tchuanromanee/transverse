@@ -12,6 +12,7 @@
 
     <!--Icon sizes-->
     <dimen name="icon">50dp</dimen>
-    <dimen name="iconHSpacing">14dp</dimen>
+    <dimen name="iconHSpacing">24dp</dimen>
     <dimen name="iconVSpacing">28dp</dimen>
+    <dimen name="iconMargin">36dp</dimen>
 </resources>

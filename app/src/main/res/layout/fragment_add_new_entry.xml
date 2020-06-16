@@ -29,12 +29,12 @@
             android:id="@+id/mood1Button"
             android:layout_width="@dimen/icon"
             android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconHSpacing"
+            android:layout_marginStart="@dimen/iconMargin"
             android:layout_marginTop="@dimen/iconVSpacing"
-            android:contentDescription="The worst mood"
-            android:src="@drawable/ic_mood1"
             android:backgroundTint="@color/colorWhite"
+            android:contentDescription="The worst mood"
             android:scaleType="fitXY"
+            android:src="@drawable/ic_mood1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
@@ -55,11 +55,12 @@
             android:id="@+id/mood3Button"
             android:layout_width="@dimen/icon"
             android:layout_height="@dimen/icon"
-            android:layout_marginStart="52dp"
+            android:layout_marginStart="@dimen/iconHSpacing"
             android:layout_marginTop="@dimen/iconVSpacing"
+            android:src="@drawable/ic_mood3"
             android:backgroundTint="@color/colorWhite"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_mood3"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/mood2Button"
             app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
@@ -82,12 +83,30 @@
             android:layout_height="@dimen/icon"
             android:layout_marginStart="@dimen/iconHSpacing"
             android:layout_marginTop="@dimen/iconVSpacing"
+            android:layout_marginEnd="@dimen/iconMargin"
             android:adjustViewBounds="true"
             android:backgroundTint="@color/colorWhite"
             android:scaleType="fitXY"
             android:src="@drawable/ic_mood5"
             app:layout_constraintStart_toEndOf="@+id/mood4Button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/iconMargin"
+            android:layout_marginEnd="@dimen/iconMargin"
+            android:layout_marginTop="16dp"
+            android:max="5"
+            android:min="1"
+            android:progress="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mood3Button" />
 
         <!--
             <TextView
