@@ -115,5 +115,86 @@
                 android:text="@string/hello_blank_fragment"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />-->
+
+
+        <TextView
+            android:id="@+id/tagsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/largePadding"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="212dp"
+            android:text="@string/ane_tags_header"
+            android:textAppearance="@style/HeaderText"
+            android:textSize="@dimen/textH1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seekBar"
+            tools:ignore="RtlSymmetry" />
+
+        <ToggleButton
+            android:id="@+id/tagButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:textOff="HRT"
+            android:textOn="HRT"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:textOff="Party"
+            android:textOn="Party"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            app:layout_constraintStart_toEndOf="@+id/tagButton1"
+            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:textOff="Tired"
+            android:textOn="Tired"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            app:layout_constraintStart_toEndOf="@+id/toggleButton2"
+            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <ImageButton
+            android:id="@+id/tagsA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/toggleButton3"
+            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            app:srcCompat="@drawable/ic_add" />
+
+        <ImageButton
+            android:id="@+id/tagsInfoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tagsHeader"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

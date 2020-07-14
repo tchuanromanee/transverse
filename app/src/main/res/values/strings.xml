@@ -8,5 +8,6 @@
 
     <!-- ADD NEW ENTRY FRAGMENT -->
     <string name="ane_mood_header">How are you feeling?</string>
+    <string name="ane_tags_header">Tags</string>
     <string name="hello_blank_fragment">UwU</string>
 </resources>
