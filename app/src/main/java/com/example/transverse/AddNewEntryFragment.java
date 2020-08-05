@@ -1,12 +1,33 @@
 package com.example.transverse;
 
-import android.os.Bundle;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,10 +70,32 @@ public class AddNewEntryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        EditText autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
+        EditText autoTime = (EditText) getView().findViewById(R.id.editTextTime);
+
+        Calendar cal = Calendar.getInstance();
+
+        SimpleDateFormat dateF = new SimpleDateFormat("EEE MMM yyyy", Locale.getDefault());
+        SimpleDateFormat timeF = new SimpleDateFormat("HH:mm aa", Locale.getDefault());
+
+        //String time = cal.getTime().toString();
+        //String date = "date";
+        String date = dateF.format(cal.getTime());
+        String time = timeF.format(cal.getTime());
+
+        autoD8.setText(date);
+        autoTime.setText(time);
     }
 
     @Override
