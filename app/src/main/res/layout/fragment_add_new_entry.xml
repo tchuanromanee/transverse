@@ -98,8 +98,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="180dp"
             android:text="When did it start?"
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
@@ -433,6 +433,33 @@
             app:layout_constraintStart_toEndOf="@+id/editTextDate"
             app:layout_constraintTop_toBottomOf="@+id/tagsHeader4" />
 
+        <TextView
+            android:id="@+id/tagsHeader2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/largePadding"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Journal"
+            android:textAppearance="@style/HeaderText"
+            android:textSize="@dimen/textH1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/editTextJournal"
+            android:layout_width="330dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:text="What happened?"
+            android:textAlignment="viewStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tagsHeader2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

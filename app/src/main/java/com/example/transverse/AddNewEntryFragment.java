@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,7 +50,7 @@ public class AddNewEntryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    EditText autoD8, autoTime;
+    EditText autoD8, autoTime, journal;
 
     public AddNewEntryFragment() {
         // Required empty public constructor
@@ -82,12 +84,15 @@ public class AddNewEntryFragment extends Fragment {
         }
 
 
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
         autoTime = (EditText) getView().findViewById(R.id.editTextTime);
+        journal = (EditText) getView(). findViewById(R.id.editTextJournal);
+
 
         Calendar cal = Calendar.getInstance();
 
