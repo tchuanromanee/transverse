@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -44,6 +48,7 @@ public class AddNewEntryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    EditText autoD8, autoTime;
 
     public AddNewEntryFragment() {
         // Required empty public constructor
@@ -81,13 +86,13 @@ public class AddNewEntryFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        EditText autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
-        EditText autoTime = (EditText) getView().findViewById(R.id.editTextTime);
+        autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
+        autoTime = (EditText) getView().findViewById(R.id.editTextTime);
 
         Calendar cal = Calendar.getInstance();
 
         SimpleDateFormat dateF = new SimpleDateFormat("EEE MMM yyyy", Locale.getDefault());
-        SimpleDateFormat timeF = new SimpleDateFormat("HH:mm aa", Locale.getDefault());
+        SimpleDateFormat timeF = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
 
         //String time = cal.getTime().toString();
         //String date = "date";
@@ -96,6 +101,109 @@ public class AddNewEntryFragment extends Fragment {
 
         autoD8.setText(date);
         autoTime.setText(time);
+
+        // Set onclick listender for d8
+        autoD8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Date
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                //Format tdate o previous format
+
+                                autoD8.setText(dayOfMonth + " " + monthString(monthOfYear + 1) + " " + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+
+        });
+
+        // Set onclick listener for time
+
+        autoTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Time
+                final Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+                String ampm;
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+
+                                autoTime.setText(timeFormatter(hourOfDay, minute));
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+
+        });
+
+    }
+
+    public String monthString(int monthNum) {
+        String monthString;
+        switch (monthNum) {
+            case 1:  monthString = "Jan";
+                break;
+            case 2:  monthString = "Feb";
+                break;
+            case 3:  monthString = "Mar";
+                break;
+            case 4:  monthString = "Apr";
+                break;
+            case 5:  monthString = "May";
+                break;
+            case 6:  monthString = "Jun";
+                break;
+            case 7:  monthString = "Jul";
+                break;
+            case 8:  monthString = "Aug";
+                break;
+            case 9:  monthString = "Sep";
+                break;
+            case 10: monthString = "Oct";
+                break;
+            case 11: monthString = "Nov";
+                break;
+            case 12: monthString = "Dec";
+                break;
+            default: monthString = "NUL";
+                break;
+        }
+        return monthString;
+    }
+
+    //Determines if a time is AM or PM
+    public String timeFormatter(int hour, int min) {
+        String minString = String.valueOf(min);
+        String amOrPm = "AM";
+        if (hour > 12) {
+            hour -= 12;
+            amOrPm = "PM";
+        }
+        if (minString.length() < 2) {
+            minString = "0" + minString;
+        }
+        return (String.valueOf(hour) + ":" + minString + " " + amOrPm);
+
     }
 
     @Override
