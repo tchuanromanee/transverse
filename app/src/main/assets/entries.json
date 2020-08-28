@@ -12,6 +12,8 @@
         "misgendered",
         "mirror"
       ],
+      "hasDysphoria": true,
+      "dysphoriaType": 1,
       "intensity": 4,
       "journal": "Here is my journal entry. It was a shit day :("
     },
@@ -23,6 +25,8 @@
         "exercise"
       ],
       "triggers": [],
+     "hasDysphoria": false,
+     "dysphoriaType": 1,
       "intensity": 0,
       "journal": "It was a great dysphoria day!"
     }
