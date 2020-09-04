@@ -247,6 +247,7 @@ public class AddNewEntryFragment extends Fragment {
         // get JSON Object
         JSONObject newEntryJSON = entryToJSON();
         //Append JSON object to file
+        
 
         Fragment nextFrag= null;
         nextFrag = new StatisticsFragment();

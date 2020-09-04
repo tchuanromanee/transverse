@@ -1,33 +1,33 @@
-[
+{ "entries":[
 
     {
       "time": "1301",
       "date": "20200611",
       "mood": 1,
       "tags": [
-        "party",
-        "hrt"
+        {"name":"party"},
+        {"name": "hrt"}
       ],
+      "journal": "Here is my journal entry. It was a shit day :(",
       "triggers": [
-        "misgendered",
-        "mirror"
+        {"name":"misgendered"},
+        {"name": "mirror"}
       ],
       "hasDysphoria": true,
       "dysphoriaType": 1,
-      "intensity": 4,
-      "journal": "Here is my journal entry. It was a shit day :("
+      "intensity": 4
     },
    {
       "time": "1459",
       "date": "20200612",
       "mood": 4,
       "tags": [
-        "exercise"
+        {"name": "exercise"}
       ],
+     "journal": "It was a great dysphoria day!",
       "triggers": [],
      "hasDysphoria": false,
      "dysphoriaType": 1,
-      "intensity": 0,
-      "journal": "It was a great dysphoria day!"
+      "intensity": 0
     }
-]
+]}
