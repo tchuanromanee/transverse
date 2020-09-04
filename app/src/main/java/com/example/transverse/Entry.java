@@ -46,7 +46,7 @@ public class Entry {
         return dysphoria;
     }
 
-    public Mood setMood() {
+    public Mood getMood() {
         return mood;
     }
 
@@ -65,6 +65,19 @@ public class Entry {
 
     public void setMood(Mood mood) {
         this.mood = mood;
+    }
+
+    public String toString() {
+        String finalString = "Entry\n";
+        finalString += "Time: " + time + "\n";
+        finalString += "Date: " + date + "\n";
+        if (dysphoria != null) {
+            finalString += dysphoria.toString() + "\n";
+        }
+        if (mood != null) {
+            finalString += mood.toString() + "\n";
+        }
+        return finalString;
     }
 
 

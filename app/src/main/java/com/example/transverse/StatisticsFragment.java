@@ -2,12 +2,15 @@ package com.example.transverse;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +36,8 @@ public class StatisticsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView entriesDisp;
 
     public StatisticsFragment() {
         // Required empty public constructor
@@ -72,6 +77,19 @@ public class StatisticsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
+        displayEntries();
+    }
+
+    public void displayEntries() {
+
+        ArrayList<Entry> allEntries = getEntries();
+        for (int i = 0; i < allEntries.size(); i++) {
+            entriesDisp.append(allEntries.get(i).toString() + "\n");
+        }
+    }
+
     public ArrayList<Entry> getEntries() {
 
         try {
@@ -83,28 +101,37 @@ public class StatisticsFragment extends Fragment {
             for (int i = 0; i < m_jArry.length(); i++) {
                 JSONObject jo_inside = m_jArry.getJSONObject(i);
                 Entry newEntry = new Entry();
-                Log.d("Details-->", jo_inside.getString("time"));
+                Mood newMood = new Mood();
+                Dysphoria newDysphoria = new Dysphoria();
+
+                String timeVal = jo_inside.getString("time");
                 String dateVal = jo_inside.getString("date");
+                newEntry.setTime(timeVal);
+                newEntry.setDate(dateVal);
+
                 int moodVal = jo_inside.getInt("mood");
+                newMood.setMoodLevel(moodVal);
                 //Get tags
                 JSONArray tagsJSO = jo_inside.getJSONArray("tags");
                 int tagsLength = tagsJSO.length();
 
-                ArrayList<String> tags = new ArrayList<>();
+
                 for(int j=0; j<tagsLength; j++) {
                     JSONObject json = tagsJSO.getJSONObject(j);
-                    tags.add(json.getString("name"));
+                    newMood.addTag(json.getString("name"));
                 }
 
                 String journalVal = jo_inside.getString("journal");
+                newMood.setJournal(journalVal);
+
                 //Get triggers
-                JSONArray triggersJSO = jo_inside.getJSONArray("tags");
+                JSONArray triggersJSO = jo_inside.getJSONArray("triggers");
                 int triggersLength = triggersJSO.length();
 
-                ArrayList<String> triggers = new ArrayList<>();
+
                 for(int j=0; j<triggersLength; j++) {
                     JSONObject json = triggersJSO.getJSONObject(j);
-                    triggers.add(json.getString("name"));
+                    newMood.addTrigger(json.getString("name"));
                 }
 
                 Boolean hasDysphoria = jo_inside.getBoolean("hasDysphoria");
@@ -113,17 +140,17 @@ public class StatisticsFragment extends Fragment {
                 if (hasDysphoria) {
                     dysphoriaType = jo_inside.getInt("dysphoriaType");
                     dysphoriaIntensity = jo_inside.getInt("intensity");
+                    newDysphoria.setType(dysphoriaType);
+                    newDysphoria.setIntensity(dysphoriaIntensity);
+                    newEntry.setDysphoria(newDysphoria);
+
                 }
-                else {
+                else { // both dysphoria type and intensity will be -1 if default constructor was used
                     dysphoriaType = -1;
                     dysphoriaIntensity = -1;
                 }
 
-
-                //Add your values in your `ArrayList` as below:
-                //m_li = new HashMap<String, int>();
-                //m_li.put("date", dateVal);
-                //m_li.put("dysphoriaVal", dysphoriaVal);
+                newEntry.setMood(newMood);
 
                 entriesList.add(newEntry);
             }

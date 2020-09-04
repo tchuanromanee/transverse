@@ -1,10 +1,31 @@
 package com.example.transverse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Mood {
     private int moodLevel;
     private ArrayList<String> tags;
+    private String journal;
+    private ArrayList<String> triggers;
+
+    public Mood() {
+        moodLevel = -1;
+        tags = new ArrayList<String>();
+        journal = "";
+        triggers = new ArrayList<String>();
+    }
+
+    public String toString() {
+        String printString = "";
+
+        printString += "Mood level: " + moodLevel + "\n";
+        printString += "Tags: " + Arrays.toString(tags.toArray()) + "\n";
+        printString += "Journal: " + journal + "\n";
+        printString += "Triggers: " + Arrays.toString(triggers.toArray()) + "\n";
+
+        return printString;
+    }
 
     public ArrayList<String> getTags() {
         return tags;
@@ -22,9 +43,13 @@ public class Mood {
         this.triggers = triggers;
     }
 
-    private String journal;
-    private ArrayList<String> triggers;
+    public void addTag(String newTag) {
+        tags.add(newTag);
+    }
 
+    public void addTrigger(String newTrigger) {
+        triggers.add(newTrigger);
+    }
 
 
     public String getJournal() {
