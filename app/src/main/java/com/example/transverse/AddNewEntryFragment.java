@@ -30,8 +30,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,6 +56,7 @@ public class AddNewEntryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    File entriesFile;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -115,7 +122,14 @@ public class AddNewEntryFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                submitEntry();
+                try {
+                    submitEntry();
+                }
+                catch (JSONException e) {
+
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -243,11 +257,29 @@ public class AddNewEntryFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_add_new_entry, container, false);
     }
 
-    private void submitEntry() {
-        // get JSON Object
-        JSONObject newEntryJSON = entryToJSON();
-        //Append JSON object to file
-        
+    private void submitEntry() throws JSONException {
+        entriesFile = new File(getContext().getFilesDir(), "entries.json");
+        // Get previous JSON array to write to
+        try {
+            String strFileJson = getStringFromFile(entriesFile);
+            JSONObject previousJSONObj = new JSONObject(strFileJson);
+            JSONArray array = previousJSONObj.getJSONArray("entries");
+            // get JSON Object to be written
+            JSONObject newEntryJSON = entryToJSON();
+
+            array.put(newEntryJSON);
+            JSONObject currentJsonObject = new JSONObject();
+            currentJsonObject.put("appointments", array);
+            //Append JSON object to file
+
+            writeJsonFile(entriesFile, currentJsonObject.toString());
+        }
+        catch (Exception e) {
+
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
 
         Fragment nextFrag= null;
         nextFrag = new StatisticsFragment();
@@ -259,7 +291,7 @@ public class AddNewEntryFragment extends Fragment {
 
     }
 
-    private JSONObject entryToJSON() {
+    private JSONObject entryToJSON() throws JSONException {
         JSONObject newEntryJSON = new JSONObject();
         //populate arrays if needed
         JSONArray tagsArray = new JSONArray();
@@ -279,30 +311,34 @@ public class AddNewEntryFragment extends Fragment {
 
         // populate tags
         for (int i = 0; i < tags.length; i++) {
-            tagsArray.put(tags[i]);
+            JSONObject tagObj = new JSONObject();
+            tagObj.put("name", tags[i]);
+            tagsArray.put(tagObj);
         }
 
         try {
             newEntryJSON.put("time", time);
             newEntryJSON.put("date", date);
             newEntryJSON.put("mood", moodRating);
-            newEntryJSON.put("tags", tags);
+            newEntryJSON.put("tags", tagsArray);//tags);
             newEntryJSON.put("journal", journalString);
             if (hasDysphoria) {
 
                 // populate triggers
                 for (int i = 0; i < triggers.length; i++) {
-                    tagsArray.put(triggers[i]);
+                    JSONObject triggerObj = new JSONObject();
+                    triggerObj.put("name", triggers[i]);
+                    triggersArray.put(triggerObj);
                 }
                 newEntryJSON.put("hasDysphoria", true);
                 newEntryJSON.put("dysphoriaType", dysphoriaType);
-                newEntryJSON.put("triggers", triggers);
+                newEntryJSON.put("triggers", triggersArray);
                 newEntryJSON.put("intensity", dysphoriaIntensity);
             }
             else {
                 newEntryJSON.put("hasDysphoria", false);
                 newEntryJSON.put("dysphoriaType", 0);
-                newEntryJSON.put("triggers", triggers);
+                newEntryJSON.put("triggers", triggersArray);
                 newEntryJSON.put("intensity", dysphoriaIntensity);
             }
         } catch (JSONException e) {
@@ -312,5 +348,48 @@ public class AddNewEntryFragment extends Fragment {
 
         return newEntryJSON;
 
+    }
+
+    public static String getStringFromFile(File fl) throws Exception {
+        FileInputStream fin = new FileInputStream(fl);
+        String ret = convertStreamToString(fin);
+        //Make sure you close all streams.
+        fin.close();
+        return ret;
+    }
+
+    public static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public static void writeJsonFile(File file, String json) {
+        BufferedWriter bufferedWriter = null;
+        try {
+            if (!file.exists()) {
+                Log.e("App","file not exist");
+                file.createNewFile();
+            }
+
+            FileWriter fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(json);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }
