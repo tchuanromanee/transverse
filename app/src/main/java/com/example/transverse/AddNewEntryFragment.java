@@ -281,12 +281,17 @@ public class AddNewEntryFragment extends Fragment {
 
         }
 
+
+        // Reload stats fragment
         Fragment nextFrag= null;
         nextFrag = new StatisticsFragment();
         FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, nextFrag,"tag");
         fragmentTransaction.addToBackStack(null);
+
+        fragmentTransaction.detach(nextFrag);
+        fragmentTransaction.attach(nextFrag);
         fragmentTransaction.commit();
 
     }

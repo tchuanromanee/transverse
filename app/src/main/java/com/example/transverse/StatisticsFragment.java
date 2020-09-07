@@ -1,5 +1,7 @@
 package com.example.transverse;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -16,8 +18,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,6 +43,7 @@ public class StatisticsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    File entriesFile;
     TextView entriesDisp;
 
     public StatisticsFragment() {
@@ -74,16 +81,28 @@ public class StatisticsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
-        displayEntries();
+
+       // displayEntries();
     }
 
-    public void displayEntries() {
+    @Override
+    public void onResume() {
 
+        super.onResume();
+        displayEntries();
+
+    }
+
+
+
+    public void displayEntries() {
+        entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
+        entriesDisp.append("called!");
         ArrayList<Entry> allEntries = getEntries();
         for (int i = 0; i < allEntries.size(); i++) {
             entriesDisp.append(allEntries.get(i).toString() + "\n");
@@ -92,10 +111,11 @@ public class StatisticsFragment extends Fragment {
 
     public ArrayList<Entry> getEntries() {
 
+        ArrayList<Entry> entriesList = new ArrayList();
         try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            entriesFile = new File(getContext().getFilesDir(), "entries.json");
+            JSONObject obj = new JSONObject(getStringFromFile(entriesFile));
             JSONArray m_jArry = obj.getJSONArray("entries");
-            ArrayList<Entry> entriesList = new ArrayList();
             //HashMap<String, String> m_li;
 
             for (int i = 0; i < m_jArry.length(); i++) {
@@ -159,23 +179,29 @@ public class StatisticsFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return entriesList;
 
     }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getActivity().getAssets().open("entries.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+    public static String getStringFromFile(File fl) throws Exception {
+        FileInputStream fin = new FileInputStream(fl);
+        String ret = convertStreamToString(fin);
+        //Make sure you close all streams.
+        fin.close();
+        return ret;
+    }
+
+    public static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
         }
-        return json;
+        return sb.toString();
     }
 }
