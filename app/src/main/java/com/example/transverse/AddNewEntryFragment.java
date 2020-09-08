@@ -258,18 +258,31 @@ public class AddNewEntryFragment extends Fragment {
     }
 
     private void submitEntry() throws JSONException {
+
         entriesFile = new File(getContext().getFilesDir(), "entries.json");
         // Get previous JSON array to write to
         try {
+            if (!entriesFile.exists()) {
+                Log.e("App","file not exist");
+                entriesFile.createNewFile();
+            }
             String strFileJson = getStringFromFile(entriesFile);
-            JSONObject previousJSONObj = new JSONObject(strFileJson);
-            JSONArray array = previousJSONObj.getJSONArray("entries");
+            JSONObject previousJSONObj;
+            JSONArray array;
+            if (strFileJson != "") {
+                previousJSONObj = new JSONObject(strFileJson);
+                array = previousJSONObj.getJSONArray("entries");
+            }
+            else {
+                previousJSONObj = new JSONObject();
+                array = new JSONArray();
+            }
             // get JSON Object to be written
             JSONObject newEntryJSON = entryToJSON();
 
             array.put(newEntryJSON);
             JSONObject currentJsonObject = new JSONObject();
-            currentJsonObject.put("appointments", array);
+            currentJsonObject.put("entries", array);
             //Append JSON object to file
 
             writeJsonFile(entriesFile, currentJsonObject.toString());

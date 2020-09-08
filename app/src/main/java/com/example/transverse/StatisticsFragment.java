@@ -43,6 +43,8 @@ public class StatisticsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private int timesCalled;
+
     File entriesFile;
     TextView entriesDisp;
 
@@ -94,6 +96,8 @@ public class StatisticsFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
+        timesCalled++;
+        Log.i(String.valueOf(timesCalled), "Tiems Called");
         displayEntries();
 
     }
@@ -104,6 +108,9 @@ public class StatisticsFragment extends Fragment {
         entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
         entriesDisp.append("called!");
         ArrayList<Entry> allEntries = getEntries();
+        if (allEntries == null) {
+            return;
+        }
         for (int i = 0; i < allEntries.size(); i++) {
             entriesDisp.append(allEntries.get(i).toString() + "\n");
         }
