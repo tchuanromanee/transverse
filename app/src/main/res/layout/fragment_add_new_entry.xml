@@ -90,7 +90,7 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physicalDysphoriaText2"
+            app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
             tools:ignore="RtlSymmetry" />
 
         <TextView
@@ -261,7 +261,7 @@
             app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/moodSeekbar"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -296,7 +296,7 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seekBar"
+            app:layout_constraintTop_toBottomOf="@id/moodSeekbar"
             tools:ignore="RtlSymmetry" />
 
 
@@ -361,7 +361,7 @@
             android:layout_marginStart="52dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toEndOf="@+id/tagsHeader"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            app:layout_constraintTop_toBottomOf="@+id/moodSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
 
 
@@ -408,6 +408,36 @@
             android:text="Physical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/physicalDysphoriaButton" />
+
+        <TextView
+            android:id="@+id/dysphoriaIntensityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/largePadding"
+            android:layout_marginStart="@dimen/largePadding"
+            android:layout_marginTop="@dimen/largePadding"
+            android:text="How intense is it?"
+            android:textAppearance="@style/HeaderText"
+            android:textSize="@dimen/textH1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaText2"
+            tools:ignore="RtlSymmetry" />
+
+        <SeekBar
+            android:id="@+id/dysphoriaSeekbar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/iconMargin"
+            android:layout_marginEnd="@dimen/iconMargin"
+            android:layout_marginTop="16dp"
+            android:max="5"
+            android:min="1"
+            android:progress="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dysphoriaIntensityText" />
 
         <EditText
             android:id="@+id/editTextDate"

@@ -22,6 +22,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -61,6 +64,7 @@ public class AddNewEntryFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     EditText autoD8, autoTime, journal;
+    ProgressBar moodSeekbar, dysphoriaSeekbar;
     Button submitButton;
 
     // Variables to be stored for each entry
@@ -116,6 +120,8 @@ public class AddNewEntryFragment extends Fragment {
         autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
         autoTime = (EditText) getView().findViewById(R.id.editTextTime);
         journal = (EditText) getView().findViewById(R.id.editTextJournal);
+        moodSeekbar = (SeekBar) getView().findViewById(R.id.moodSeekbar);
+        dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
         submitButton = (Button) getView().findViewById(R.id.submitEntryButton);
 
 
@@ -309,6 +315,10 @@ public class AddNewEntryFragment extends Fragment {
 
     }
 
+    private void readForm() {
+        //entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
+    }
+
     private JSONObject entryToJSON() throws JSONException {
         JSONObject newEntryJSON = new JSONObject();
         //populate arrays if needed
@@ -316,15 +326,18 @@ public class AddNewEntryFragment extends Fragment {
         JSONArray triggersArray = new JSONArray();
 
         //***HARD CODED STUFF
-        time = "1849";
-        date = "20200807";
-        moodRating = 8;
+        // Pull values from form
+        time = autoTime.getText().toString();
+        date = autoD8.getText().toString();
+        moodRating = moodSeekbar.getProgress();
         tags = new String[]{"tag1", "tag2"};
-        journalString = "Journal here";
+        triggers = new String[]{"mirror", "misgendered"};
+        journalString = journal.getText().toString();
+        //if "no dysphoria" is not selected
         hasDysphoria = true;
         dysphoriaType = 1;
-        triggers = new String[]{"mirror", "misgendered"};
-        dysphoriaIntensity = 3;
+        dysphoriaIntensity = dysphoriaSeekbar.getProgress();
+
 
 
         // populate tags

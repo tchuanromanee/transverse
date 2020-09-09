@@ -106,7 +106,7 @@ public class StatisticsFragment extends Fragment {
 
     public void displayEntries() {
         entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
-        entriesDisp.append("called!");
+        entriesDisp.setText("called!");
         ArrayList<Entry> allEntries = getEntries();
         if (allEntries == null) {
             return;
@@ -121,6 +121,12 @@ public class StatisticsFragment extends Fragment {
         ArrayList<Entry> entriesList = new ArrayList();
         try {
             entriesFile = new File(getContext().getFilesDir(), "entries.json");
+            /*if (entriesFile.exists()) {
+                entriesFile.delete(); //FOR DEBUGGING
+            }
+            else {
+                entriesFile.createNewFile();
+            }*/
             JSONObject obj = new JSONObject(getStringFromFile(entriesFile));
             JSONArray m_jArry = obj.getJSONArray("entries");
             //HashMap<String, String> m_li;
