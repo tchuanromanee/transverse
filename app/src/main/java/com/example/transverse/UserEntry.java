@@ -1,6 +1,6 @@
 package com.example.transverse;
 
-public class Entry {
+public class UserEntry {
     //Date and time
     private String time;
     private String date;
@@ -11,7 +11,7 @@ public class Entry {
     //Mood val
     Mood mood;
 
-    public Entry() {
+    public UserEntry() {
         time = "";
         date = "";
         dysphoria = null;
@@ -19,14 +19,14 @@ public class Entry {
     }
 
     //Constructors
-    public Entry(String time, String date, Dysphoria dysphoriaEntry, Mood mood) {
+    public UserEntry(String time, String date, Dysphoria dysphoriaEntry, Mood mood) {
         this.time = time;
         this.date = date;
         dysphoria = dysphoriaEntry;
         this.mood = mood;
     }
 
-    public Entry(String time, String date, Mood mood) { //No dysphoria present at this time
+    public UserEntry(String time, String date, Mood mood) { //No dysphoria present at this time
         this.time = time;
         this.date = date;
         dysphoria = null;
@@ -40,6 +40,10 @@ public class Entry {
 
     public String getDate () {
         return date;
+    }
+
+    public int getDateInt () {
+        return 0;
     }
 
     public Dysphoria getDysphoria () {
