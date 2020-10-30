@@ -4,6 +4,7 @@ public class UserEntry {
     //Date and time
     private String time;
     private String date;
+    private long timeAndDate;
 
     //Dysphoria vals
     Dysphoria dysphoria;
@@ -34,6 +35,7 @@ public class UserEntry {
     }
 
     //Getters
+    public long getTimeAndDate() {return timeAndDate;}
     public String getTime() {
         return time;
     }
@@ -63,6 +65,8 @@ public class UserEntry {
         this.date = date;
     }
 
+    public void setTimeAndDate(long tAndD) {timeAndDate = tAndD;}
+
     public void setDysphoria (Dysphoria dysphoria) {
         this.dysphoria = dysphoria;
     }
@@ -73,8 +77,9 @@ public class UserEntry {
 
     public String toString() {
         String finalString = "Entry\n";
-        finalString += "Time: " + time + "\n";
-        finalString += "Date: " + date + "\n";
+        //finalString += "Time: " + time + "\n";
+        //finalString += "Date: " + date + "\n";
+        finalString += "Unformatted time and date: " + timeAndDate + "\n";
         if (dysphoria != null) {
             finalString += dysphoria.toString() + "\n";
         }

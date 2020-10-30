@@ -71,6 +71,7 @@ public class AddNewEntryFragment extends Fragment {
     int moodRating;
     String [] tags;
     String date, time; //"time": "1301", "date": "20200611",
+    long timeAndDate;
     String journalString;
 
     //Dysphoria-specific variables for each entry
@@ -148,11 +149,13 @@ public class AddNewEntryFragment extends Fragment {
         //String date = "date";
         String date = dateF.format(cal.getTime());
         String time = timeF.format(cal.getTime());
+        //timeAndDate = 0;
 
         autoD8.setText(date);
         autoTime.setText(time);
+        timeAndDate = cal.getTimeInMillis();
 
-        // Set onclick listender for d8
+        // Set onclick listener for d8
         autoD8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,6 +190,7 @@ public class AddNewEntryFragment extends Fragment {
             public void onClick(View v) {
                 // Get Current Time
                 final Calendar c = Calendar.getInstance();
+
                 int mHour = c.get(Calendar.HOUR_OF_DAY);
                 int mMinute = c.get(Calendar.MINUTE);
                 String ampm;
@@ -266,6 +270,7 @@ public class AddNewEntryFragment extends Fragment {
     private void submitEntry() throws JSONException {
 
         entriesFile = new File(getContext().getFilesDir(), "entries.json");
+        //entriesFile.delete();
         // Get previous JSON array to write to
         try {
             if (!entriesFile.exists()) {
@@ -327,8 +332,9 @@ public class AddNewEntryFragment extends Fragment {
 
         //***HARD CODED STUFF
         // Pull values from form
-        time = autoTime.getText().toString();
-        date = autoD8.getText().toString();
+        //time = autoTime.getText().toString();
+        //date = autoD8.getText().toString();
+        //timeAndDate should be already populated, as it was called when calendar was dealt with
         moodRating = moodSeekbar.getProgress();
         tags = new String[]{"tag1", "tag2"};
         triggers = new String[]{"mirror", "misgendered"};
@@ -348,8 +354,9 @@ public class AddNewEntryFragment extends Fragment {
         }
 
         try {
-            newEntryJSON.put("time", time);
-            newEntryJSON.put("date", date);
+            //newEntryJSON.put("time", time);
+            //newEntryJSON.put("date", date);
+            newEntryJSON.put("timeAndDate", timeAndDate);
             newEntryJSON.put("mood", moodRating);
             newEntryJSON.put("tags", tagsArray);//tags);
             newEntryJSON.put("journal", journalString);

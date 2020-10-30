@@ -135,9 +135,10 @@ public class StatisticsFragment extends Fragment {
 
     public void displayEntries() {
         entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
-        entriesDisp.setText("called!");
+
         ArrayList<UserEntry> allEntries = getEntries();
         if (allEntries == null) {
+            entriesDisp.setText("No entries!!");
             return;
         }
 
@@ -169,11 +170,12 @@ public class StatisticsFragment extends Fragment {
                 Mood newMood = new Mood();
                 Dysphoria newDysphoria = new Dysphoria();
 
-                String timeVal = jo_inside.getString("time");
-                String dateVal = jo_inside.getString("date");
-                newEntry.setTime(timeVal);
-                newEntry.setDate(dateVal);
-
+                //String timeVal = jo_inside.getString("time");
+                //String dateVal = jo_inside.getString("date");
+                //newEntry.setTime(timeVal);
+                //newEntry.setDate(dateVal);
+                long timeAndDateVal = jo_inside.getLong("timeAndDate");
+                newEntry.setTimeAndDate(timeAndDateVal);
                 int moodVal = jo_inside.getInt("mood");
                 newMood.setMoodLevel(moodVal);
                 //Get tags
@@ -246,7 +248,7 @@ public class StatisticsFragment extends Fragment {
         chart.setTouchEnabled(true);
 
         // set listeners
-        //chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
+       // chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
         chart.setDrawGridBackground(false);
 
         // create marker to display box when values are selected
@@ -345,9 +347,9 @@ public class StatisticsFragment extends Fragment {
         for (int i = 0; i < allEntries.size(); i++) {
             //entriesDisp.append(allEntries.get(i).toString() + "\n");
             int val = allEntries.get(i).getMood().getMoodLevel(); //get mood value
-            int date = allEntries.get(i).getDate();
+            long timeAndDate = allEntries.get(i).getTimeAndDate();
             //float val = (float) (Math.random() * range) - 30;
-            values.add(new Entry(date, val, getResources().getDrawable(R.drawable.edit_text_bg)));
+            values.add(new Entry(timeAndDate, val, getResources().getDrawable(R.drawable.edit_text_bg)));
         }
         LineDataSet set1;
 
