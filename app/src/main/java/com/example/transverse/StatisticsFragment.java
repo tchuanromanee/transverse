@@ -10,12 +10,15 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -57,7 +60,7 @@ import com.github.mikephil.charting.utils.Utils;
  * create an instance of this fragment.
  */
 public class StatisticsFragment extends Fragment {
-
+    ArrayList<UserEntry> allEntries;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,7 +73,7 @@ public class StatisticsFragment extends Fragment {
     private int timesCalled;
 
     File entriesFile;
-    TextView entriesDisp;
+    ListView entriesDisp;
 
     private LineChart chart;
     private SeekBar seekBarX, seekBarY;
@@ -134,17 +137,21 @@ public class StatisticsFragment extends Fragment {
 
 
     public void displayEntries() {
-        entriesDisp = (TextView) getView().findViewById(R.id.entriesText);
+        entriesDisp = (ListView) getView().findViewById(R.id.entriesDisplay);
 
-        ArrayList<UserEntry> allEntries = getEntries();
-        if (allEntries == null) {
+        allEntries = getEntries();
+        /*EntriesDisp used to be a testview, which was why here there is setText if (allEntries == null) {
             entriesDisp.setText("No entries!!");
             return;
         }
 
         for (int i = 0; i < allEntries.size(); i++) {
             entriesDisp.append(allEntries.get(i).toString() + "\n");
-        }
+        }*/
+        ArrayAdapter<UserEntry> arrayAdapter = new ArrayAdapter<UserEntry>(getActivity(), android.R.layout.simple_list_item_1, allEntries);
+
+        entriesDisp.setAdapter(arrayAdapter);
+        //  entriesDisp.setAdapter(entriesAdapter);
         displayChart(allEntries);
         //setData(allEntries);
     }
@@ -249,6 +256,31 @@ public class StatisticsFragment extends Fragment {
 
         // set listeners
        // chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                //String xAxisValue = chart.getData().getXVals().get(e.getXIndex());
+                Log.e("VAL SELECTED", "Value: " + e.getY() + ", index: " + h.getX()
+                        + ", DataSet index: "); // x will be some number w 10^12 places
+                long timeAndDate = (long) h.getX();
+
+                //Log.d("test", "xAxisValue: " + xAxisValue);
+                // Find the entry w the same date/time (given by the X value)
+                //ArrayList<UserEntry> allEntries
+                /*int len=allEntries.size();
+                for(int i=0; i<len; i++) {
+                    if (allEntries.get(i).getTimeAndDate().equals(timeAndDate)) {
+                        // Do something ...
+                    }
+                }*/
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+
         chart.setDrawGridBackground(false);
 
         // create marker to display box when values are selected
@@ -260,7 +292,7 @@ public class StatisticsFragment extends Fragment {
 
         // enable scaling and dragging
         chart.setDragEnabled(true);
-        chart.setScaleEnabled(true);
+        chart.setScaleEnabled(false);
         // chart.setScaleXEnabled(true);
         // chart.setScaleYEnabled(true);
 
@@ -270,6 +302,8 @@ public class StatisticsFragment extends Fragment {
         XAxis xAxis;
         {   // // X-Axis Style // //
             xAxis = chart.getXAxis();
+            xAxis.setValueFormatter(new MyXAxisValueFormatter());
+
 
             // vertical grid lines
             xAxis.enableGridDashedLine(10f, 10f, 0f);
@@ -286,7 +320,7 @@ public class StatisticsFragment extends Fragment {
             //yAxis.enableGridDashedLine(10f, 10f, 0f);
 
             // axis range
-            yAxis.setAxisMaximum(10f);
+            yAxis.setAxisMaximum(5f);
             yAxis.setAxisMinimum(1f);
         }
 
