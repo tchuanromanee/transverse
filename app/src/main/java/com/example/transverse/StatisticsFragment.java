@@ -2,6 +2,7 @@ package com.example.transverse;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.Drawable;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -138,8 +140,27 @@ public class StatisticsFragment extends Fragment {
 
     public void displayEntries() {
         entriesDisp = (ListView) getView().findViewById(R.id.entriesDisplay);
+        //LEFT OFF
+        /*entriesDisp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = prestListView.getItemAtPosition(position);
+                prestationEco str = (prestationEco)o; //As you are using Default String Adapter
+                Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        final UserEntryAdapter userEntryAdapter = new UserEntryAdapter(this, R.layout.user_entry_list_item);
+        entriesDisp.setAdapter(userEntryAdapter);
 
         allEntries = getEntries();
+        // Populate the list, through the adapter
+
+        for(final UserEntry entry : allEntries) {
+            userEntryAdapter.add(entry);
+        }
+
+
         /*EntriesDisp used to be a testview, which was why here there is setText if (allEntries == null) {
             entriesDisp.setText("No entries!!");
             return;
@@ -148,12 +169,13 @@ public class StatisticsFragment extends Fragment {
         for (int i = 0; i < allEntries.size(); i++) {
             entriesDisp.append(allEntries.get(i).toString() + "\n");
         }*/
-        ArrayAdapter<UserEntry> arrayAdapter = new ArrayAdapter<UserEntry>(getActivity(), android.R.layout.simple_list_item_1, allEntries);
+       // ArrayAdapter<UserEntry> arrayAdapter = new ArrayAdapter<UserEntry>(getActivity(), android.R.layout.simple_list_item_1, allEntries);
 
-        entriesDisp.setAdapter(arrayAdapter);
+        //entriesDisp.setAdapter(arrayAdapter);
         //  entriesDisp.setAdapter(entriesAdapter);
         displayChart(allEntries);
         //setData(allEntries);
+
     }
 
     public ArrayList<UserEntry> getEntries() {
