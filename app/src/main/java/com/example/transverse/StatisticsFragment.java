@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -20,9 +22,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,7 +66,6 @@ import com.github.mikephil.charting.utils.Utils;
  * create an instance of this fragment.
  */
 public class StatisticsFragment extends Fragment {
-    ArrayList<UserEntry> allEntries;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,7 +77,7 @@ public class StatisticsFragment extends Fragment {
 
     private int timesCalled;
 
-    File entriesFile;
+
     ListView entriesDisp;
 
     private LineChart chart;
@@ -140,26 +143,47 @@ public class StatisticsFragment extends Fragment {
 
     public void displayEntries() {
         entriesDisp = (ListView) getView().findViewById(R.id.entriesDisplay);
-        //LEFT OFF
-        /*entriesDisp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = prestListView.getItemAtPosition(position);
-                prestationEco str = (prestationEco)o; //As you are using Default String Adapter
-                Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         final UserEntryAdapter userEntryAdapter = new UserEntryAdapter(this, R.layout.user_entry_list_item);
         entriesDisp.setAdapter(userEntryAdapter);
-
-        allEntries = getEntries();
+        MainActivity activity = (MainActivity) getActivity();
+        ArrayList<UserEntry> allEntries = activity.allEntries;
         // Populate the list, through the adapter
 
         for(final UserEntry entry : allEntries) {
             userEntryAdapter.add(entry);
         }
 
+        //LEFT OFF
+        entriesDisp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = entriesDisp.getItemAtPosition(position);
+                UserEntry currentEntry = (UserEntry) o;
+               // Intent intent = new Intent(this,EntryViewFragment.class);
+                //based on item add info to intent
+                //startActivity(intent);
+
+                /*LinearLayout fragContainer = (LinearLayout) findViewById(R.id.llFragmentContainer);
+
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+
+        ll.setId(12345);
+
+        getFragmentManager().beginTransaction().add(ll.getId(), TestFragment.newInstance("I am frag 1"), "someTag1").commit();
+        getFragmentManager().beginTransaction().add(ll.getId(), TestFragment.newInstance("I am frag 2"), "someTag2").commit();
+
+        fragContainer.addView(ll);
+
+                 */
+
+
+                //prestationEco str = (prestationEco)o; //As you are using Default String Adapter
+                //Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
+            }
+        });
 
         /*EntriesDisp used to be a testview, which was why here there is setText if (allEntries == null) {
             entriesDisp.setText("No entries!!");
@@ -178,90 +202,7 @@ public class StatisticsFragment extends Fragment {
 
     }
 
-    public ArrayList<UserEntry> getEntries() {
 
-        ArrayList<UserEntry> entriesList = new ArrayList();
-        try {
-            entriesFile = new File(getContext().getFilesDir(), "entries.json");
-            /*if (entriesFile.exists()) {
-                entriesFile.delete(); //FOR DEBUGGING
-            }
-            else {
-                entriesFile.createNewFile();
-            }*/
-            JSONObject obj = new JSONObject(getStringFromFile(entriesFile));
-            JSONArray m_jArry = obj.getJSONArray("entries");
-            //HashMap<String, String> m_li;
-
-            for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-                UserEntry newEntry = new UserEntry();
-                Mood newMood = new Mood();
-                Dysphoria newDysphoria = new Dysphoria();
-
-                //String timeVal = jo_inside.getString("time");
-                //String dateVal = jo_inside.getString("date");
-                //newEntry.setTime(timeVal);
-                //newEntry.setDate(dateVal);
-                long timeAndDateVal = jo_inside.getLong("timeAndDate");
-                newEntry.setTimeAndDate(timeAndDateVal);
-                int moodVal = jo_inside.getInt("mood");
-                newMood.setMoodLevel(moodVal);
-                //Get tags
-                JSONArray tagsJSO = jo_inside.getJSONArray("tags");
-                int tagsLength = tagsJSO.length();
-
-
-                for(int j=0; j<tagsLength; j++) {
-                    JSONObject json = tagsJSO.getJSONObject(j);
-                    newMood.addTag(json.getString("name"));
-                }
-
-                String journalVal = jo_inside.getString("journal");
-                newMood.setJournal(journalVal);
-
-                //Get triggers
-                JSONArray triggersJSO = jo_inside.getJSONArray("triggers");
-                int triggersLength = triggersJSO.length();
-
-
-                for(int j=0; j<triggersLength; j++) {
-                    JSONObject json = triggersJSO.getJSONObject(j);
-                    newMood.addTrigger(json.getString("name"));
-                }
-
-                Boolean hasDysphoria = jo_inside.getBoolean("hasDysphoria");
-                int dysphoriaType;
-                int dysphoriaIntensity;
-                if (hasDysphoria) {
-                    dysphoriaType = jo_inside.getInt("dysphoriaType");
-                    dysphoriaIntensity = jo_inside.getInt("intensity");
-                    newDysphoria.setType(dysphoriaType);
-                    newDysphoria.setIntensity(dysphoriaIntensity);
-                    newEntry.setDysphoria(newDysphoria);
-
-                }
-                else { // both dysphoria type and intensity will be -1 if default constructor was used
-                    dysphoriaType = -1;
-                    dysphoriaIntensity = -1;
-                }
-
-                newEntry.setMood(newMood);
-
-                entriesList.add(newEntry);
-            }
-
-            return entriesList;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return entriesList;
-
-    }
 
     public void displayChart(ArrayList<UserEntry> allEntries) {
         // // Chart Style // //
@@ -477,21 +418,6 @@ public class StatisticsFragment extends Fragment {
     }
 
 
-    public static String getStringFromFile(File fl) throws Exception {
-        FileInputStream fin = new FileInputStream(fl);
-        String ret = convertStreamToString(fin);
-        //Make sure you close all streams.
-        fin.close();
-        return ret;
-    }
 
-    public static String convertStreamToString(InputStream is) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line).append("\n");
-        }
-        return sb.toString();
-    }
+
 }

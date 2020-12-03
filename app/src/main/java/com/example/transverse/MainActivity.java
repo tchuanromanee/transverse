@@ -18,13 +18,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-
+    File entriesFile;
+    ArrayList<UserEntry> allEntries;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         //Load JSON assets
         //https://stackoverflow.com/questions/19945411/android-java-how-can-i-parse-a-local-json-file-from-assets-folder-into-a-listvi/19945484#19945484
-        populateEntries();
+        //populateEntries();
+
+        allEntries = getEntries();
 
     }
 
@@ -98,29 +105,107 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return json;
     }
 
-    private void populateEntries() {
+    public ArrayList<UserEntry> getEntries() {
+
+        ArrayList<UserEntry> entriesList = new ArrayList();
         try {
-            JSONObject entries = new JSONObject(loadJSONFromAsset("entries.json"));
-            JSONArray m_jArry = entries.getJSONArray("formules");
-            ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> m_li;
+            entriesFile = new File(getFilesDir(), "entries.json");
+            /*if (entriesFile.exists()) {
+                entriesFile.delete(); //FOR DEBUGGING
+            }
+            else {
+                entriesFile.createNewFile();
+            }*/
+            JSONObject obj = new JSONObject(getStringFromFile(entriesFile));
+            JSONArray m_jArry = obj.getJSONArray("entries");
+            //HashMap<String, String> m_li;
 
             for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject entry = m_jArry.getJSONObject(i);
-                Log.d("Details-->", entry.getString("mood"));
-                String mood_value = entry.getString("mood");
-                String time_value = entry.getString("time");
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
+                UserEntry newEntry = new UserEntry();
+                Mood newMood = new Mood();
+                Dysphoria newDysphoria = new Dysphoria();
 
-                //Add your values in your `ArrayList` as below:
-                m_li = new HashMap<String, String>();
-                m_li.put("mood", mood_value);
-                m_li.put("time", time_value);
+                //String timeVal = jo_inside.getString("time");
+                //String dateVal = jo_inside.getString("date");
+                //newEntry.setTime(timeVal);
+                //newEntry.setDate(dateVal);
+                long timeAndDateVal = jo_inside.getLong("timeAndDate");
+                newEntry.setTimeAndDate(timeAndDateVal);
+                int moodVal = jo_inside.getInt("mood");
+                newMood.setMoodLevel(moodVal);
+                //Get tags
+                JSONArray tagsJSO = jo_inside.getJSONArray("tags");
+                int tagsLength = tagsJSO.length();
 
-                formList.add(m_li);
+
+                for(int j=0; j<tagsLength; j++) {
+                    JSONObject json = tagsJSO.getJSONObject(j);
+                    newMood.addTag(json.getString("name"));
+                }
+
+                String journalVal = jo_inside.getString("journal");
+                newMood.setJournal(journalVal);
+
+                //Get triggers
+                JSONArray triggersJSO = jo_inside.getJSONArray("triggers");
+                int triggersLength = triggersJSO.length();
+
+
+                for(int j=0; j<triggersLength; j++) {
+                    JSONObject json = triggersJSO.getJSONObject(j);
+                    newMood.addTrigger(json.getString("name"));
+                }
+
+                Boolean hasDysphoria = jo_inside.getBoolean("hasDysphoria");
+                int dysphoriaType;
+                int dysphoriaIntensity;
+                if (hasDysphoria) {
+                    dysphoriaType = jo_inside.getInt("dysphoriaType");
+                    dysphoriaIntensity = jo_inside.getInt("intensity");
+                    newDysphoria.setType(dysphoriaType);
+                    newDysphoria.setIntensity(dysphoriaIntensity);
+                    newEntry.setDysphoria(newDysphoria);
+
+                }
+                else { // both dysphoria type and intensity will be -1 if default constructor was used
+                    dysphoriaType = -1;
+                    dysphoriaIntensity = -1;
+                }
+
+                newEntry.setMood(newMood);
+
+                entriesList.add(newEntry);
             }
 
-        } catch (IOException | JSONException e) {
+            return entriesList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return entriesList;
+
+    }
+
+    public static String getStringFromFile(File fl) throws Exception {
+        FileInputStream fin = new FileInputStream(fl);
+        String ret = convertStreamToString(fin);
+        //Make sure you close all streams.
+        fin.close();
+        return ret;
+    }
+
+
+    public static String convertStreamToString(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        return sb.toString();
     }
 }
