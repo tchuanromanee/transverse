@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Map;
 
-public class EntryViewFragment extends Fragment {
+public class UserEntryViewFragment extends Fragment {
 
-    public static EntryViewFragment newInstance(UserEntry currentEntry) {
+    public static UserEntryViewFragment newInstance(UserEntry currentEntry) {
 
-        EntryViewFragment f = new EntryViewFragment();
+        UserEntryViewFragment f = new UserEntryViewFragment();
 
         Bundle b = new Bundle();
         b.putString("text", currentEntry.toString());
@@ -27,7 +27,7 @@ public class EntryViewFragment extends Fragment {
 
         View v =  inflater.inflate(R.layout.fragment_user_entry_view, container, false);
 
-        ((TextView) v.findViewById(R.id.tagsHeader2)).setText(getArguments().getString("text"));
+        ((TextView) v.findViewById(R.id.user_entry_subtitle)).setText("uwu");
         return v;
     }
 }

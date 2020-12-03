@@ -2,12 +2,15 @@ package com.example.transverse;
 import java.text.DateFormat;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.transverse.UserEntry;
 
@@ -44,10 +47,13 @@ public final class UserEntryAdapter extends ArrayAdapter<UserEntry> {
         viewHolder.subTitleView.setText(formattedSubTitle);
 
         // Setting image view is also simple
-        //Get image ID
-       //String mDrawableName = "ic_mood" + entry.getMood().getMoodLevel();
-        //int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
-        //viewHolder.imageView.setImageResource(entry.getMood().getMoodLevel());
+        //Get image ID, depending on the mood
+        Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_mood1);
+        String mDrawableName = "@drawable/ic_mood" + entry.getMood().getMoodLevel();
+        int resID = getContext().getResources().getIdentifier(mDrawableName , null, getContext().getPackageName());
+        viewHolder.imageView.setImageResource(resID);
+
+
 
         return view;
     }

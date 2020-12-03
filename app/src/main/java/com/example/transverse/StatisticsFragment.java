@@ -164,7 +164,16 @@ public class StatisticsFragment extends Fragment {
                // Intent intent = new Intent(this,EntryViewFragment.class);
                 //based on item add info to intent
                 //startActivity(intent);
+                Fragment nextFrag= null;
+                nextFrag = new UserEntryViewFragment();
+                FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, nextFrag,"tag");
+                fragmentTransaction.addToBackStack(null);
 
+                fragmentTransaction.detach(nextFrag);
+                fragmentTransaction.attach(nextFrag);
+                fragmentTransaction.commit();
                 /*LinearLayout fragContainer = (LinearLayout) findViewById(R.id.llFragmentContainer);
 
         LinearLayout ll = new LinearLayout(this);
