@@ -155,7 +155,6 @@ public class StatisticsFragment extends Fragment {
             userEntryAdapter.add(entry);
         }
 
-        //LEFT OFF
         entriesDisp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

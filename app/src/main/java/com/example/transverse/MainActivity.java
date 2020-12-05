@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -207,5 +208,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             sb.append(line).append("\n");
         }
         return sb.toString();
+    }
+
+    public void deleteEntryFromJSON(UserEntry entryToDelete) {
+
+        Toast.makeText(this, "Entry gone from JSON", Toast.LENGTH_SHORT).show();
     }
 }
