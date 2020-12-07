@@ -26,11 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -75,7 +70,6 @@ public class StatisticsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private int timesCalled;
 
 
     ListView entriesDisp;
@@ -132,8 +126,6 @@ public class StatisticsFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
-        timesCalled++;
-        Log.i(String.valueOf(timesCalled), "Tiems Called");
         displayEntries();
 
 
@@ -180,6 +172,7 @@ public class StatisticsFragment extends Fragment {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 Fragment fragment = UserEntryViewFragment.newInstance(currentEntry);
                 ft.replace(R.id.fragment_container, fragment);
+                ft.addToBackStack(null);
                 ft.commit();
                 /*LinearLayout fragContainer = (LinearLayout) findViewById(R.id.llFragmentContainer);
 
@@ -221,6 +214,9 @@ public class StatisticsFragment extends Fragment {
 
 
     public void displayChart(ArrayList<UserEntry> allEntries) {
+        if (allEntries.size() == 0) {
+            return;
+        }
         // // Chart Style // //
         chart = getView().findViewById(R.id.chart);
 

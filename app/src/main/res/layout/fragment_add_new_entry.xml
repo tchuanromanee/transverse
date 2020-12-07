@@ -111,10 +111,10 @@
             android:id="@+id/tagsInfoButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/tagsHeader3"
-            app:layout_constraintTop_toBottomOf="@+id/physicalDysphoriaText2"
+            app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
 
         <TextView
@@ -236,12 +236,12 @@
             android:id="@+id/mood4Button"
             android:layout_width="@dimen/icon"
             android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconHSpacing"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="@dimen/iconVSpacing"
-            android:src="@drawable/ic_mood4"
             android:adjustViewBounds="true"
             android:backgroundTint="@color/colorWhite"
             android:scaleType="fitXY"
+            android:src="@drawable/ic_mood4"
             app:layout_constraintStart_toEndOf="@+id/mood3Button"
             app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
@@ -256,8 +256,9 @@
             android:backgroundTint="@color/colorWhite"
             android:scaleType="fitXY"
             android:src="@drawable/ic_mood5"
-            app:layout_constraintStart_toEndOf="@+id/mood4Button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/mood4Button"
             app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
         <SeekBar
@@ -269,8 +270,6 @@
             android:layout_marginEnd="@dimen/iconMargin"
             android:layout_marginTop="16dp"
             android:max="5"
-            android:min="1"
-            android:progress="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -354,16 +353,16 @@
             app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
             app:srcCompat="@drawable/ic_add" />
 
+
         <ImageButton
             android:id="@+id/tagsInfoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="28dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/tagsHeader"
             app:layout_constraintTop_toBottomOf="@+id/moodSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
-
 
         <TextView
             android:id="@+id/typeHeader"
@@ -432,8 +431,6 @@
             android:layout_marginEnd="@dimen/iconMargin"
             android:layout_marginTop="16dp"
             android:max="5"
-            android:min="1"
-            android:progress="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,6 +44,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -268,7 +270,6 @@ public class AddNewEntryFragment extends Fragment {
     }
 
     private void submitEntry() throws JSONException {
-
         entriesFile = new File(getContext().getFilesDir(), "entries.json");
         //entriesFile.delete();
         // Get previous JSON array to write to
@@ -297,6 +298,19 @@ public class AddNewEntryFragment extends Fragment {
             //Append JSON object to file
 
             writeJsonFile(entriesFile, currentJsonObject.toString());
+
+            //Add new entry to arraylist
+            UserEntry newEntry = new UserEntry();
+            Mood newMood = new Mood(moodRating, new ArrayList<String>(Arrays.asList(tags)), journalString, new ArrayList<String>(Arrays.asList(triggers)));
+            newEntry.setTimeAndDate(timeAndDate);
+            newEntry.setMood(newMood);
+            if (hasDysphoria) {
+                Dysphoria newDysphoria = new Dysphoria(dysphoriaType, dysphoriaIntensity);
+                newEntry.setDysphoria(newDysphoria);
+            }
+            ((MainActivity) getActivity()).allEntries.add(newEntry);
+            //Success!
+            Toast.makeText(getContext(), "Entry created", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e) {
 
@@ -308,10 +322,14 @@ public class AddNewEntryFragment extends Fragment {
 
         // Reload stats fragment
         Fragment nextFrag= null;
+
+        //nextFrag = new StatisticsFragment();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+
+
         nextFrag = new StatisticsFragment();
-        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, nextFrag,"tag");
+        fragmentTransaction.replace(R.id.fragment_container, nextFrag,"stats_frag");
         fragmentTransaction.addToBackStack(null);
 
         fragmentTransaction.detach(nextFrag);
@@ -319,6 +337,7 @@ public class AddNewEntryFragment extends Fragment {
         fragmentTransaction.commit();
 
     }
+
 
     private void readForm() {
         //entriesDisp = (TextView) getView().findViewById(R.id.entriesText);

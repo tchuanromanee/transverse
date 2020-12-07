@@ -1,11 +1,11 @@
 package com.example.transverse;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserEntry implements Serializable {
     //Date and time
-    private String time;
-    private String date;
     private long timeAndDate;
 
     //Dysphoria vals
@@ -15,36 +15,16 @@ public class UserEntry implements Serializable {
     Mood mood;
 
     public UserEntry() {
-        time = "";
-        date = "";
+        timeAndDate = 0;
         dysphoria = null;
         mood = null;
     }
 
     //Constructors
-    public UserEntry(String time, String date, Dysphoria dysphoriaEntry, Mood mood) {
-        this.time = time;
-        this.date = date;
-        dysphoria = dysphoriaEntry;
-        this.mood = mood;
-    }
 
-    public UserEntry(String time, String date, Mood mood) { //No dysphoria present at this time
-        this.time = time;
-        this.date = date;
-        dysphoria = null;
-        this.mood = mood;
-    }
 
     //Getters
     public long getTimeAndDate() {return timeAndDate;}
-    public String getTime() {
-        return time;
-    }
-
-    public String getDate () {
-        return date;
-    }
 
     public int getDateInt () {
         return 0;
@@ -59,13 +39,6 @@ public class UserEntry implements Serializable {
     }
 
     //Setters
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setDate (String date) {
-        this.date = date;
-    }
 
     public void setTimeAndDate(long tAndD) {timeAndDate = tAndD;}
 
@@ -75,6 +48,16 @@ public class UserEntry implements Serializable {
 
     public void setMood(Mood mood) {
         this.mood = mood;
+    }
+
+    public String getDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy");// HH:mm");
+        Date resultdate = new Date(timeAndDate);
+        //System.out.println(sdf.format(resultdate));
+
+        //DecimalFormat mFormat = new DecimalFormat("###,###,##0.0");
+        //return mFormat.format(value) + " $";
+        return sdf.format(resultdate);
     }
 
     public String toString() {

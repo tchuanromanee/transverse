@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         //loading the default fragment
-        loadFragment(new EncyclopediaFragment());
+        loadFragment(new EncyclopediaFragment(), "");
 
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.bottomNav);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    private boolean loadFragment(Fragment fragment, String tag) {
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
-
+        String tag = "";
         switch (item.getItemId()) {
             case R.id.bottomNavigationEncyclopediaMenuId:
                 fragment = new EncyclopediaFragment();
@@ -88,13 +88,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             case R.id.bottomNavigationStatisticsMenuId:
                 fragment = new StatisticsFragment();
+                tag = "stats_frag";
                 break;
 
             case R.id.bottomNavigationSelfHelpMenuId:
                 fragment = new SelfHelpFragment();
                 break;
         }
-        return loadFragment(fragment);
+        return loadFragment(fragment, tag);
     }
 
     public String loadJSONFromAsset(String jsonFileName) throws IOException {
