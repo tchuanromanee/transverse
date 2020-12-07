@@ -17,10 +17,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONException;
 
+import java.io.Serializable;
 import java.util.Map;
 
 public class UserEntryViewFragment extends Fragment {
     Button deleteButton;
+    private static final String ENTRY_KEY = "entry_key";
     private static UserEntry thisEntry;
 
     public static UserEntryViewFragment newInstance(UserEntry currentEntry) {
@@ -28,16 +30,18 @@ public class UserEntryViewFragment extends Fragment {
         UserEntryViewFragment f = new UserEntryViewFragment();
 
         Bundle b = new Bundle();
-        b.putString("text", currentEntry.toString());
+       // b.putString("currentEntry", currentEntry.toString());
+        b.putSerializable(ENTRY_KEY, (Serializable) currentEntry);
         f.setArguments(b);
-        thisEntry = currentEntry;
+        //thisEntry = currentEntry;
 
         return f;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        thisEntry = (UserEntry) getArguments().getSerializable(
+                ENTRY_KEY);
         View v =  inflater.inflate(R.layout.fragment_user_entry_view, container, false);
 
         //((TextView) v.findViewById(R.id.user_entry_subtitle)).setText("uwu");
@@ -74,8 +78,8 @@ public class UserEntryViewFragment extends Fragment {
     public void deleteEntry() {
         //delete the entry from array list
         ((MainActivity) getActivity()).allEntries.remove(thisEntry);
-        //delete the entry from json
-        ((MainActivity) getActivity()).deleteEntryFromJSON(thisEntry);
+        //delete the entry from json by writing the new array w/o entry to JSON
+        ((MainActivity) getActivity()).allEntriesToJSON(thisEntry);
 
         // Reload stats fragment
         Fragment nextFrag= null;

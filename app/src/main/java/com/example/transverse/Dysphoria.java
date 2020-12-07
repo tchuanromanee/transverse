@@ -1,8 +1,9 @@
 package com.example.transverse;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Dysphoria {
+public class Dysphoria implements Serializable {
     private int type;
     private int intensity;
 

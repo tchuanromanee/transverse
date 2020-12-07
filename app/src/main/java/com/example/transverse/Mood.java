@@ -1,9 +1,10 @@
 package com.example.transverse;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Mood {
+public class Mood implements Serializable {
     private int moodLevel;
     private ArrayList<String> tags;
     private String journal;

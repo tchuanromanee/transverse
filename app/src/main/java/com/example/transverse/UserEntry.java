@@ -1,6 +1,8 @@
 package com.example.transverse;
 
-public class UserEntry {
+import java.io.Serializable;
+
+public class UserEntry implements Serializable {
     //Date and time
     private String time;
     private String date;

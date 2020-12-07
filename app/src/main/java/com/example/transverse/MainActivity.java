@@ -28,6 +28,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.transverse.AddNewEntryFragment.writeJsonFile;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     File entriesFile;
     ArrayList<UserEntry> allEntries;
@@ -210,7 +212,54 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return sb.toString();
     }
 
-    public void deleteEntryFromJSON(UserEntry entryToDelete) {
+    public void allEntriesToJSON(UserEntry entryToRemove) {
+
+        entriesFile = new File(this.getFilesDir(), "entries.json");
+        //entriesFile.delete();
+        // Get previous JSON array to write to
+        try {
+            if (!entriesFile.exists()) {
+                Log.e("App","file not exist");
+                entriesFile.createNewFile();
+            }
+            JSONObject obj = new JSONObject(getStringFromFile(entriesFile));
+            JSONArray m_jArry = obj.getJSONArray("entries");
+
+            //String strFileJson = getStringFromFile(entriesFile);
+            JSONArray newArray = new JSONArray();
+            for (int i = 0; i < m_jArry.length(); i++) {
+                JSONObject target = m_jArry.getJSONObject(i);
+                if (entryToRemove.getTimeAndDate() != target.getLong("timeAndDate")) {
+                    newArray.put(target);
+                }
+            }
+
+            //String strFileJson = getStringFromFile(entriesFile);
+           // JSONObject previousJSONObj;
+            //JSONArray array;
+
+            /*if (strFileJson != "") {
+                previousJSONObj = new JSONObject(strFileJson);
+                array = previousJSONObj.getJSONArray("entries");
+            }
+            else {
+                previousJSONObj = new JSONObject();
+                array = new JSONArray();
+            }*/
+            // get JSON Object to be written
+            //JSONObject newEntryJSON = entryToJSON();
+            JSONObject currentJsonObject = new JSONObject();
+            currentJsonObject.put("entries", newArray);
+            //Append JSON object to file
+
+            writeJsonFile(entriesFile, currentJsonObject.toString());
+        }
+        catch (Exception e) {
+
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
 
         Toast.makeText(this, "Entry gone from JSON", Toast.LENGTH_SHORT).show();
     }
