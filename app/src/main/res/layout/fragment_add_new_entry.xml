@@ -113,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorWhite"
             app:layout_constraintStart_toEndOf="@+id/tagsHeader3"
             app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
@@ -193,73 +194,6 @@
             app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
             app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
-        <ImageView
-            android:id="@+id/mood1Button2"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconMargin"
-            android:layout_marginTop="@dimen/iconVSpacing"
-            android:backgroundTint="@color/colorWhite"
-            android:contentDescription="The worst mood"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
-
-        <ImageView
-            android:id="@+id/mood2Button"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconHSpacing"
-            android:layout_marginTop="@dimen/iconVSpacing"
-            android:contentDescription="The second worst mood"
-            android:src="@drawable/ic_mood2"
-            android:backgroundTint="@color/colorWhite"
-            android:scaleType="fitXY"
-            app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
-            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
-
-        <ImageView
-            android:id="@+id/mood3Button"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconHSpacing"
-            android:layout_marginTop="@dimen/iconVSpacing"
-            android:src="@drawable/ic_mood3"
-            android:backgroundTint="@color/colorWhite"
-            android:scaleType="fitXY"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/mood2Button"
-            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
-
-        <ImageView
-            android:id="@+id/mood4Button"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="@dimen/iconVSpacing"
-            android:adjustViewBounds="true"
-            android:backgroundTint="@color/colorWhite"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood4"
-            app:layout_constraintStart_toEndOf="@+id/mood3Button"
-            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
-
-        <ImageView
-            android:id="@+id/mood5Button"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconHSpacing"
-            android:layout_marginTop="@dimen/iconVSpacing"
-            android:layout_marginEnd="@dimen/iconMargin"
-            android:adjustViewBounds="true"
-            android:backgroundTint="@color/colorWhite"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/mood4Button"
-            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
         <SeekBar
             android:id="@+id/moodSeekbar"
@@ -267,13 +201,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/iconMargin"
+            android:layout_marginTop="92dp"
             android:layout_marginEnd="@dimen/iconMargin"
-            android:layout_marginTop="16dp"
-            android:max="5"
+            android:max="4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mood3Button" />
+            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_above="@+id/moodSeekbar"
+            android:layout_marginStart="@dimen/iconMargin"
+            android:stretchColumns="*"
+            app:layout_constraintTop_toTopOf="@+id/basicsHeader">
+
+            <TableRow
+                android:id="@+id/moodRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/mood1Button2"
+                    android:layout_width="@dimen/icon"
+                    android:layout_height="@dimen/icon"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                    android:backgroundTint="@color/colorWhite"
+                    android:contentDescription="The worst mood"
+                    android:src="@drawable/ic_mood1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+                <ImageView
+                    android:id="@+id/mood2Button"
+                    android:layout_width="@dimen/icon"
+                    android:layout_height="@dimen/icon"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                    android:backgroundTint="@color/colorWhite"
+                    android:contentDescription="The second worst mood"
+                    android:src="@drawable/ic_mood2"
+                    app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+                <ImageView
+                    android:id="@+id/mood3Button"
+                    android:layout_width="@dimen/icon"
+                    android:layout_height="@dimen/icon"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                    android:backgroundTint="@color/colorWhite"
+                    android:src="@drawable/ic_mood3"
+                    app:layout_constraintStart_toEndOf="@+id/mood2Button"
+                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+                <ImageView
+                    android:id="@+id/mood4Button"
+                    android:layout_width="@dimen/icon"
+                    android:layout_height="@dimen/icon"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="@color/colorWhite"
+                    android:src="@drawable/ic_mood4"
+                    app:layout_constraintStart_toEndOf="@+id/mood3Button"
+                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+                <ImageView
+                    android:id="@+id/mood5Button"
+                    android:layout_width="@dimen/icon"
+                    android:layout_height="@dimen/icon"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="@color/colorWhite"
+                    android:src="@drawable/ic_mood5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/mood4Button"
+                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+            </TableRow>
+
+        </TableLayout>
+
 
         <!--
             <TextView
@@ -360,6 +372,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorWhite"
             app:layout_constraintStart_toEndOf="@+id/tagsHeader"
             app:layout_constraintTop_toBottomOf="@+id/moodSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />

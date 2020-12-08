@@ -1,55 +1,531 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".AddNewEntryFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>-->
-<!-- Layout for individual news entries in a list -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ToggleButton
+        android:id="@+id/tagButton4"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        android:textOff="Clothing Fit"
+        android:textOn="Clothing Fit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagButton2" />
 
-    <!-- Icon shown next to the title/subtitle -->
+    <ToggleButton
+        android:id="@+id/tagButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        android:textOff="Comparison"
+        android:textOn="Comparison"
+        app:layout_constraintStart_toEndOf="@+id/tagButton3"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader3" />
+
+    <ToggleButton
+        android:id="@+id/tagButton3"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        android:textOff="Mirror"
+        android:textOn="Mirror"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader3" />
+
+    <ToggleButton
+        android:id="@+id/tagButton2"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        android:textOff="Misgendered"
+        android:textOn="Misgendered"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader3" />
+
+    <ImageButton
+        android:id="@+id/tagsA2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="284dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toEndOf="@+id/toggleButton3"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+        app:srcCompat="@drawable/ic_add" />
+
+    <TextView
+        android:id="@+id/tagsHeader3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Triggers"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tagsHeader4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="180dp"
+        android:text="When did it start?"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagButton4"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageButton
+        android:id="@+id/tagsInfoButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorWhite"
+        app:layout_constraintStart_toEndOf="@+id/tagsHeader3"
+        app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+    <TextView
+        android:id="@+id/noDysphoriaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:text="No Dysphoria"
+        app:layout_constraintStart_toEndOf="@+id/socialDysphoriaText"
+        app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaButton" />
+
     <ImageView
-        android:id="@+id/user_entry_icon"
+        android:id="@+id/socialDysphoriaButton"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorWhite"
+        android:contentDescription="Social Dysphoria"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_mood1"
+        app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
+        app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+    <ImageView
+        android:id="@+id/noDysphoriaButton"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorWhite"
+        android:contentDescription="No Dysphoria"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_mood1"
+        app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
+        app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+    <TextView
+        android:id="@+id/basicsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:padding="3dp" />
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="@dimen/largePadding"
+        android:layout_marginTop="@dimen/largePadding"
+        android:text="@string/ane_mood_header"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
 
-    <!-- Title of the news entry -->
-    <TextView
-        android:id="@+id/user_entry_title"
-        android:layout_width="fill_parent"
+    <ImageView
+        android:id="@+id/physicalDysphoriaButton"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon"
+        android:layout_marginStart="@dimen/iconMargin"
+        android:layout_marginTop="9dp"
+        android:backgroundTint="@color/colorWhite"
+        android:contentDescription="Physical Dysphoria"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_mood1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+    <ImageView
+        android:id="@+id/mentalDysphoriaButton"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorWhite"
+        android:contentDescription="Mental Dysphoria"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_mood1"
+        app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
+        app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+
+    <SeekBar
+        android:id="@+id/moodSeekbar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/user_entry_icon"
-        android:layout_alignTop="@id/user_entry_icon"
-        android:layout_margin="5dp"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:layout_marginStart="@dimen/iconMargin"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="@dimen/iconMargin"
+        android:max="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
 
-    <!-- Subtitle contains author and date -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_above="@+id/moodSeekbar"
+        android:layout_marginStart="@dimen/iconMargin"
+        android:stretchColumns="*"
+        app:layout_constraintTop_toTopOf="@+id/basicsHeader">
+
+        <TableRow
+            android:id="@+id/moodRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/mood1Button2"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:backgroundTint="@color/colorWhite"
+                android:contentDescription="The worst mood"
+                android:src="@drawable/ic_mood1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+            <ImageView
+                android:id="@+id/mood2Button"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:backgroundTint="@color/colorWhite"
+                android:contentDescription="The second worst mood"
+                android:src="@drawable/ic_mood2"
+                app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
+                app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+            <ImageView
+                android:id="@+id/mood3Button"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:backgroundTint="@color/colorWhite"
+                android:src="@drawable/ic_mood3"
+                app:layout_constraintStart_toEndOf="@+id/mood2Button"
+                app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+            <ImageView
+                android:id="@+id/mood4Button"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:adjustViewBounds="true"
+                android:backgroundTint="@color/colorWhite"
+                android:src="@drawable/ic_mood4"
+                app:layout_constraintStart_toEndOf="@+id/mood3Button"
+                app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+            <ImageView
+                android:id="@+id/mood5Button"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:adjustViewBounds="true"
+                android:backgroundTint="@color/colorWhite"
+                android:src="@drawable/ic_mood5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/mood4Button"
+                app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+    <!--
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />-->
+
+
     <TextView
-        android:id="@+id/user_entry_subtitle"
+        android:id="@+id/tagsHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/user_entry_title"
-        android:layout_below="@id/user_entry_title"
-        android:textSize="12sp" />
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="212dp"
+        android:text="@string/ane_tags_header"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moodSeekbar"
+        tools:ignore="RtlSymmetry" />
+
+
+    <ToggleButton
+        android:id="@+id/tagButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:textOff="HRT"
+        android:textOn="HRT"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:textOff="Party"
+        android:textOn="Party"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        app:layout_constraintStart_toEndOf="@+id/tagButton1"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:textOff="Tired"
+        android:textOn="Tired"
+        android:background="@drawable/toggle_button"
+        android:textColor="@color/toggle_color"
+        app:layout_constraintStart_toEndOf="@+id/toggleButton2"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <ImageButton
+        android:id="@+id/tagsA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/toggleButton3"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+        app:srcCompat="@drawable/ic_add" />
+
+
+    <ImageButton
+        android:id="@+id/tagsInfoButton"
+        android:layout_width="28dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorWhite"
+        app:layout_constraintStart_toEndOf="@+id/tagsHeader"
+        app:layout_constraintTop_toBottomOf="@+id/moodSeekbar"
+        app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+    <TextView
+        android:id="@+id/typeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:text="Type of Dysphoria"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagButton1"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/socialDysphoriaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="16dp"
+        android:text="Social"
+        app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaText2"
+        app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaButton" />
+
+    <TextView
+        android:id="@+id/mentalDysphoriaText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Mental"
+        app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaText2"
+        app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaButton" />
+
+    <TextView
+        android:id="@+id/physicalDysphoriaText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="Physical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/physicalDysphoriaButton" />
+
+    <TextView
+        android:id="@+id/dysphoriaIntensityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="@dimen/largePadding"
+        android:layout_marginTop="@dimen/largePadding"
+        android:text="How intense is it?"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaText2"
+        tools:ignore="RtlSymmetry" />
+
+    <SeekBar
+        android:id="@+id/dysphoriaSeekbar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/iconMargin"
+        android:layout_marginEnd="@dimen/iconMargin"
+        android:layout_marginTop="16dp"
+        android:max="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dysphoriaIntensityText" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:focusable="false"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader4" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:focusable="false"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintStart_toEndOf="@+id/editTextDate"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader4" />
+
+    <TextView
+        android:id="@+id/tagsHeader2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/largePadding"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Journal"
+        android:textAppearance="@style/HeaderText"
+        android:textSize="@dimen/textH1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/editTextJournal"
+        android:layout_width="330dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/edit_text_bg"
+        android:ems="10"
+        android:text="What happened?"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagsHeader2" />
 
     <Button
-        android:id="@+id/deleteEntryButton"
+        android:id="@+id/submitEntryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_submit"
-        android:text="Delete"
+        android:text="Submit"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_entry_subtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextJournal" />
 
-</RelativeLayout>
+
+        <Button
+            android:id="@+id/deleteEntryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_delete"
+            android:text="Delete"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextJournal"  />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

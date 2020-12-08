@@ -11,7 +11,7 @@
     <dimen name="textNormal">12sp</dimen>
 
     <!--Icon sizes-->
-    <dimen name="icon">50dp</dimen>
+    <dimen name="icon">60dp</dimen>
     <dimen name="iconHSpacing">24dp</dimen>
     <dimen name="iconVSpacing">28dp</dimen>
     <dimen name="iconMargin">36dp</dimen>

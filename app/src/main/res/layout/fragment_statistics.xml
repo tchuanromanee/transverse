@@ -10,11 +10,6 @@
     android:layout_height="match_parent"
     tools:context=".StatisticsFragment">
 
-    <TextView
-        android:id="@+id/entriesText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,16 +26,16 @@
 
         <ListView
             android:id="@+id/entriesDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="375dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/chart"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="18dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="113dp" />
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="32dp" />
 
     </RelativeLayout>
 

@@ -144,7 +144,7 @@ public class AddNewEntryFragment extends Fragment {
 
         Calendar cal = Calendar.getInstance();
 
-        SimpleDateFormat dateF = new SimpleDateFormat("EEE MMM yyyy", Locale.getDefault());
+        SimpleDateFormat dateF = new SimpleDateFormat("EEE MMM dd yyyy", Locale.getDefault());
         SimpleDateFormat timeF = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
 
         //String time = cal.getTime().toString();
@@ -354,7 +354,7 @@ public class AddNewEntryFragment extends Fragment {
         //time = autoTime.getText().toString();
         //date = autoD8.getText().toString();
         //timeAndDate should be already populated, as it was called when calendar was dealt with
-        moodRating = moodSeekbar.getProgress();
+        moodRating = moodSeekbar.getProgress() + 1; // Compensate for range of 0-4 from seekbar by adding 1
         tags = new String[]{"tag1", "tag2"};
         triggers = new String[]{"mirror", "misgendered"};
         journalString = journal.getText().toString();

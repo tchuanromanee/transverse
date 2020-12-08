@@ -1,13 +1,20 @@
 package com.example.transverse;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,12 +25,18 @@ import androidx.fragment.app.FragmentTransaction;
 import org.json.JSONException;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserEntryViewFragment extends Fragment {
     Button deleteButton;
     private static final String ENTRY_KEY = "entry_key";
     private static UserEntry thisEntry;
+    EditText autoD8, autoTime, journal;
+    ProgressBar moodSeekbar, dysphoriaSeekbar;
+    Button submitButton;
 
     public static UserEntryViewFragment newInstance(UserEntry currentEntry) {
 
@@ -51,8 +64,90 @@ public class UserEntryViewFragment extends Fragment {
     }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        //Set values of fields to be the value of the user entry
+
+        autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
+        autoTime = (EditText) getView().findViewById(R.id.editTextTime);
+        journal = (EditText) getView().findViewById(R.id.editTextJournal);
+        moodSeekbar = (SeekBar) getView().findViewById(R.id.moodSeekbar);
+        dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
+        submitButton = (Button) getView().findViewById(R.id.submitEntryButton);
         deleteButton = (Button) getView().findViewById(R.id.deleteEntryButton);
 
+        moodSeekbar.setProgress(thisEntry.getMood().getMoodLevel());
+        journal.setText(thisEntry.getMood().getJournal());
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(thisEntry.getTimeAndDate());
+        SimpleDateFormat dateF = new SimpleDateFormat("EEE MMM dd yyyy", Locale.getDefault());
+        SimpleDateFormat timeF = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
+
+        //String time = cal.getTime().toString();
+        //String date = "date";
+        String date = dateF.format(cal.getTime());
+        String time = timeF.format(cal.getTime());
+        //timeAndDate = 0;
+
+        autoD8.setText(date);
+        autoTime.setText(time);
+        // Set onclick listener for d8
+        autoD8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Date
+                final Calendar c = Calendar.getInstance();
+                c.setTimeInMillis(thisEntry.getTimeAndDate());
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                //Format tdate o previous format
+
+                                autoD8.setText(dayOfMonth + " " + monthString(monthOfYear + 1) + " " + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+
+        });
+
+        // Set onclick listener for time
+
+        autoTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Time
+                final Calendar c = Calendar.getInstance();
+
+                c.setTimeInMillis(thisEntry.getTimeAndDate());
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+                String ampm;
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+
+                                autoTime.setText(timeFormatter(hourOfDay, minute));
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+
+        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,5 +191,51 @@ public class UserEntryViewFragment extends Fragment {
 
     }
 
+    public String monthString(int monthNum) {
+        String monthString;
+        switch (monthNum) {
+            case 1:  monthString = "Jan";
+                break;
+            case 2:  monthString = "Feb";
+                break;
+            case 3:  monthString = "Mar";
+                break;
+            case 4:  monthString = "Apr";
+                break;
+            case 5:  monthString = "May";
+                break;
+            case 6:  monthString = "Jun";
+                break;
+            case 7:  monthString = "Jul";
+                break;
+            case 8:  monthString = "Aug";
+                break;
+            case 9:  monthString = "Sep";
+                break;
+            case 10: monthString = "Oct";
+                break;
+            case 11: monthString = "Nov";
+                break;
+            case 12: monthString = "Dec";
+                break;
+            default: monthString = "NUL";
+                break;
+        }
+        return monthString;
+    }
 
+    //Determines if a time is AM or PM
+    public String timeFormatter(int hour, int min) {
+        String minString = String.valueOf(min);
+        String amOrPm = "AM";
+        if (hour > 12) {
+            hour -= 12;
+            amOrPm = "PM";
+        }
+        if (minString.length() < 2) {
+            minString = "0" + minString;
+        }
+        return (String.valueOf(hour) + ":" + minString + " " + amOrPm);
+
+    }
 }
