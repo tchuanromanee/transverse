@@ -27,6 +27,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,6 +43,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,10 +70,13 @@ public class AddNewEntryFragment extends Fragment {
     EditText autoD8, autoTime, journal;
     ProgressBar moodSeekbar, dysphoriaSeekbar;
     Button submitButton;
+    //TODO: later, dynamically generate these buttons for custom tags and triggers
+    ToggleButton trigger1, trigger2, trigger3, trigger4;
+    ToggleButton tag1, tag2, tag3;
 
     // Variables to be stored for each entry
     int moodRating;
-    String [] tags;
+    ArrayList<String> tags;
     String date, time; //"time": "1301", "date": "20200611",
     long timeAndDate;
     String journalString;
@@ -80,7 +85,7 @@ public class AddNewEntryFragment extends Fragment {
     boolean hasDysphoria;
     int dysphoriaType; // 1 = physical, 2 = mental, 3 = social
     int dysphoriaIntensity; // 1-10
-    String [] triggers;
+    ArrayList<String> triggers;
 
 
     public AddNewEntryFragment() {
@@ -126,6 +131,16 @@ public class AddNewEntryFragment extends Fragment {
         moodSeekbar = (SeekBar) getView().findViewById(R.id.moodSeekbar);
         dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
         submitButton = (Button) getView().findViewById(R.id.submitEntryButton);
+
+        trigger1 = (ToggleButton) getView().findViewById(R.id.triggerButton1);
+        trigger2 = (ToggleButton) getView().findViewById(R.id.triggerButton2);
+        trigger3 = (ToggleButton) getView().findViewById(R.id.triggerButton3);
+        trigger4 = (ToggleButton) getView().findViewById(R.id.triggerButton4);
+
+
+        tag1 = (ToggleButton) getView().findViewById(R.id.tagButton1);
+        tag2 = (ToggleButton) getView().findViewById(R.id.tagButton2);
+        tag3 = (ToggleButton) getView().findViewById(R.id.tagButton3);
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -301,7 +316,7 @@ public class AddNewEntryFragment extends Fragment {
 
             //Add new entry to arraylist
             UserEntry newEntry = new UserEntry();
-            Mood newMood = new Mood(moodRating, new ArrayList<String>(Arrays.asList(tags)), journalString, new ArrayList<String>(Arrays.asList(triggers)));
+            Mood newMood = new Mood(moodRating, tags, journalString, triggers);
             newEntry.setTimeAndDate(timeAndDate);
             newEntry.setMood(newMood);
             if (hasDysphoria) {
@@ -349,14 +364,35 @@ public class AddNewEntryFragment extends Fragment {
         JSONArray tagsArray = new JSONArray();
         JSONArray triggersArray = new JSONArray();
 
-        //***HARD CODED STUFF
+
         // Pull values from form
-        //time = autoTime.getText().toString();
-        //date = autoD8.getText().toString();
         //timeAndDate should be already populated, as it was called when calendar was dealt with
         moodRating = moodSeekbar.getProgress() + 1; // Compensate for range of 0-4 from seekbar by adding 1
-        tags = new String[]{"tag1", "tag2"};
-        triggers = new String[]{"mirror", "misgendered"};
+
+        tags = new ArrayList<String>();
+        if (tag1.isChecked()) {
+            tags.add((String) tag1.getTextOn());
+        }
+        if (tag2.isChecked()) {
+            tags.add((String) tag2.getTextOn());
+        }
+        if (tag3.isChecked()) {
+            tags.add((String) tag3.getTextOn());
+        }
+        triggers = new ArrayList<String>();
+        if (trigger1.isChecked()) {
+            triggers.add((String) trigger1.getTextOn());
+        }
+        if (trigger2.isChecked()) {
+            triggers.add((String) trigger2.getTextOn());
+        }
+        if (trigger3.isChecked()) {
+            triggers.add((String) trigger3.getTextOn());
+        }
+        if (trigger4.isChecked()) {
+            triggers.add((String) trigger4.getTextOn());
+        }
+
         journalString = journal.getText().toString();
         //if "no dysphoria" is not selected
         hasDysphoria = true;
@@ -366,9 +402,9 @@ public class AddNewEntryFragment extends Fragment {
 
 
         // populate tags
-        for (int i = 0; i < tags.length; i++) {
+        for (int i = 0; i < tags.size(); i++) {
             JSONObject tagObj = new JSONObject();
-            tagObj.put("name", tags[i]);
+            tagObj.put("name", tags.get(i));
             tagsArray.put(tagObj);
         }
 
@@ -382,9 +418,9 @@ public class AddNewEntryFragment extends Fragment {
             if (hasDysphoria) {
 
                 // populate triggers
-                for (int i = 0; i < triggers.length; i++) {
+                for (int i = 0; i < triggers.size(); i++) {
                     JSONObject triggerObj = new JSONObject();
-                    triggerObj.put("name", triggers[i]);
+                    triggerObj.put("name", triggers.get(i));
                     triggersArray.put(triggerObj);
                 }
                 newEntryJSON.put("hasDysphoria", true);

@@ -16,6 +16,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,10 @@ public class UserEntryViewFragment extends Fragment {
     EditText autoD8, autoTime, journal;
     ProgressBar moodSeekbar, dysphoriaSeekbar;
     Button submitButton;
+    //TODO: later, dynamically generate these buttons for custom tags and triggers
+    ToggleButton trigger1, trigger2, trigger3, trigger4;
+    ToggleButton tag1, tag2, tag3;
+
 
     public static UserEntryViewFragment newInstance(UserEntry currentEntry) {
 
@@ -74,6 +79,46 @@ public class UserEntryViewFragment extends Fragment {
         dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
         submitButton = (Button) getView().findViewById(R.id.submitEntryButton);
         deleteButton = (Button) getView().findViewById(R.id.deleteEntryButton);
+
+
+
+        trigger1 = (ToggleButton) getView().findViewById(R.id.triggerButton1);
+        trigger2 = (ToggleButton) getView().findViewById(R.id.triggerButton2);
+        trigger3 = (ToggleButton) getView().findViewById(R.id.triggerButton3);
+        trigger4 = (ToggleButton) getView().findViewById(R.id.triggerButton4);
+
+
+        tag1 = (ToggleButton) getView().findViewById(R.id.tagButton1);
+        tag2 = (ToggleButton) getView().findViewById(R.id.tagButton2);
+        tag3 = (ToggleButton) getView().findViewById(R.id.tagButton3);
+
+        //Populate tags selection
+        for (String currentTag:thisEntry.getMood().getTags()) {
+            if (currentTag.equals(tag1.getTextOn())) {
+                tag1.setChecked(true);
+            }
+            if (currentTag.equals(tag2.getTextOn())) {
+                tag2.setChecked(true);
+            }
+            if (currentTag.equals(tag3.getTextOn())) {
+                tag3.setChecked(true);
+            }
+        }
+        //Populate triggers selection
+        for (String currentTrigger:thisEntry.getMood().getTriggers()) {
+            if (currentTrigger.equals(trigger1.getTextOn())) {
+                trigger1.setChecked(true);
+            }
+            if (currentTrigger.equals(trigger2.getTextOn())) {
+                trigger2.setChecked(true);
+            }
+            if (currentTrigger.equals(trigger3.getTextOn())) {
+                trigger3.setChecked(true);
+            }
+            if (currentTrigger.equals(trigger4.getTextOn())) {
+                trigger4.setChecked(true);
+            }
+        }
 
         moodSeekbar.setProgress(thisEntry.getMood().getMoodLevel());
         journal.setText(thisEntry.getMood().getJournal());
