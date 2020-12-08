@@ -11,62 +11,6 @@
     android:layout_height="wrap_content"
     tools:context=".AddNewEntryFragment">
 
-        <ToggleButton
-            android:id="@+id/tagButton4"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/toggle_button"
-            android:textColor="@color/toggle_color"
-            android:textOff="Clothing Fit"
-            android:textOn="Clothing Fit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagButton2" />
-
-        <ToggleButton
-            android:id="@+id/tagButton"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/toggle_button"
-            android:textColor="@color/toggle_color"
-            android:textOff="Comparison"
-            android:textOn="Comparison"
-            app:layout_constraintStart_toEndOf="@+id/tagButton3"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader3" />
-
-        <ToggleButton
-            android:id="@+id/tagButton3"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="152dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/toggle_button"
-            android:textColor="@color/toggle_color"
-            android:textOff="Mirror"
-            android:textOn="Mirror"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader3" />
-
-        <ToggleButton
-            android:id="@+id/tagButton2"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/toggle_button"
-            android:textColor="@color/toggle_color"
-            android:textOff="Misgendered"
-            android:textOn="Misgendered"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader3" />
-
         <ImageButton
             android:id="@+id/tagsA2"
             android:layout_width="wrap_content"
@@ -80,7 +24,7 @@
             app:srcCompat="@drawable/ic_add" />
 
         <TextView
-            android:id="@+id/tagsHeader3"
+            android:id="@+id/triggersHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -94,7 +38,7 @@
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:id="@+id/tagsHeader4"
+            android:id="@+id/timeandDateHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -104,7 +48,7 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagButton4"
+            app:layout_constraintTop_toBottomOf="@+id/triggerButton2"
             tools:ignore="RtlSymmetry" />
 
         <ImageButton
@@ -114,45 +58,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/colorWhite"
-            app:layout_constraintStart_toEndOf="@+id/tagsHeader3"
+            app:layout_constraintStart_toEndOf="@+id/triggersHeader"
             app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-        <TextView
-            android:id="@+id/noDysphoriaText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="16dp"
-            android:text="No Dysphoria"
-            app:layout_constraintStart_toEndOf="@+id/socialDysphoriaText"
-            app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaButton" />
 
-        <ImageView
-            android:id="@+id/socialDysphoriaButton"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorWhite"
-            android:contentDescription="Social Dysphoria"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood1"
-            app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
-            app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
-
-        <ImageView
-            android:id="@+id/noDysphoriaButton"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorWhite"
-            android:contentDescription="No Dysphoria"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood1"
-            app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
-            app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
         <TextView
             android:id="@+id/basicsHeader"
@@ -168,31 +78,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlSymmetry" />
 
-        <ImageView
-            android:id="@+id/physicalDysphoriaButton"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="@dimen/iconMargin"
-            android:layout_marginTop="9dp"
-            android:backgroundTint="@color/colorWhite"
-            android:contentDescription="Physical Dysphoria"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
-        <ImageView
-            android:id="@+id/mentalDysphoriaButton"
-            android:layout_width="@dimen/icon"
-            android:layout_height="@dimen/icon"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorWhite"
-            android:contentDescription="Mental Dysphoria"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_mood1"
-            app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
-            app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
 
         <SeekBar
@@ -326,13 +212,13 @@
             style="?android:attr/borderlessButtonStyle" />
 
         <ToggleButton
-            android:id="@+id/toggleButton2"
+            android:id="@+id/tagButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:textOff="Party"
-            android:textOn="Party"
+            android:textOff="Family"
+            android:textOn="Family"
             android:background="@drawable/toggle_button"
             android:textColor="@color/toggle_color"
             app:layout_constraintStart_toEndOf="@+id/tagButton1"
@@ -340,7 +226,7 @@
             style="?android:attr/borderlessButtonStyle" />
 
         <ToggleButton
-            android:id="@+id/toggleButton3"
+            android:id="@+id/tagButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -349,11 +235,11 @@
             android:textOn="Tired"
             android:background="@drawable/toggle_button"
             android:textColor="@color/toggle_color"
-            app:layout_constraintStart_toEndOf="@+id/toggleButton2"
+            app:layout_constraintStart_toEndOf="@+id/tagButton2"
             app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
             style="?android:attr/borderlessButtonStyle" />
 
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/tagsA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -363,7 +249,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/toggleButton3"
             app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add" />-->
 
 
         <ImageButton
@@ -392,48 +278,126 @@
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:id="@+id/socialDysphoriaText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="71dp"
-            android:layout_marginTop="16dp"
-            android:text="Social"
-            app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaText2"
-            app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaButton" />
-
-        <TextView
-            android:id="@+id/mentalDysphoriaText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
-            android:text="Mental"
-            app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaText2"
-            app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaButton" />
-
-        <TextView
-            android:id="@+id/physicalDysphoriaText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
-            android:text="Physical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/physicalDysphoriaButton" />
-
-        <TextView
             android:id="@+id/dysphoriaIntensityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
             android:layout_marginStart="@dimen/largePadding"
-            android:layout_marginTop="@dimen/largePadding"
             android:text="How intense is it?"
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mentalDysphoriaText2"
+            app:layout_constraintTop_toBottomOf="@+id/dysphoriaTable"
             tools:ignore="RtlSymmetry" />
+
+        <TableLayout
+            android:id="@+id/dysphoriaTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_above="@+id/dysphoriaIntensityText"
+            android:layout_marginStart="@dimen/iconMargin"
+            android:stretchColumns="*"
+            app:layout_constraintTop_toTopOf="@+id/typeHeader">
+
+        <TableRow
+            android:id="@+id/dysphoriaRowImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/physicalDysphoriaButton"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+               android:backgroundTint="@color/colorWhite"
+                android:contentDescription="Physical Dysphoria"
+                android:src="@drawable/ic_mood1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+            <ImageView
+                android:id="@+id/mentalDysphoriaButton"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:backgroundTint="@color/colorWhite"
+                android:contentDescription="Mental Dysphoria"
+                android:src="@drawable/ic_mood1"
+                app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
+                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+            <ToggleButton
+                android:id="@+id/socialDysphoriaButton"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_column="0"
+                android:background="@null"
+                android:button="@drawable/toggle_selector"
+                android:textOff=""
+                android:textOn=""
+                android:layout_centerVertical="true"
+                android:backgroundTint="@color/colorWhite"
+                android:contentDescription="Social Dysphoria"
+                app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
+                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+            <ImageView
+                android:id="@+id/noDysphoriaButton"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:backgroundTint="@color/colorWhite"
+                android:contentDescription="No Dysphoria"
+                android:src="@drawable/ic_mood1"
+                app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
+                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+
+        </TableRow>
+            <TableRow
+                android:id="@+id/dysphoriaRowText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/physicalDysphoriaText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                    android:text="Physical" />
+
+                <TextView
+                android:id="@+id/mentalDysphoriaText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                android:text="Mental"/>
+                <TextView
+                    android:id="@+id/socialDysphoriaText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                    android:text="Social"/>
+
+                <TextView
+                android:id="@+id/noDysphoriaText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_column="0"
+                android:text="No Dysphoria"/>
+
+            </TableRow>
+        </TableLayout>
+
 
         <SeekBar
             android:id="@+id/dysphoriaSeekbar"
@@ -449,6 +413,65 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dysphoriaIntensityText" />
 
+
+        <ToggleButton
+            android:id="@+id/triggerButton1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            android:textOff="Misgendered"
+            android:textOn="Misgendered"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/triggersHeader" />
+
+        <ToggleButton
+            android:id="@+id/triggerButton2"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            android:textOff="Clothing Fit"
+            android:textOn="Clothing Fit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/triggerButton1" />
+
+        <ToggleButton
+            android:id="@+id/triggerButton3"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            android:textOff="Comparison"
+            android:textOn="Comparison"
+            app:layout_constraintStart_toEndOf="@+id/triggerButton1"
+            app:layout_constraintTop_toBottomOf="@+id/triggersHeader" />
+
+        <ToggleButton
+            android:id="@+id/triggerButton4"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/toggle_button"
+            android:textColor="@color/toggle_color"
+            android:textOff="Mirror"
+            android:textOn="Mirror"
+            app:layout_constraintStart_toEndOf="@+id/triggerButton2"
+            app:layout_constraintTop_toBottomOf="@+id/triggersHeader" />
+
+
+
         <EditText
             android:id="@+id/editTextDate"
             android:layout_width="wrap_content"
@@ -459,7 +482,7 @@
             android:ems="10"
             android:inputType="date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader4" />
+            app:layout_constraintTop_toBottomOf="@+id/timeandDateHeader" />
 
         <EditText
             android:id="@+id/editTextTime"
@@ -471,7 +494,7 @@
             android:ems="10"
             android:inputType="time"
             app:layout_constraintStart_toEndOf="@+id/editTextDate"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader4" />
+            app:layout_constraintTop_toBottomOf="@+id/timeandDateHeader" />
 
         <TextView
             android:id="@+id/tagsHeader2"

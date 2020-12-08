@@ -77,7 +77,9 @@ public class UserEntryViewFragment extends Fragment {
 
         moodSeekbar.setProgress(thisEntry.getMood().getMoodLevel());
         journal.setText(thisEntry.getMood().getJournal());
-
+        if (thisEntry.getDysphoria() != null) {
+            dysphoriaSeekbar.setProgress(thisEntry.getDysphoria().getIntensity());
+        }
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(thisEntry.getTimeAndDate());
