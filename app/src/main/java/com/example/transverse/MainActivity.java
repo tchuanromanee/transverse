@@ -162,18 +162,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 }
 
                 Boolean hasDysphoria = jo_inside.getBoolean("hasDysphoria");
-                int dysphoriaType;
+                //int dysphoriaType;
                 int dysphoriaIntensity;
                 if (hasDysphoria) {
-                    dysphoriaType = jo_inside.getInt("dysphoriaType");
+                    //dysphoriaType = jo_inside.getInt("dysphoriaType");
                     dysphoriaIntensity = jo_inside.getInt("intensity");
-                    newDysphoria.setType(dysphoriaType);
+                    //newDysphoria.setMental(dysphoriaType);
                     newDysphoria.setIntensity(dysphoriaIntensity);
                     newEntry.setDysphoria(newDysphoria);
 
                 }
                 else { // both dysphoria type and intensity will be -1 if default constructor was used
-                    dysphoriaType = -1;
+                    //dysphoriaType = -1;
                     dysphoriaIntensity = -1;
                 }
 

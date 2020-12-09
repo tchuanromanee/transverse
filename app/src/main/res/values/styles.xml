@@ -31,5 +31,10 @@
         <item name="android:background">@color/colorNavBG</item>
     </style>
 
+    <style name="DysphoriaRadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/ic_heart</item>
+    </style>
+
+
 
 </resources>

@@ -73,6 +73,7 @@ public class AddNewEntryFragment extends Fragment {
     //TODO: later, dynamically generate these buttons for custom tags and triggers
     ToggleButton trigger1, trigger2, trigger3, trigger4;
     ToggleButton tag1, tag2, tag3;
+    ToggleButton physicalDysphoriaButton, mentalDysphoriaButton, socialDysphoriaButton, noDysphoriaButton;
 
     // Variables to be stored for each entry
     int moodRating;
@@ -83,7 +84,7 @@ public class AddNewEntryFragment extends Fragment {
 
     //Dysphoria-specific variables for each entry
     boolean hasDysphoria;
-    int dysphoriaType; // 1 = physical, 2 = mental, 3 = social
+    boolean hasPhysicalDysphoria, hasMentalDysphoria, hasSocialDysphoria;
     int dysphoriaIntensity; // 1-10
     ArrayList<String> triggers;
 
@@ -142,6 +143,49 @@ public class AddNewEntryFragment extends Fragment {
         tag2 = (ToggleButton) getView().findViewById(R.id.tagButton2);
         tag3 = (ToggleButton) getView().findViewById(R.id.tagButton3);
 
+        physicalDysphoriaButton = (ToggleButton) getView().findViewById(R.id.physicalDysphoriaButton);
+        mentalDysphoriaButton = (ToggleButton) getView().findViewById(R.id.mentalDysphoriaButton);
+        socialDysphoriaButton = (ToggleButton) getView().findViewById(R.id.socialDysphoriaButton);
+        noDysphoriaButton = (ToggleButton) getView().findViewById(R.id.noDysphoriaButton);
+
+        noDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (noDysphoriaButton.isChecked()) {
+                    physicalDysphoriaButton.setChecked(false);
+                    mentalDysphoriaButton.setChecked(false);
+                    socialDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
+
+        physicalDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (physicalDysphoriaButton.isChecked()) {
+                    noDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
+        mentalDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (mentalDysphoriaButton.isChecked()) {
+                    noDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
+        socialDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (socialDysphoriaButton.isChecked()) {
+                    noDysphoriaButton.setChecked(false);
+                }
+            }
+        });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -320,7 +364,7 @@ public class AddNewEntryFragment extends Fragment {
             newEntry.setTimeAndDate(timeAndDate);
             newEntry.setMood(newMood);
             if (hasDysphoria) {
-                Dysphoria newDysphoria = new Dysphoria(dysphoriaType, dysphoriaIntensity);
+                Dysphoria newDysphoria = new Dysphoria(hasPhysicalDysphoria, hasMentalDysphoria, hasSocialDysphoria, dysphoriaIntensity);
                 newEntry.setDysphoria(newDysphoria);
             }
             ((MainActivity) getActivity()).allEntries.add(newEntry);
@@ -395,10 +439,16 @@ public class AddNewEntryFragment extends Fragment {
 
         journalString = journal.getText().toString();
         //if "no dysphoria" is not selected
-        hasDysphoria = true;
-        dysphoriaType = 1;
-        dysphoriaIntensity = dysphoriaSeekbar.getProgress();
+        //TODO: FIX HARDCODING
 
+        if (noDysphoriaButton.isChecked()) {
+            hasDysphoria = false;
+        }
+        else {
+            hasDysphoria = true;
+            //dysphoriaType = 1;
+            dysphoriaIntensity = dysphoriaSeekbar.getProgress();
+        }
 
 
         // populate tags
@@ -424,7 +474,9 @@ public class AddNewEntryFragment extends Fragment {
                     triggersArray.put(triggerObj);
                 }
                 newEntryJSON.put("hasDysphoria", true);
-                newEntryJSON.put("dysphoriaType", dysphoriaType);
+                newEntryJSON.put("hasPhysicalDysphoria", hasPhysicalDysphoria);
+                newEntryJSON.put("hasMentallDysphoria", hasMentalDysphoria);
+                newEntryJSON.put("hasSocialDysphoria", hasSocialDysphoria);
                 newEntryJSON.put("triggers", triggersArray);
                 newEntryJSON.put("intensity", dysphoriaIntensity);
             }
