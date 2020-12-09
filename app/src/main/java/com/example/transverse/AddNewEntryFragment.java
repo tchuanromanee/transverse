@@ -439,7 +439,6 @@ public class AddNewEntryFragment extends Fragment {
 
         journalString = journal.getText().toString();
         //if "no dysphoria" is not selected
-        //TODO: FIX HARDCODING
 
         if (noDysphoriaButton.isChecked()) {
             hasDysphoria = false;
@@ -447,6 +446,15 @@ public class AddNewEntryFragment extends Fragment {
         else {
             hasDysphoria = true;
             //dysphoriaType = 1;
+            if (mentalDysphoriaButton.isChecked()) {
+                hasMentalDysphoria = true;
+            }
+            if (physicalDysphoriaButton.isChecked()) {
+                hasPhysicalDysphoria = true;
+            }
+            if (socialDysphoriaButton.isChecked()) {
+                hasSocialDysphoria = true;
+            }
             dysphoriaIntensity = dysphoriaSeekbar.getProgress();
         }
 
@@ -475,7 +483,7 @@ public class AddNewEntryFragment extends Fragment {
                 }
                 newEntryJSON.put("hasDysphoria", true);
                 newEntryJSON.put("hasPhysicalDysphoria", hasPhysicalDysphoria);
-                newEntryJSON.put("hasMentallDysphoria", hasMentalDysphoria);
+                newEntryJSON.put("hasMentalDysphoria", hasMentalDysphoria);
                 newEntryJSON.put("hasSocialDysphoria", hasSocialDysphoria);
                 newEntryJSON.put("triggers", triggersArray);
                 newEntryJSON.put("intensity", dysphoriaIntensity);

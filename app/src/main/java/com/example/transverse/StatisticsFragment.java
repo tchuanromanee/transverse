@@ -142,7 +142,6 @@ public class StatisticsFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         ArrayList<UserEntry> allEntries = activity.allEntries;
         // Populate the list, through the adapter
-
         for(final UserEntry entry : allEntries) {
             userEntryAdapter.add(entry);
         }

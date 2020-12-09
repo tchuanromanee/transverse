@@ -167,8 +167,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 if (hasDysphoria) {
                     //dysphoriaType = jo_inside.getInt("dysphoriaType");
                     dysphoriaIntensity = jo_inside.getInt("intensity");
+
+                    boolean hasPhysicalDysphoria = jo_inside.getBoolean("hasPhysicalDysphoria");
+                    boolean hasMentalDysphoria = jo_inside.getBoolean("hasMentalDysphoria");
+                    boolean hasSocialDysphoria = jo_inside.getBoolean("hasSocialDysphoria");
                     //newDysphoria.setMental(dysphoriaType);
                     newDysphoria.setIntensity(dysphoriaIntensity);
+                    newDysphoria.setMental(hasMentalDysphoria);
+                    newDysphoria.setPhysical(hasPhysicalDysphoria);
+                    newDysphoria.setSocial(hasSocialDysphoria);
                     newEntry.setDysphoria(newDysphoria);
 
                 }

@@ -41,6 +41,7 @@ public class UserEntryViewFragment extends Fragment {
     //TODO: later, dynamically generate these buttons for custom tags and triggers
     ToggleButton trigger1, trigger2, trigger3, trigger4;
     ToggleButton tag1, tag2, tag3;
+    ToggleButton physicalDysphoriaButton, mentalDysphoriaButton, socialDysphoriaButton, noDysphoriaButton;
 
 
     public static UserEntryViewFragment newInstance(UserEntry currentEntry) {
@@ -92,6 +93,50 @@ public class UserEntryViewFragment extends Fragment {
         tag2 = (ToggleButton) getView().findViewById(R.id.tagButton2);
         tag3 = (ToggleButton) getView().findViewById(R.id.tagButton3);
 
+        physicalDysphoriaButton = (ToggleButton) getView().findViewById(R.id.physicalDysphoriaButton);
+        mentalDysphoriaButton = (ToggleButton) getView().findViewById(R.id.mentalDysphoriaButton);
+        socialDysphoriaButton = (ToggleButton) getView().findViewById(R.id.socialDysphoriaButton);
+        noDysphoriaButton = (ToggleButton) getView().findViewById(R.id.noDysphoriaButton);
+
+        noDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (noDysphoriaButton.isChecked()) {
+                    physicalDysphoriaButton.setChecked(false);
+                    mentalDysphoriaButton.setChecked(false);
+                    socialDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
+
+        physicalDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (physicalDysphoriaButton.isChecked()) {
+                    noDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
+        mentalDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (mentalDysphoriaButton.isChecked()) {
+                    noDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
+        socialDysphoriaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (socialDysphoriaButton.isChecked()) {
+                    noDysphoriaButton.setChecked(false);
+                }
+            }
+        });
+
         //Populate tags selection
         for (String currentTag:thisEntry.getMood().getTags()) {
             if (currentTag.equals(tag1.getTextOn())) {
@@ -124,6 +169,15 @@ public class UserEntryViewFragment extends Fragment {
         journal.setText(thisEntry.getMood().getJournal());
         if (thisEntry.getDysphoria() != null) {
             dysphoriaSeekbar.setProgress(thisEntry.getDysphoria().getIntensity());
+            if (thisEntry.getDysphoria().isMental()) {
+                mentalDysphoriaButton.setChecked(true);
+            }
+            if (thisEntry.getDysphoria().isPhysical()) {
+                physicalDysphoriaButton.setChecked(true);
+            }
+            if (thisEntry.getDysphoria().isSocial()) {
+                socialDysphoriaButton.setChecked(true);
+            }
         }
 
         Calendar cal = Calendar.getInstance();
