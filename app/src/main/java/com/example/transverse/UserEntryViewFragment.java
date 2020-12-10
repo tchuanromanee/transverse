@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public class UserEntryViewFragment extends Fragment {
     EditText autoD8, autoTime, journal;
     ProgressBar moodSeekbar, dysphoriaSeekbar;
     Button saveChangesButton;
+    ImageButton tagsInfoButton, triggersInfoButton;
     //TODO: later, dynamically generate these buttons for custom tags and triggers
     ToggleButton trigger1, trigger2, trigger3, trigger4;
     ToggleButton tag1, tag2, tag3;
@@ -82,6 +84,8 @@ public class UserEntryViewFragment extends Fragment {
         dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
         saveChangesButton = (Button) getView().findViewById(R.id.saveChangesButton);
         deleteButton = (Button) getView().findViewById(R.id.deleteEntryButton);
+        tagsInfoButton = (ImageButton) getView().findViewById(R.id.tagsInfoButton);
+        triggersInfoButton = (ImageButton) getView().findViewById(R.id.triggersInfoButton);
 
 
 
@@ -284,6 +288,39 @@ public class UserEntryViewFragment extends Fragment {
                             }})
                         .setNegativeButton(android.R.string.no, null).show();
 
+            }
+        });
+
+        tagsInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                alertDialog.setTitle("Tags");
+                alertDialog.setMessage("Tags are things that you want to associate with your entry. They can be something that you want to keep track" +
+                        "of to see associations between moods and certain events.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
+
+        triggersInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                alertDialog.setTitle("Triggers");
+                alertDialog.setMessage("Triggers are things that ...");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
         });
     }

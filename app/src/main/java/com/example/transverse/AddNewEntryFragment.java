@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -74,6 +77,8 @@ public class AddNewEntryFragment extends Fragment {
     ToggleButton trigger1, trigger2, trigger3, trigger4;
     ToggleButton tag1, tag2, tag3;
     ToggleButton physicalDysphoriaButton, mentalDysphoriaButton, socialDysphoriaButton, noDysphoriaButton;
+
+    ImageButton tagsInfoButton, triggersInfoButton;
 
     // Variables to be stored for each entry
     int moodRating;
@@ -133,6 +138,8 @@ public class AddNewEntryFragment extends Fragment {
         moodSeekbar = (SeekBar) getView().findViewById(R.id.moodSeekbar);
         dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
         submitButton = (Button) getView().findViewById(R.id.submitEntryButton);
+        tagsInfoButton = (ImageButton) getView().findViewById(R.id.tagsInfoButton);
+        triggersInfoButton = (ImageButton) getView().findViewById(R.id.triggersInfoButton);
 
         trigger1 = (ToggleButton) getView().findViewById(R.id.triggerButton1);
         trigger2 = (ToggleButton) getView().findViewById(R.id.triggerButton2);
@@ -199,6 +206,39 @@ public class AddNewEntryFragment extends Fragment {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+            }
+        });
+
+        tagsInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                alertDialog.setTitle("Tags");
+                alertDialog.setMessage("Tags are things that you want to associate with your entry. They can be something that you want to keep track" +
+                        "of to see associations between moods and certain events.");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
+
+        triggersInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                alertDialog.setTitle("Triggers");
+                alertDialog.setMessage("Triggers are things that ...");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
         });
 
