@@ -126,6 +126,7 @@ public class StatisticsFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
+        ((MainActivity) getActivity()).sortEntries();
         displayEntries();
 
 

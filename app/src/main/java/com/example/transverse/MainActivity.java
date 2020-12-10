@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import static com.example.transverse.AddNewEntryFragment.writeJsonFile;
@@ -50,7 +52,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //populateEntries();
 
         allEntries = getEntries();
+        sortEntries();
 
+
+
+    }
+
+    public void sortEntries() {
+        Collections.sort(allEntries, new Comparator<UserEntry>() {
+            @Override
+            public int compare(UserEntry z1, UserEntry z2) {
+                if (z1.getTimeAndDate() > z2.getTimeAndDate())
+                    return 1;
+                if (z1.getTimeAndDate() < z2.getTimeAndDate())
+                    return -1;
+                return 0;
+            }
+        });
     }
 
     private boolean loadFragment(Fragment fragment, String tag) {
