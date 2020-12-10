@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return sb.toString();
     }
 
-    public void allEntriesToJSON(UserEntry entryToRemove) {
+    public void removeFromJSON(UserEntry entryToRemove) {
 
         entriesFile = new File(this.getFilesDir(), "entries.json");
         //entriesFile.delete();
@@ -268,7 +268,92 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             e.printStackTrace();
 
         }
+    }
 
-        Toast.makeText(this, "Entry gone from JSON", Toast.LENGTH_SHORT).show();
+    public void editEntryinJSON(UserEntry originalEntry, UserEntry newEntryToReplace) {
+
+        entriesFile = new File(this.getFilesDir(), "entries.json");
+        //entriesFile.delete();
+        // Get previous JSON array to write to
+        try {
+            if (!entriesFile.exists()) {
+                Log.e("App","file not exist");
+                entriesFile.createNewFile();
+            }
+            JSONObject obj = new JSONObject(getStringFromFile(entriesFile));
+            JSONArray m_jArry = obj.getJSONArray("entries");
+
+            //String strFileJson = getStringFromFile(entriesFile);
+            JSONArray newArray = new JSONArray();
+            for (int i = 0; i < m_jArry.length(); i++) {
+                JSONObject target = m_jArry.getJSONObject(i);
+                if (originalEntry.getTimeAndDate() != target.getLong("timeAndDate")) {
+                    newArray.put(target);
+                }
+                else{
+                    //newArray edit target with info from newarray
+                    target.put("timeAndDate", newEntryToReplace.getTimeAndDate());
+                    target.put("mood", newEntryToReplace.getMood().getMoodLevel());
+                    //Tags and triggers as JSONArray
+                    ArrayList<String> tags = newEntryToReplace.getMood().getTags();
+                    JSONArray tagsArray = new JSONArray();
+                    for (int k = 0; k < tags.size(); k++) {
+                        JSONObject tagObj = new JSONObject();
+                        tagObj.put("name", tags.get(k));
+                        tagsArray.put(tagObj);
+                    }
+                    target.put("tags", tagsArray);//tags);
+                    target.put("journal", newEntryToReplace.getMood().getJournal());
+                    ArrayList<String> triggers = newEntryToReplace.getMood().getTriggers();
+                    JSONArray triggersArray = new JSONArray();
+                    // populate triggers
+                    for (int k = 0; k < triggers.size(); k++) {
+                        JSONObject triggerObj = new JSONObject();
+                        triggerObj.put("name", triggers.get(k));
+                        triggersArray.put(triggerObj);
+                    }
+                    if (newEntryToReplace.getDysphoria() != null) {
+                        target.put("hasDysphoria", true);
+                        target.put("hasPhysicalDysphoria", newEntryToReplace.getDysphoria().isPhysical());
+                        target.put("hasMentalDysphoria", newEntryToReplace.getDysphoria().isMental());
+                        target.put("hasSocialDysphoria", newEntryToReplace.getDysphoria().isSocial());
+                        target.put("triggers", triggersArray);
+                        target.put("intensity", newEntryToReplace.getDysphoria().getIntensity());
+                    }
+                    else {
+                        target.put("hasDysphoria", false);
+                        target.put("dysphoriaType", 0);
+                        target.put("triggers", triggersArray);
+                        target.put("intensity", 0);
+                    }
+                }
+            }
+
+            //String strFileJson = getStringFromFile(entriesFile);
+            // JSONObject previousJSONObj;
+            //JSONArray array;
+
+            /*if (strFileJson != "") {
+                previousJSONObj = new JSONObject(strFileJson);
+                array = previousJSONObj.getJSONArray("entries");
+            }
+            else {
+                previousJSONObj = new JSONObject();
+                array = new JSONArray();
+            }*/
+            // get JSON Object to be written
+            //JSONObject newEntryJSON = entryToJSON();
+            JSONObject currentJsonObject = new JSONObject();
+            currentJsonObject.put("entries", newArray);
+            //Append JSON object to file
+
+            writeJsonFile(entriesFile, currentJsonObject.toString());
+        }
+        catch (Exception e) {
+
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
     }
 }

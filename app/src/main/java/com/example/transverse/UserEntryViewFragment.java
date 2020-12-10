@@ -24,9 +24,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
@@ -34,15 +36,15 @@ import java.util.Map;
 public class UserEntryViewFragment extends Fragment {
     Button deleteButton;
     private static final String ENTRY_KEY = "entry_key";
-    private static UserEntry thisEntry;
+    private static UserEntry thisEntry, editedEntry; //
     EditText autoD8, autoTime, journal;
     ProgressBar moodSeekbar, dysphoriaSeekbar;
-    Button submitButton;
+    Button saveChangesButton;
     //TODO: later, dynamically generate these buttons for custom tags and triggers
     ToggleButton trigger1, trigger2, trigger3, trigger4;
     ToggleButton tag1, tag2, tag3;
     ToggleButton physicalDysphoriaButton, mentalDysphoriaButton, socialDysphoriaButton, noDysphoriaButton;
-
+    Calendar dialogueCal;
 
     public static UserEntryViewFragment newInstance(UserEntry currentEntry) {
 
@@ -78,7 +80,7 @@ public class UserEntryViewFragment extends Fragment {
         journal = (EditText) getView().findViewById(R.id.editTextJournal);
         moodSeekbar = (SeekBar) getView().findViewById(R.id.moodSeekbar);
         dysphoriaSeekbar = (SeekBar) getView().findViewById(R.id.dysphoriaSeekbar);
-        submitButton = (Button) getView().findViewById(R.id.submitEntryButton);
+        saveChangesButton = (Button) getView().findViewById(R.id.saveChangesButton);
         deleteButton = (Button) getView().findViewById(R.id.deleteEntryButton);
 
 
@@ -97,6 +99,13 @@ public class UserEntryViewFragment extends Fragment {
         mentalDysphoriaButton = (ToggleButton) getView().findViewById(R.id.mentalDysphoriaButton);
         socialDysphoriaButton = (ToggleButton) getView().findViewById(R.id.socialDysphoriaButton);
         noDysphoriaButton = (ToggleButton) getView().findViewById(R.id.noDysphoriaButton);
+
+        saveChangesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                saveChanges();
+            }
+        });
 
         noDysphoriaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +174,7 @@ public class UserEntryViewFragment extends Fragment {
             }
         }
 
-        moodSeekbar.setProgress(thisEntry.getMood().getMoodLevel());
+        moodSeekbar.setProgress(thisEntry.getMood().getMoodLevel() - 1); // Switch back to zero indexing to adjust for val
         journal.setText(thisEntry.getMood().getJournal());
         if (thisEntry.getDysphoria() != null) {
             dysphoriaSeekbar.setProgress(thisEntry.getDysphoria().getIntensity());
@@ -190,7 +199,8 @@ public class UserEntryViewFragment extends Fragment {
         String date = dateF.format(cal.getTime());
         String time = timeF.format(cal.getTime());
         //timeAndDate = 0;
-
+        dialogueCal = Calendar.getInstance();
+        dialogueCal.setTimeInMillis((thisEntry.getTimeAndDate()));
         autoD8.setText(date);
         autoTime.setText(time);
         // Set onclick listener for d8
@@ -215,6 +225,9 @@ public class UserEntryViewFragment extends Fragment {
 
                                 autoD8.setText(dayOfMonth + " " + monthString(monthOfYear + 1) + " " + year);
 
+                                dialogueCal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                                dialogueCal.set(Calendar.YEAR, year);
+                                dialogueCal.set(Calendar.MONTH, monthOfYear);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -243,6 +256,10 @@ public class UserEntryViewFragment extends Fragment {
                                                   int minute) {
 
                                 autoTime.setText(timeFormatter(hourOfDay, minute));
+
+                                autoTime.setText(timeFormatter(hourOfDay, minute));
+                                dialogueCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                dialogueCal.set(Calendar.MINUTE, minute);
                             }
                         }, mHour, mMinute, false);
                 timePickerDialog.show();
@@ -271,11 +288,99 @@ public class UserEntryViewFragment extends Fragment {
         });
     }
 
+    public void saveChanges() {
+        // Pull values from fields
+        // Pull values from form
+        long timeAndDate = dialogueCal.getTimeInMillis();
+        int moodRating = moodSeekbar.getProgress() + 1; // Compensate for range of 0-4 from seekbar by adding 1
+
+        ArrayList<String>tags = new ArrayList<String>();
+        if (tag1.isChecked()) {
+            tags.add((String) tag1.getTextOn());
+        }
+        if (tag2.isChecked()) {
+            tags.add((String) tag2.getTextOn());
+        }
+        if (tag3.isChecked()) {
+            tags.add((String) tag3.getTextOn());
+        }
+        ArrayList<String> triggers = new ArrayList<String>();
+        if (trigger1.isChecked()) {
+            triggers.add((String) trigger1.getTextOn());
+        }
+        if (trigger2.isChecked()) {
+            triggers.add((String) trigger2.getTextOn());
+        }
+        if (trigger3.isChecked()) {
+            triggers.add((String) trigger3.getTextOn());
+        }
+        if (trigger4.isChecked()) {
+            triggers.add((String) trigger4.getTextOn());
+        }
+
+        String journalString = journal.getText().toString();
+        //if "no dysphoria" is not selected
+        boolean hasDysphoria = false;
+        boolean hasMentalDysphoria, hasPhysicalDysphoria, hasSocialDysphoria;
+        hasMentalDysphoria = false;
+        hasPhysicalDysphoria = false;
+        hasSocialDysphoria = false;
+        int dysphoriaIntensity = 0;
+        if (noDysphoriaButton.isChecked()) {
+            hasDysphoria = false;
+        }
+        else {
+            hasDysphoria = true;
+            //dysphoriaType = 1;
+            if (mentalDysphoriaButton.isChecked()) {
+                hasMentalDysphoria = true;
+            }
+            if (physicalDysphoriaButton.isChecked()) {
+                hasPhysicalDysphoria = true;
+            }
+            if (socialDysphoriaButton.isChecked()) {
+                hasSocialDysphoria = true;
+            }
+            dysphoriaIntensity = dysphoriaSeekbar.getProgress();
+        }
+
+        editedEntry = new UserEntry();
+        //Add new entry to arraylist
+        Mood newMood = new Mood(moodRating, tags, journalString, triggers);
+        editedEntry.setTimeAndDate(timeAndDate);
+        editedEntry.setMood(newMood);
+        if (hasDysphoria) {
+            Dysphoria newDysphoria = new Dysphoria(hasPhysicalDysphoria, hasMentalDysphoria, hasSocialDysphoria, dysphoriaIntensity);
+            editedEntry.setDysphoria(newDysphoria);
+        }
+
+        //Edit this entry in the array list
+        if (((MainActivity) getActivity()).allEntries.contains(thisEntry)) {
+            int thisEntryIndex = ((MainActivity) getActivity()).allEntries.indexOf((thisEntry));//get(((MainActivity) getActivity()).allEntries.indexOf(thisEntry));
+            ((MainActivity) getActivity()).allEntries.set(thisEntryIndex, editedEntry);
+        }
+        //Edit this entry in the JSON
+        ((MainActivity) getActivity()).editEntryinJSON(thisEntry, editedEntry);
+
+        // Reload stats fragment
+        Fragment nextFrag= null;
+
+        nextFrag = new StatisticsFragment();
+        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, nextFrag,"stats_frag");
+        fragmentTransaction.addToBackStack(null);
+
+        fragmentTransaction.detach(nextFrag);
+        fragmentTransaction.attach(nextFrag);
+        fragmentTransaction.commit();
+    }
+
     public void deleteEntry() {
         //delete the entry from array list
         ((MainActivity) getActivity()).allEntries.remove(thisEntry);
         //delete the entry from json by writing the new array w/o entry to JSON
-        ((MainActivity) getActivity()).allEntriesToJSON(thisEntry);
+        ((MainActivity) getActivity()).removeFromJSON(thisEntry);
 
         // Reload stats fragment
         Fragment nextFrag= null;

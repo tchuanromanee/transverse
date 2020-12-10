@@ -539,13 +539,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tagsHeader2" />
 
         <Button
-            android:id="@+id/submitEntryButton"
+            android:id="@+id/saveChangesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/button_submit"
-            android:text="Submit"
+            android:text="Save"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextJournal" />

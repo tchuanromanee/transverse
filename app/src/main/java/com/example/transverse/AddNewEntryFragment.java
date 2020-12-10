@@ -87,6 +87,7 @@ public class AddNewEntryFragment extends Fragment {
     boolean hasPhysicalDysphoria, hasMentalDysphoria, hasSocialDysphoria;
     int dysphoriaIntensity; // 1-10
     ArrayList<String> triggers;
+    Calendar dialogueCal = Calendar.getInstance();
 
 
     public AddNewEntryFragment() {
@@ -237,6 +238,11 @@ public class AddNewEntryFragment extends Fragment {
 
                                 autoD8.setText(dayOfMonth + " " + monthString(monthOfYear + 1) + " " + year);
 
+                                dialogueCal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                                dialogueCal.set(Calendar.YEAR, year);
+                                dialogueCal.set(Calendar.MONTH, monthOfYear);
+                                timeAndDate = dialogueCal.getTimeInMillis();
+
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -264,6 +270,9 @@ public class AddNewEntryFragment extends Fragment {
                                                   int minute) {
 
                                 autoTime.setText(timeFormatter(hourOfDay, minute));
+                                dialogueCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                dialogueCal.set(Calendar.MINUTE, minute);
+                                timeAndDate = dialogueCal.getTimeInMillis();
                             }
                         }, mHour, mMinute, false);
                 timePickerDialog.show();
