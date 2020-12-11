@@ -353,56 +353,79 @@ public class StatisticsFragment extends Fragment {
     private void setData(ArrayList<UserEntry> allEntries) {
 
         ArrayList<Entry> values = new ArrayList<>();//Entries are each entry in the chart, not dysphoria or mood entries
+        ArrayList<Entry> dysphoriaVals = new ArrayList<>();//Entries are each entry in the chart, not dysphoria or mood entries
         for (int i = 0; i < allEntries.size(); i++) {
             //entriesDisp.append(allEntries.get(i).toString() + "\n");
             int val = allEntries.get(i).getMood().getMoodLevel(); //get mood value
             long timeAndDate = allEntries.get(i).getTimeAndDate();
+            if (allEntries.get(i).getDysphoria() != null) {
+                int dysphoriaVal = allEntries.get(i).getDysphoria().getIntensity();
+                dysphoriaVals.add(new Entry(timeAndDate, dysphoriaVal, getResources().getDrawable(R.drawable.edit_text_bg)));
+            }
             //float val = (float) (Math.random() * range) - 30;
             values.add(new Entry(timeAndDate, val, getResources().getDrawable(R.drawable.edit_text_bg)));
         }
-        LineDataSet set1;
+        LineDataSet moodDataSet;
+        LineDataSet dysphoriaDataSet;
 
         if (chart.getData() != null &&
                 chart.getData().getDataSetCount() > 0) {
-            set1 = (LineDataSet) chart.getData().getDataSetByIndex(0);
-            set1.setValues(values);
-            set1.notifyDataSetChanged();
+            moodDataSet = (LineDataSet) chart.getData().getDataSetByIndex(0);
+            moodDataSet.setValues(values);
+            moodDataSet.notifyDataSetChanged();
+            dysphoriaDataSet = (LineDataSet) chart.getData().getDataSetByIndex(1);
+            dysphoriaDataSet.setValues(dysphoriaVals);
+            dysphoriaDataSet.notifyDataSetChanged();
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
         } else {
             // create a dataset and give it a type
-            set1 = new LineDataSet(values, "DataSet 1");
+            moodDataSet = new LineDataSet(values, "Mood");
 
-            set1.setDrawIcons(false);
+            dysphoriaDataSet = new LineDataSet(dysphoriaVals, "Dysphoria");
+            moodDataSet.setDrawIcons(false);
+            dysphoriaDataSet.setDrawIcons(false);
 
             // draw dashed line
-            set1.enableDashedLine(10f, 5f, 0f);
+            moodDataSet.enableDashedLine(10f, 5f, 0f);
+            //dysphoriaDataSet.enableDashedLine(10f, 5f, 0f);
 
             // black lines and points
-            set1.setColor(Color.BLACK);
-            set1.setCircleColor(Color.BLACK);
+            moodDataSet.setColor(Color.BLACK);
+            moodDataSet.setCircleColor(Color.BLACK);
+
+            dysphoriaDataSet.setColor(Color.YELLOW);
+            dysphoriaDataSet.setCircleColor(Color.YELLOW);
 
             // line thickness and point size
-            set1.setLineWidth(1f);
-            set1.setCircleRadius(3f);
+            moodDataSet.setLineWidth(1f);
+            moodDataSet.setCircleRadius(3f);
+
+            dysphoriaDataSet.setLineWidth(1f);
+            dysphoriaDataSet.setCircleRadius(3f);
 
             // draw points as solid circles
-            set1.setDrawCircleHole(false);
+            moodDataSet.setDrawCircleHole(false);
+            dysphoriaDataSet.setDrawCircleHole(false);
 
             // customize legend entry
-            set1.setFormLineWidth(1f);
-            set1.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
-            set1.setFormSize(15.f);
+            moodDataSet.setFormLineWidth(1f);
+            moodDataSet.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            moodDataSet.setFormSize(15.f);
+            dysphoriaDataSet.setFormLineWidth(1f);
+            dysphoriaDataSet.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            dysphoriaDataSet.setFormSize(15.f);
 
             // text size of values
-            set1.setValueTextSize(9f);
+            moodDataSet.setValueTextSize(9f);
+            dysphoriaDataSet.setValueTextSize(9f);
 
             // draw selection line as dashed
-            set1.enableDashedHighlightLine(10f, 5f, 0f);
+            //moodDataSet.enableDashedHighlightLine(10f, 5f, 0f);
 
             // set the filled area
-            set1.setDrawFilled(true);
-            set1.setFillFormatter(new IFillFormatter() {
+            moodDataSet.setDrawFilled(true);
+            moodDataSet.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
                     return chart.getAxisLeft().getAxisMinimum();
@@ -413,14 +436,14 @@ public class StatisticsFragment extends Fragment {
             if (Utils.getSDKInt() >= 18) {
                 // drawables only supported on api level 18 and above
                 Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.button_submit);
-                set1.setFillDrawable(drawable);
+                moodDataSet.setFillDrawable(drawable);
             } else {
-                set1.setFillColor(Color.BLACK);
+                moodDataSet.setFillColor(Color.BLACK);
             }
 
             ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-            dataSets.add(set1); // add the data sets
-
+            dataSets.add(moodDataSet); // add the data sets
+            dataSets.add(dysphoriaDataSet);
             // create a data object with the data sets
             LineData data = new LineData(dataSets);
 

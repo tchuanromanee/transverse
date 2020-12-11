@@ -1,12 +1,19 @@
 package com.example.transverse;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +30,8 @@ public class EncyclopediaFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView genderBasics;
 
     public EncyclopediaFragment() {
         // Required empty public constructor
@@ -53,6 +62,25 @@ public class EncyclopediaFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        genderBasics = (TextView) getView().findViewById(R.id.gender_basic);
+
+       /* genderBasics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                Fragment fragment = EncyEntryFragment.newInstance();
+                ft.replace(R.id.fragment_container, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });*/
+
     }
 
     @Override

@@ -25,7 +25,7 @@
 
 
     <TextView
-        android:id="@+id/transBasics"
+        android:id="@+id/gender_basic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/encyclopediaSpacing"
