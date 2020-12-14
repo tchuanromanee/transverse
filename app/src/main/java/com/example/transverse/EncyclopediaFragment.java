@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -83,18 +84,25 @@ public class EncyclopediaFragment extends Fragment {
             JSONArray basicsEntries = obj.getJSONArray("basics");
             JSONArray faqEntries = obj.getJSONArray("faqs");
 
-            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams
+            LinearLayout.LayoutParams headerParams=new LinearLayout.LayoutParams
                     ((int) LinearLayout.LayoutParams.WRAP_CONTENT,(int) LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.leftMargin = 50;
-            params.topMargin  = 50;
+            headerParams.leftMargin = 50;
+            headerParams.topMargin  = 50;
+
+            LinearLayout.LayoutParams entryParams=new LinearLayout.LayoutParams
+                    ((int) LinearLayout.LayoutParams.WRAP_CONTENT,(int) LinearLayout.LayoutParams.WRAP_CONTENT);
+            entryParams.leftMargin = 50;
+            entryParams.topMargin  = 0;
 
 
             LinearLayout encyLinearLayout = (LinearLayout) getView().findViewById(R.id.encyclopedia_linearlayout);
             TextView basicsHeader = new TextView(getContext());
             basicsHeader.setText("Basics");
+            //TODO: Don't hardcode padding values
             basicsHeader.setPadding(10, 10, 10, 18);
             basicsHeader.setTextSize(24);
-            basicsHeader.setLayoutParams(params);
+            basicsHeader.setLayoutParams(headerParams);
+            TextViewCompat.setTextAppearance(basicsHeader, R.style.HeaderText);
             encyLinearLayout.addView(basicsHeader);
 
             for (int i = 0; i < basicsEntries.length(); i++) {
@@ -102,12 +110,13 @@ public class EncyclopediaFragment extends Fragment {
                 String encyEntryname = jo_inside.getString("name");
                 String encyEntryID = jo_inside.getString("id");
                 String encryStringXMLID = jo_inside.getString("stringXMLID");
-                //TODO: Add textview under header and set onclick listener
+                //TODO: dynamically change style and set onclick listener
                 TextView newTextView = new TextView(getContext());
                 newTextView.setText(encyEntryname);
                 newTextView.setPadding(10, 10, 10, 18);
                 newTextView.setTextSize(16);
-                newTextView.setLayoutParams(params);
+                newTextView.setLayoutParams(entryParams);
+                TextViewCompat.setTextAppearance(newTextView, R.style.EncyclopediaEntry);
                 encyLinearLayout.addView(newTextView);
                 }
 
@@ -116,7 +125,7 @@ public class EncyclopediaFragment extends Fragment {
             faqHeader.setText("FAQs");
             faqHeader.setPadding(10, 10, 10, 18);
             faqHeader.setTextSize(24);
-            faqHeader.setLayoutParams(params);
+            faqHeader.setLayoutParams(headerParams);
             encyLinearLayout.addView(faqHeader);
 
 
@@ -130,7 +139,7 @@ public class EncyclopediaFragment extends Fragment {
                 newTextView.setText(encyEntryname);
                 newTextView.setPadding(10, 10, 10, 18);
                 newTextView.setTextSize(16);
-                newTextView.setLayoutParams(params);
+                newTextView.setLayoutParams(entryParams);
                 encyLinearLayout.addView(newTextView);
             }
 
