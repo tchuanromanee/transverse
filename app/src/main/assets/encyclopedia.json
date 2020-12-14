@@ -1,0 +1,26 @@
+{ "basics":[
+
+    {
+      "name": "Transgender",
+      "id": "b01",
+      "stringXMLID": "ency_gender_basic"
+    },
+   {
+      "name": "Dysphoria",
+      "id": "b02",
+      "stringXMLID": "ency_gender_basic"
+    }
+],
+  "faqs":[
+
+    {
+      "name": "How do I know if I'm trans?",
+      "id": "f01",
+      "stringXMLID": "ency_gender_basic"
+    },
+    {
+      "name": "What does transitioning involve?",
+      "id": "f02",
+      "stringXMLID": "ency_gender_basic"
+    }
+  ]}
