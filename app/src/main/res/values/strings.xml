@@ -17,7 +17,7 @@
     </string>
 
     <string name="SHMeditate">
-        Meditation is good because....
+        <![CDATA[<b>Meditation</b> is good because....]]>
     </string>
 
     <!--ENCYCLOPEDIA ENTRIES -->
