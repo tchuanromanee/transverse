@@ -9,27 +9,35 @@
     "ID": "SHMeditate"
   },
   {
-    "name": "Meditate",
-    "ID": "SHMeditate"
+    "name": "Snuggle a pet",
+    "ID": "SHSnuggle"
   },
   {
-    "name": "Meditate",
-    "ID": "SHMeditate"
+    "name": "Exercise",
+    "ID": "SHExercise"
   },
   {
-    "name": "Meditate",
-    "ID": "SHMeditate"
+    "name": "Read",
+    "ID": "SHRead"
   },
   {
-    "name": "Meditate",
-    "ID": "SHMeditate"
+    "name": "Wear baggy clothes",
+    "ID": "SHBaggy"
   },
   {
-    "name": "Meditate",
-    "ID": "SHMeditate"
+    "name": "Listen to music",
+    "ID": "SHMusic"
   },
   {
-    "name": "Meditate",
-    "ID": "SHMeditate"
+    "name": "Talk with a friend",
+    "ID": "SHTalk"
+  },
+  {
+    "name": "Work on a hobby",
+    "ID": "SHHobby"
+  },
+  {
+    "name": "Pray",
+    "ID": "SHPray"
   }
 ]}

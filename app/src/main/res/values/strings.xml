@@ -20,6 +20,40 @@
         <![CDATA[<b>Meditation</b> is good because....]]>
     </string>
 
+    <string name="SHSnuggle">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+    <string name="SHExercise">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+    <string name="SHRead">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+    <string name="SHBaggy">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+    <string name="SHMusic">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+    <string name="SHTalk">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+    <string name="SHHobby">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+    <string name="SHPray">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+
+
+
+
     <!--ENCYCLOPEDIA ENTRIES -->
     <string name="ency_gender_basic">
 
