@@ -24,8 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/self_help_icon"
         android:layout_margin="5dp"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textSize="@dimen/textNormal" />
 
 
 </RelativeLayout>

@@ -5,4 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/self_help_fragment_img"
+        android:layout_width="@dimen/textHuge"
+        android:layout_height="@dimen/textHuge"
+        android:layout_weight="1"
+        android:layout_column="0"
+        android:layout_marginStart="@dimen/largePadding"
+        android:layout_marginEnd="@dimen/largePadding"
+        android:layout_marginTop="@dimen/largePadding"
+        android:backgroundTint="@color/colorWhite"
+        android:src="@drawable/ic_heart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/self_help_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/largePadding"
+        android:layout_marginTop="@dimen/largePadding"
+        android:text="UwU"
+        android:textSize="@dimen/textNormal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -39,6 +41,9 @@ public class SelfHelpViewFragment extends Fragment {
     private static final String ENTRY_KEY = "entry_key";
     private static SelfHelp thisSelfHelp;//, editedEntry; //
    // EditText notes;
+    TextView description;
+    ImageView selfHelpImageView;
+    Drawable icon;
    // Button saveChangesButton;
 
     public static SelfHelpViewFragment newInstance(SelfHelp currentSelfHelp) {
@@ -60,7 +65,10 @@ public class SelfHelpViewFragment extends Fragment {
                 ENTRY_KEY);
         View v =  inflater.inflate(R.layout.fragment_self_help_view, container, false);
 
-        //((TextView) v.findViewById(R.id.user_entry_subtitle)).setText("uwu");
+        description = ((TextView) v.findViewById(R.id.self_help_description));
+        selfHelpImageView = (ImageView) v.findViewById(R.id.self_help_fragment_img);
+
+        description.setText(thisSelfHelp.getDescription());
 
 
         return v;
