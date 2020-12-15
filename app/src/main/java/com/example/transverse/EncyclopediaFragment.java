@@ -133,7 +133,7 @@ public class EncyclopediaFragment extends Fragment {
                 JSONObject jo_inside = faqEntries.getJSONObject(i);
                 String encyEntryname = jo_inside.getString("name");
                 String encyEntryID = jo_inside.getString("id");
-                String encryStringXMLID = jo_inside.getString("stringXMLID");
+                final String encryStringXMLID = jo_inside.getString("stringXMLID");
                 //TODO: Add textview under header and set onclick listener
                 TextView newTextView = new TextView(getContext());
                 newTextView.setText(encyEntryname);
@@ -141,6 +141,17 @@ public class EncyclopediaFragment extends Fragment {
                 newTextView.setTextSize(16);
                 newTextView.setLayoutParams(entryParams);
                 encyLinearLayout.addView(newTextView);
+                newTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v){
+
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID);
+                    ft.replace(R.id.fragment_container, fragment);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
+            });
             }
 
         } catch (JSONException e) {
@@ -149,19 +160,7 @@ public class EncyclopediaFragment extends Fragment {
             e.printStackTrace();
         }
 
-        //genderBasics = (TextView) getView().findViewById(R.id.gender_basic);
 
-       /* genderBasics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                Fragment fragment = EncyEntryFragment.newInstance();
-                ft.replace(R.id.fragment_container, fragment);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });*/
 
     }
 
