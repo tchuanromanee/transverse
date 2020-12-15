@@ -2,6 +2,7 @@ package com.example.transverse;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -60,5 +61,11 @@ public class SelfHelpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_self_help, container, false);
+    }
+
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        ((MainActivity) getActivity()).updateTitle("Self Help");
+        // displayEntries();
     }
 }

@@ -119,6 +119,7 @@ public class StatisticsFragment extends Fragment {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        ((MainActivity) getActivity()).updateTitle("Statistics");
        // displayEntries();
     }
 

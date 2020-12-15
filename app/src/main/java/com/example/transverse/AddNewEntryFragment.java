@@ -132,6 +132,8 @@ public class AddNewEntryFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        ((MainActivity) getActivity()).updateTitle("Add New Entry");
         autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
         autoTime = (EditText) getView().findViewById(R.id.editTextTime);
         journal = (EditText) getView().findViewById(R.id.editTextJournal);

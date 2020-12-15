@@ -12,7 +12,7 @@
     <item android:title="@string/page_self_help"
         android:id="@+id/bottomNavigationSelfHelpMenuId"
         android:icon="@drawable/ic_heart"/>
-    <item android:title="@string/page_settings"
+    <!--<item android:title="@string/page_settings"
         android:id="@+id/bottomNavigationSettingsMenuId"
-        android:icon="@drawable/ic_gear"/>
+        android:icon="@drawable/ic_gear"/>-->
 </menu>

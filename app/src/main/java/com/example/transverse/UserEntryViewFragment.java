@@ -75,6 +75,7 @@ public class UserEntryViewFragment extends Fragment {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        ((MainActivity) getActivity()).updateTitle("Edit Entry");
         //Set values of fields to be the value of the user entry
 
         autoD8 = (EditText) getView().findViewById(R.id.editTextDate);
