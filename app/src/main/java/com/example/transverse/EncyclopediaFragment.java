@@ -112,7 +112,7 @@ public class EncyclopediaFragment extends Fragment {
 
             for (int i = 0; i < basicsEntries.length(); i++) {
                 JSONObject jo_inside = basicsEntries.getJSONObject(i);
-                String encyEntryname = jo_inside.getString("name");
+                final String encyEntryname = jo_inside.getString("name");
                 String encyEntryID = jo_inside.getString("id");
                 final String encryStringXMLID = jo_inside.getString("stringXMLID");
                 //TODO: dynamically change style and set onclick listener
@@ -128,7 +128,7 @@ public class EncyclopediaFragment extends Fragment {
                     @Override
                     public void onClick(View v){
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID);
+                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID, encyEntryname);
                         ft.replace(R.id.fragment_container, fragment);
                         ft.addToBackStack(null);
                         ft.commit();
@@ -148,7 +148,7 @@ public class EncyclopediaFragment extends Fragment {
 
             for (int i = 0; i < faqEntries.length(); i++) {
                 JSONObject jo_inside = faqEntries.getJSONObject(i);
-                String encyEntryname = jo_inside.getString("name");
+                final String encyEntryname = jo_inside.getString("name");
                 String encyEntryID = jo_inside.getString("id");
                 final String encryStringXMLID = jo_inside.getString("stringXMLID");
                 //TODO: Add textview under header and set onclick listener
@@ -164,7 +164,7 @@ public class EncyclopediaFragment extends Fragment {
                     public void onClick(View v){
 
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID);
+                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID, encyEntryname);
                         ft.replace(R.id.fragment_container, fragment);
                         ft.addToBackStack(null);
                         ft.commit();
