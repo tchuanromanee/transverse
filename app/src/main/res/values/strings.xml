@@ -11,6 +11,15 @@
     <string name="ane_tags_header">Tags</string>
     <string name="hello_blank_fragment">UwU</string>
 
+    <!--SELF HELP ENTRIES-->
+    <string name="SHWalk">
+        Taking a walk is good because....
+    </string>
+
+    <string name="SHMeditate">
+        Taking a walk is good because....
+    </string>
+
     <!--ENCYCLOPEDIA ENTRIES -->
     <string name="ency_gender_basic">
 

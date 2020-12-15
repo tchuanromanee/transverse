@@ -2,15 +2,22 @@ package com.example.transverse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +43,8 @@ import static com.example.transverse.AddNewEntryFragment.writeJsonFile;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     File entriesFile;
     ArrayList<UserEntry> allEntries;
+    ArrayList<SelfHelp> allMethods;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +63,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         allEntries = getEntries();
         sortEntries();
-
+        try {
+            allMethods = getMethods();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -221,6 +236,34 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
         return entriesList;
+
+    }
+
+    public ArrayList<SelfHelp> getMethods() throws IOException, JSONException {
+
+        ArrayList<SelfHelp> selfHelpList = new ArrayList();
+
+        JSONObject obj = new JSONObject(loadJSONFromAsset("selfhelp.json"));
+        JSONArray methodsJSONArray = obj.getJSONArray("selfhelp");
+
+        for (int i = 0; i < methodsJSONArray.length(); i++) {
+            JSONObject jo_inside = methodsJSONArray.getJSONObject(i);
+            final String methodName = jo_inside.getString("name");
+            String methodID = jo_inside.getString("ID");
+
+            String packageName = getPackageName();
+            int stringIDInt = getResources().getIdentifier(methodID, "string", packageName);
+            String fullString = getString(stringIDInt);
+            Spanned htmlText = Html.fromHtml(fullString);
+
+            //int drawableIDInt = getResources().getIdentifier(methodID, "drawable", packageName);
+            //Drawable drawable = getDrawable(stringIDInt);
+            Drawable drawable = getDrawable(R.drawable.ic_heart);
+            SelfHelp newSH = new SelfHelp(methodName, htmlText, drawable);
+            selfHelpList.add(newSH);
+        }
+
+        return selfHelpList;
 
     }
 
