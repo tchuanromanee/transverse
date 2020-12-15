@@ -109,7 +109,7 @@ public class EncyclopediaFragment extends Fragment {
                 JSONObject jo_inside = basicsEntries.getJSONObject(i);
                 String encyEntryname = jo_inside.getString("name");
                 String encyEntryID = jo_inside.getString("id");
-                String encryStringXMLID = jo_inside.getString("stringXMLID");
+                final String encryStringXMLID = jo_inside.getString("stringXMLID");
                 //TODO: dynamically change style and set onclick listener
                 TextView newTextView = new TextView(getContext());
                 newTextView.setText(encyEntryname);
@@ -117,6 +117,16 @@ public class EncyclopediaFragment extends Fragment {
                 newTextView.setTextSize(16);
                 newTextView.setLayoutParams(entryParams);
                 TextViewCompat.setTextAppearance(newTextView, R.style.EncyclopediaEntry);
+                newTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v){
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID);
+                        ft.replace(R.id.fragment_container, fragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                });
                 encyLinearLayout.addView(newTextView);
                 }
 
@@ -140,18 +150,18 @@ public class EncyclopediaFragment extends Fragment {
                 newTextView.setPadding(10, 10, 10, 18);
                 newTextView.setTextSize(16);
                 newTextView.setLayoutParams(entryParams);
-                encyLinearLayout.addView(newTextView);
                 newTextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
+                    @Override
+                    public void onClick(View v){
 
-                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID);
-                    ft.replace(R.id.fragment_container, fragment);
-                    ft.addToBackStack(null);
-                    ft.commit();
-                }
-            });
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID);
+                        ft.replace(R.id.fragment_container, fragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                });
+                encyLinearLayout.addView(newTextView);
             }
 
         } catch (JSONException e) {
