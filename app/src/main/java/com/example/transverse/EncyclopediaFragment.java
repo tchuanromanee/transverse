@@ -2,9 +2,11 @@ package com.example.transverse;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -75,6 +77,7 @@ public class EncyclopediaFragment extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         // Create textviews dynamically depending on encyclopedia.json
@@ -90,8 +93,10 @@ public class EncyclopediaFragment extends Fragment {
             headerParams.topMargin  = 50;
 
             LinearLayout.LayoutParams entryParams=new LinearLayout.LayoutParams
-                    ((int) LinearLayout.LayoutParams.WRAP_CONTENT,(int) LinearLayout.LayoutParams.WRAP_CONTENT);
+                    ((int) LinearLayout.LayoutParams.MATCH_PARENT,(int) LinearLayout.LayoutParams.WRAP_CONTENT);
             entryParams.leftMargin = 50;
+            //entryParams.setMarginEnd(18);
+            entryParams.rightMargin = 50;
             entryParams.topMargin  = 0;
 
 
@@ -113,10 +118,12 @@ public class EncyclopediaFragment extends Fragment {
                 //TODO: dynamically change style and set onclick listener
                 TextView newTextView = new TextView(getContext());
                 newTextView.setText(encyEntryname);
-                newTextView.setPadding(10, 10, 10, 18);
+                newTextView.setPadding(10, 10, 10, 28);
                 newTextView.setTextSize(16);
                 newTextView.setLayoutParams(entryParams);
-                TextViewCompat.setTextAppearance(newTextView, R.style.EncyclopediaEntry);
+                newTextView.setTextAppearance(R.style.EncyclopediaEntry);
+                newTextView.setBackground(getResources().getDrawable(R.drawable.text_border_bottom));
+                //TextViewCompat.setTextAppearance(newTextView, R.style.EncyclopediaEntry);
                 newTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v){
@@ -149,6 +156,8 @@ public class EncyclopediaFragment extends Fragment {
                 newTextView.setText(encyEntryname);
                 newTextView.setPadding(10, 10, 10, 18);
                 newTextView.setTextSize(16);
+                newTextView.setTextAppearance(R.style.EncyclopediaEntry);
+                newTextView.setBackground(getResources().getDrawable(R.drawable.text_border_bottom));
                 newTextView.setLayoutParams(entryParams);
                 newTextView.setOnClickListener(new View.OnClickListener() {
                     @Override

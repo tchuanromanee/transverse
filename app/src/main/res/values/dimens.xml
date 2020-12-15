@@ -8,7 +8,7 @@
     <!--Font sizes-->
     <dimen name="textH1">24sp</dimen>
     <dimen name="textLarge">16sp</dimen>
-    <dimen name="textNormal">12sp</dimen>
+    <dimen name="textNormal">16sp</dimen>
 
     <!--Icon sizes-->
     <dimen name="icon">60dp</dimen>

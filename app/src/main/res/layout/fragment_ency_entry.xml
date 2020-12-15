@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,8 +16,13 @@
         android:text="UwU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="60dp"
+        android:textSize="@dimen/textNormal"
+        android:paddingRight="@dimen/largePadding"
+        android:layout_marginStart="@dimen/largePadding"
+        android:layout_marginTop="@dimen/largePadding"
+        android:layout_marginEnd="@dimen/largePadding"
+        android:layout_marginBottom="@dimen/largePadding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

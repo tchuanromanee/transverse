@@ -1,6 +1,7 @@
 package com.example.transverse;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class EncyEntryFragment extends Fragment {
         int stringIDInt = getContext().getResources().getIdentifier(stringID, "string", packageName);
         String fullString = getContext().getString(stringIDInt);
 
-        encyEntryContent.setText(fullString);
+        encyEntryContent.setText(Html.fromHtml(fullString));
 
     }
 
