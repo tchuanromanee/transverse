@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -127,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return json;
     }
 
+    public void updateTitle(String newTitle) {
+        TextView titleText = findViewById(R.id.toolbar_title);
+        titleText.setText(newTitle);
+    }
     public ArrayList<UserEntry> getEntries() {
 
         ArrayList<UserEntry> entriesList = new ArrayList();

@@ -79,7 +79,7 @@ public class EncyclopediaFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
+        //((MainActivity) getActivity()).updateTitle("Encyclopedia");
         // Create textviews dynamically depending on encyclopedia.json
         //Each array name would be a header and a different group
         try {
