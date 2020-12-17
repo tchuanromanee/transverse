@@ -391,12 +391,15 @@ public class StatisticsFragment extends Fragment {
             moodDataSet.enableDashedLine(10f, 5f, 0f);
             //dysphoriaDataSet.enableDashedLine(10f, 5f, 0f);
 
-            // black lines and points
-            moodDataSet.setColor(Color.BLACK);
-            moodDataSet.setCircleColor(Color.BLACK);
+            // set light blue color for mood and pink for dysphoria
+            int lightBlueColor = getResources().getColor(R.color.colorLightBlue);
+            moodDataSet.setColor(lightBlueColor);
+            moodDataSet.setCircleColor(lightBlueColor);
 
-            dysphoriaDataSet.setColor(Color.YELLOW);
-            dysphoriaDataSet.setCircleColor(Color.YELLOW);
+
+            int pinkColor = getResources().getColor(R.color.colorPink);
+            dysphoriaDataSet.setColor(pinkColor);
+            dysphoriaDataSet.setCircleColor(pinkColor);
 
             // line thickness and point size
             moodDataSet.setLineWidth(1f);

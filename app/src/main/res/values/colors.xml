@@ -3,6 +3,8 @@
     <color name="colorPrimary">#8A57A3</color>
     <color name="colorPrimaryDark">#8A57A3</color>
     <color name="colorAccent">#8A57A3</color>
+    <color name="colorLightBlue">#64C5E9</color>
+    <color name="colorPink">#BA60A6</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorNavBG">#F2F2F2F2</color>
     <color name="colorlightGrey">#F2F2F2F2</color>

@@ -17,6 +17,11 @@
             android:id="@+id/allSelfHelpEntries"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:columnWidth="100dp"
+            android:numColumns="3"
+            android:verticalSpacing="24dp"
+            android:horizontalSpacing="10dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" />

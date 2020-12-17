@@ -12,8 +12,8 @@
     <!-- Icon shown next to the title/subtitle -->
     <ImageView
         android:id="@+id/self_help_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:padding="3dp" />
 
@@ -25,6 +25,8 @@
         android:layout_alignTop="@id/self_help_icon"
         android:layout_margin="5dp"
         android:textSize="@dimen/textNormal" />
+
+
 
 
 </RelativeLayout>

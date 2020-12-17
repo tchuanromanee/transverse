@@ -69,6 +69,7 @@ public class SelfHelpViewFragment extends Fragment {
         selfHelpImageView = (ImageView) v.findViewById(R.id.self_help_fragment_img);
 
         description.setText(thisSelfHelp.getDescription());
+        selfHelpImageView.setImageResource(R.drawable.ic_heart);
 
 
         return v;

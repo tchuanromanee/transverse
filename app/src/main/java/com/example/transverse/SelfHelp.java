@@ -39,4 +39,5 @@ public class SelfHelp implements Serializable {
     public Spanned getDescription() {
         return description;
     }
+
 }
