@@ -5,28 +5,39 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>-->
 <!-- Layout for individual news entries in a list -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
 
     <!-- Icon shown next to the title/subtitle -->
-    <ImageView
-        android:id="@+id/self_help_icon"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:padding="3dp" />
 
     <!-- Title of the news entry -->
+
+    <ImageView
+        android:id="@+id/self_help_icon"
+        android:layout_width="@dimen/icon"
+        android:layout_height="@dimen/icon"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/self_help_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/self_help_icon"
-        android:layout_margin="5dp"
-        android:textSize="@dimen/textNormal" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/textNormal"
+        app:layout_constraintTop_toBottomOf="@id/self_help_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

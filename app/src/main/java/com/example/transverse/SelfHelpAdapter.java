@@ -20,13 +20,25 @@ public class SelfHelpAdapter extends ArrayAdapter<SelfHelp> {
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
 
         // We need to get the best view (re-used if possible) and then
         // retrieve its corresponding ViewHolder, which optimizes lookup efficiency
         final View view = getWorkingView(convertView);
         final SelfHelpAdapter.ViewHolder viewHolder = getViewHolder(view);
         final SelfHelp method = getItem(position);
+
+        if (convertView == null) {
+            final LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+            convertView = layoutInflater.inflate(R.layout.self_help_list_item, null);
+        }
+
+        final ImageView imageView = (ImageView)convertView.findViewById(R.id.self_help_icon);
+
+        // 4
+        //imageView.setImageResource(book.getImageResource());
+        imageView.setImageResource(R.drawable.ic_heart);
+
 
         // Setting the title view is straightforward
         viewHolder.titleView.setText(method.getName());
@@ -37,7 +49,7 @@ public class SelfHelpAdapter extends ArrayAdapter<SelfHelp> {
        // String mDrawableName = "@drawable/ic_mood" + entry.getMood().getMoodLevel();
        // int resID = getContext().getResources().getIdentifier(mDrawableName , null, getContext().getPackageName());
       //  viewHolder.imageView.setImageResource(resID);
-        viewHolder.imageView.setImageResource(R.drawable.ic_heart);
+       // viewHolder.imageView.setImageResource(R.drawable.ic_heart);
 
 
         return view;
