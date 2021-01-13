@@ -37,12 +37,12 @@ public class SelfHelpAdapter extends ArrayAdapter<SelfHelp> {
 
         // 4
         //imageView.setImageResource(book.getImageResource());
-        imageView.setImageResource(R.drawable.ic_heart);
+        //imageView.setImageResource(R.drawable.ic_heart);
 
 
         // Setting the title view is straightforward
         viewHolder.titleView.setText(method.getName());
-
+        viewHolder.imageView.setImageResource(R.drawable.ic_heart);
         // Setting image view is also simple
         //Get image ID, depending on the mood
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_heart);

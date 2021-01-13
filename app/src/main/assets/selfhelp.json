@@ -21,23 +21,27 @@
     "ID": "SHRead"
   },
   {
-    "name": "Wear baggy clothes",
-    "ID": "SHBaggy"
-  },
-  {
     "name": "Listen to music",
     "ID": "SHMusic"
   },
   {
-    "name": "Talk with a friend",
-    "ID": "SHTalk"
+    "name": "Pray",
+    "ID": "SHPray"
+  },
+  {
+    "name": "Take a bath",
+    "ID": "SHBath"
   },
   {
     "name": "Work on a hobby",
     "ID": "SHHobby"
   },
   {
-    "name": "Pray",
-    "ID": "SHPray"
+    "name": "Wear baggy clothes",
+    "ID": "SHBaggy"
+  },
+  {
+    "name": "Talk with a friend",
+    "ID": "SHTalk"
   }
 ]}
