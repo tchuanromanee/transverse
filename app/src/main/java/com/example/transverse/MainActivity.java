@@ -6,6 +6,7 @@ import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         //loading the default fragment
         loadFragment(new EncyclopediaFragment(), "");
-
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.bottomNav);
         navigation.setOnNavigationItemSelectedListener(this);
