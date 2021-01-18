@@ -292,22 +292,22 @@
 
         <TableLayout
             android:id="@+id/dysphoriaTable"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_above="@+id/dysphoriaIntensityText"
-            android:layout_marginStart="@dimen/iconMargin"
+            android:layout_marginTop="50dp"
             android:stretchColumns="*"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/typeHeader">
 
-        <TableRow
-            android:id="@+id/dysphoriaRowImg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            <TableRow
+                android:id="@+id/dysphoriaRowImg"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:gravity="center">
 
 
-           <!-- <RadioGroup
+                <!-- <RadioGroup
                 android:id="@+id/radioGroup1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/typeHeader"
@@ -354,78 +354,74 @@
             </RadioGroup>-->
 
 
+                <ToggleButton
+                    android:id="@+id/physicalDysphoriaButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/icon"
+                    android:layout_column="0"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:backgroundTint="@color/colorWhite"
+                    android:button="@drawable/toggle_selector"
+                    android:contentDescription="Physical Dysphoria"
+                    android:textOff=""
+                    android:textOn=""
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
+                <ToggleButton
+                    android:id="@+id/mentalDysphoriaButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/icon"
+                    android:layout_column="0"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:backgroundTint="@color/colorWhite"
+                    android:button="@drawable/toggle_selector"
+                    android:contentDescription="Mental Dysphoria"
+                    android:textOff=""
+                    android:textOn=""
+                    app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
-            <ToggleButton
-                android:id="@+id/physicalDysphoriaButton"
-                android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon"
-                android:layout_weight="1"
-                android:layout_column="0"
-                android:background="@null"
-                android:button="@drawable/toggle_selector"
-                android:textOff=""
-                android:textOn=""
-                android:layout_centerVertical="true"
-               android:backgroundTint="@color/colorWhite"
-                android:contentDescription="Physical Dysphoria"
-                android:src="@drawable/ic_mood1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+                <ToggleButton
+                    android:id="@+id/socialDysphoriaButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/icon"
+                    android:layout_column="0"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@null"
+                    android:backgroundTint="@color/colorWhite"
+                    android:button="@drawable/toggle_selector"
+                    android:contentDescription="Social Dysphoria"
+                    android:textOff=""
+                    android:textOn=""
+                    app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
-            <ToggleButton
-                android:id="@+id/mentalDysphoriaButton"
-                android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon"
-                android:layout_weight="1"
-                android:layout_column="0"
-                android:background="@null"
-                android:button="@drawable/toggle_selector"
-                android:textOff=""
-                android:textOn=""
-                android:layout_centerVertical="true"
-                android:backgroundTint="@color/colorWhite"
-                android:contentDescription="Mental Dysphoria"
-                android:src="@drawable/ic_mood1"
-                app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
-                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+                <ToggleButton
+                    android:id="@+id/noDysphoriaButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/icon"
+                    android:layout_column="0"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:backgroundTint="@color/colorWhite"
+                    android:button="@drawable/toggle_selector"
+                    android:contentDescription="No Dysphoria"
+                    android:textOff=""
+                    android:textOn=""
+                    app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
 
-            <ToggleButton
-                android:id="@+id/socialDysphoriaButton"
-                android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon"
-                android:layout_column="0"
-                android:background="@null"
-                android:button="@drawable/toggle_selector"
-                android:textOff=""
-                android:textOn=""
-                android:layout_centerVertical="true"
-                android:backgroundTint="@color/colorWhite"
-                android:contentDescription="Social Dysphoria"
-                app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
-                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+            </TableRow>
 
-            <ToggleButton
-                android:id="@+id/noDysphoriaButton"
-                android:layout_width="@dimen/icon"
-                android:layout_height="@dimen/icon"
-                android:layout_weight="1"
-                android:layout_column="0"
-                android:background="@null"
-                android:button="@drawable/toggle_selector"
-                android:textOff=""
-                android:textOn=""
-                android:layout_centerVertical="true"
-                android:backgroundTint="@color/colorWhite"
-                android:contentDescription="No Dysphoria"
-                android:src="@drawable/ic_mood1"
-                app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
-                app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
-
-        </TableRow>
             <TableRow
                 android:id="@+id/dysphoriaRowText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal">
 
@@ -433,32 +429,33 @@
                     android:id="@+id/physicalDysphoriaText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_column="0"
+                    android:layout_weight="1"
                     android:text="Physical" />
 
                 <TextView
-                android:id="@+id/mentalDysphoriaText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:id="@+id/mentalDysphoriaText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
-                android:text="Mental"/>
+                    android:layout_weight="1"
+                    android:text="Mental" />
+
                 <TextView
                     android:id="@+id/socialDysphoriaText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_column="0"
-                    android:text="Social"/>
+                    android:layout_weight="1"
+                    android:text="Social" />
 
                 <TextView
-                android:id="@+id/noDysphoriaText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:id="@+id/noDysphoriaText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_column="0"
-                android:text="No Dysphoria"/>
+                    android:layout_weight="1"
+                    android:text="No Dysphoria" />
 
             </TableRow>
         </TableLayout>
