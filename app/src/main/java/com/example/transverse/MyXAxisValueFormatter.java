@@ -27,7 +27,7 @@ public class MyXAxisValueFormatter implements IAxisValueFormatter {
     public String getFormattedValue(float value, AxisBase axis) {
 
         long yourmilliseconds = (long) value;
-        SimpleDateFormat sdf = new SimpleDateFormat("mm/dd");//MMM dd,yyyy");// HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");//MMM dd,yyyy");// HH:mm");
         Date resultdate = new Date(yourmilliseconds);
         //System.out.println(sdf.format(resultdate));
 

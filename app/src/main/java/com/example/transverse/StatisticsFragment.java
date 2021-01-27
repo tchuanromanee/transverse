@@ -38,6 +38,7 @@ import java.util.HashMap;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.components.LimitLine;
@@ -47,6 +48,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IFillFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
@@ -221,6 +223,7 @@ public class StatisticsFragment extends Fragment {
         // // Chart Style // //
         chart = getView().findViewById(R.id.chart);
 
+        chart.setNoDataText("Add a new entry to see your mood chart!");
         // background color
         chart.setBackgroundColor(Color.WHITE);
 
@@ -229,6 +232,7 @@ public class StatisticsFragment extends Fragment {
 
         // enable touch gestures
         chart.setTouchEnabled(true);
+
 
         // set listeners
        // chart.setOnChartValueSelectedListener((OnChartValueSelectedListener) this);
@@ -268,7 +272,7 @@ public class StatisticsFragment extends Fragment {
 
         // enable scaling and dragging
         chart.setDragEnabled(true);
-        chart.setScaleEnabled(false);
+        //chart.setScaleEnabled(false);
         // chart.setScaleXEnabled(true);
         // chart.setScaleYEnabled(true);
 
@@ -283,11 +287,20 @@ public class StatisticsFragment extends Fragment {
 
             // vertical grid lines
             xAxis.enableGridDashedLine(10f, 10f, 0f);
+            xAxis.setLabelRotationAngle(-60); // Rotate x axis labels
         }
 
         YAxis yAxis;
         {   // // Y-Axis Style // //
             yAxis = chart.getAxisLeft();
+
+            yAxis.setValueFormatter(new IAxisValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, AxisBase axis) {
+                    return String.valueOf(Math.round(value));
+                    //return null;
+                }
+            });
 
             // disable dual axis (only use LEFT axis)
             chart.getAxisRight().setEnabled(false);
@@ -300,7 +313,7 @@ public class StatisticsFragment extends Fragment {
             yAxis.setAxisMinimum(1f);
         }
 
-        {   // // Create Limit Lines // //
+        //{   // // Create Limit Lines // //
             /*LimitLine llXAxis = new LimitLine(9f, "Index 10");
             llXAxis.setLineWidth(4f);
             llXAxis.enableDashedLine(10f, 10f, 0f);
@@ -332,7 +345,8 @@ public class StatisticsFragment extends Fragment {
             //xAxis.addLimitLine(llXAxis);
 
              */
-        }
+        //}
+
 
         // add data
         //seekBarX.setProgress(45);
@@ -428,7 +442,7 @@ public class StatisticsFragment extends Fragment {
             //moodDataSet.enableDashedHighlightLine(10f, 5f, 0f);
 
             // set the filled area
-            moodDataSet.setDrawFilled(true);
+            moodDataSet.setDrawFilled(false);
             moodDataSet.setFillFormatter(new IFillFormatter() {
                 @Override
                 public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
