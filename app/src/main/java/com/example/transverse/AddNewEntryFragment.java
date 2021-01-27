@@ -158,6 +158,11 @@ public class AddNewEntryFragment extends Fragment {
         socialDysphoriaButton = (ToggleButton) getView().findViewById(R.id.socialDysphoriaButton);
         noDysphoriaButton = (ToggleButton) getView().findViewById(R.id.noDysphoriaButton);
 
+        //By default, no dysphoria unless stated otherwise
+        noDysphoriaButton.setChecked(true);
+        dysphoriaSeekbar.setEnabled(false);
+
+
         noDysphoriaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -165,6 +170,7 @@ public class AddNewEntryFragment extends Fragment {
                     physicalDysphoriaButton.setChecked(false);
                     mentalDysphoriaButton.setChecked(false);
                     socialDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(false);
                 }
             }
         });
@@ -175,7 +181,9 @@ public class AddNewEntryFragment extends Fragment {
             public void onClick(View v){
                 if (physicalDysphoriaButton.isChecked()) {
                     noDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(true);
                 }
+
             }
         });
 
@@ -184,6 +192,7 @@ public class AddNewEntryFragment extends Fragment {
             public void onClick(View v){
                 if (mentalDysphoriaButton.isChecked()) {
                     noDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(true);
                 }
             }
         });
@@ -193,6 +202,7 @@ public class AddNewEntryFragment extends Fragment {
             public void onClick(View v){
                 if (socialDysphoriaButton.isChecked()) {
                     noDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(true);
                 }
             }
         });

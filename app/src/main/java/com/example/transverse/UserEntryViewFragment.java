@@ -119,6 +119,7 @@ public class UserEntryViewFragment extends Fragment {
                     physicalDysphoriaButton.setChecked(false);
                     mentalDysphoriaButton.setChecked(false);
                     socialDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(false);
                 }
             }
         });
@@ -129,6 +130,7 @@ public class UserEntryViewFragment extends Fragment {
             public void onClick(View v){
                 if (physicalDysphoriaButton.isChecked()) {
                     noDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(true);
                 }
             }
         });
@@ -138,6 +140,7 @@ public class UserEntryViewFragment extends Fragment {
             public void onClick(View v){
                 if (mentalDysphoriaButton.isChecked()) {
                     noDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(true);
                 }
             }
         });
@@ -147,6 +150,7 @@ public class UserEntryViewFragment extends Fragment {
             public void onClick(View v){
                 if (socialDysphoriaButton.isChecked()) {
                     noDysphoriaButton.setChecked(false);
+                    dysphoriaSeekbar.setEnabled(true);
                 }
             }
         });
@@ -192,6 +196,10 @@ public class UserEntryViewFragment extends Fragment {
             if (thisEntry.getDysphoria().isSocial()) {
                 socialDysphoriaButton.setChecked(true);
             }
+        }
+        else {
+            noDysphoriaButton.setChecked(true);
+            dysphoriaSeekbar.setEnabled(false);
         }
 
         Calendar cal = Calendar.getInstance();

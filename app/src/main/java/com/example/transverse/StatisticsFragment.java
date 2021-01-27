@@ -286,7 +286,8 @@ public class StatisticsFragment extends Fragment {
 
 
             // vertical grid lines
-            xAxis.enableGridDashedLine(10f, 10f, 0f);
+           // xAxis.enableGridDashedLine(10f, 10f, 0f);
+            xAxis.setDrawGridLines(true);
             xAxis.setLabelRotationAngle(-60); // Rotate x axis labels
         }
 
@@ -297,6 +298,9 @@ public class StatisticsFragment extends Fragment {
             yAxis.setValueFormatter(new IAxisValueFormatter() {
                 @Override
                 public String getFormattedValue(float value, AxisBase axis) {
+                    if (value == 0) {
+                        return "0";
+                    }
                     return String.valueOf(Math.round(value));
                     //return null;
                 }
@@ -307,6 +311,7 @@ public class StatisticsFragment extends Fragment {
 
             // horizontal grid lines
             //yAxis.enableGridDashedLine(10f, 10f, 0f);
+            yAxis.setDrawGridLines(false);
 
             // axis range
             yAxis.setAxisMaximum(5f);
