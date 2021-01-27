@@ -402,8 +402,12 @@ public class StatisticsFragment extends Fragment {
             // create a dataset and give it a type
             moodDataSet = new LineDataSet(values, "Mood");
             boolean hasDysphoriaVals = true;
+            boolean hasMoodVals = true;
             if (dysphoriaVals.size() == 0) {
                 hasDysphoriaVals = false;
+            }
+            if (values.size() == 0) {
+                hasMoodVals = false;
             }
             dysphoriaDataSet = new LineDataSet(dysphoriaVals, "Dysphoria");
             moodDataSet.setDrawIcons(false);
@@ -468,7 +472,9 @@ public class StatisticsFragment extends Fragment {
             }
 
             ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-            dataSets.add(moodDataSet); // add the data sets
+            if (hasMoodVals) {
+                dataSets.add(moodDataSet); // add the data sets
+            }
             if(hasDysphoriaVals) {
                 dataSets.add(dysphoriaDataSet);
             }
