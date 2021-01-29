@@ -50,11 +50,13 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IFillFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 
 /**
@@ -122,7 +124,7 @@ public class StatisticsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         ((MainActivity) getActivity()).updateTitle("Statistics");
-       // displayEntries();
+        //displayEntries();
     }
 
     @Override
@@ -223,7 +225,7 @@ public class StatisticsFragment extends Fragment {
         // // Chart Style // //
         chart = getView().findViewById(R.id.chart);
 
-        chart.setNoDataText("Add a new entry to see your mood chart!");
+
         // background color
         chart.setBackgroundColor(Color.WHITE);
 
@@ -294,7 +296,9 @@ public class StatisticsFragment extends Fragment {
         YAxis yAxis;
         {   // // Y-Axis Style // //
             yAxis = chart.getAxisLeft();
-
+            yAxis.setAxisMaximum(5);
+            yAxis.setAxisMinimum(1);
+            yAxis.setLabelCount(4);
             yAxis.setValueFormatter(new IAxisValueFormatter() {
                 @Override
                 public String getFormattedValue(float value, AxisBase axis) {
@@ -302,6 +306,7 @@ public class StatisticsFragment extends Fragment {
                         return "0";
                     }
                     return String.valueOf(Math.round(value));
+                   // return String.valueOf(value);
                     //return null;
                 }
             });
@@ -356,7 +361,7 @@ public class StatisticsFragment extends Fragment {
         // add data
         //seekBarX.setProgress(45);
         //seekBarY.setProgress(180);
-        setData(allEntries);
+        setData(allEntries);chart.setNoDataText("Add a new entry to see your mood chart!");
 
         // draw points over time
         chart.animateX(800);
@@ -401,6 +406,17 @@ public class StatisticsFragment extends Fragment {
         } else {
             // create a dataset and give it a type
             moodDataSet = new LineDataSet(values, "Mood");
+            moodDataSet.setValueFormatter(new IValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                    if (value == 0) {
+                        return "0";
+                    }
+                    return String.valueOf(Math.round(value));
+                    // return String.valueOf(value);
+                    //return null;
+                }
+            });
             boolean hasDysphoriaVals = true;
             boolean hasMoodVals = true;
             if (dysphoriaVals.size() == 0) {
@@ -410,6 +426,17 @@ public class StatisticsFragment extends Fragment {
                 hasMoodVals = false;
             }
             dysphoriaDataSet = new LineDataSet(dysphoriaVals, "Dysphoria");
+            dysphoriaDataSet.setValueFormatter(new IValueFormatter() {
+                @Override
+                public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                    if (value == 0) {
+                        return "0";
+                    }
+                    return String.valueOf(Math.round(value));
+                    // return String.valueOf(value);
+                    //return null;
+                }
+            });
             moodDataSet.setDrawIcons(false);
             dysphoriaDataSet.setDrawIcons(false);
 
