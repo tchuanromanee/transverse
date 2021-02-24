@@ -41,7 +41,16 @@ public class SelfHelpAdapter extends ArrayAdapter<SelfHelp> {
 
         // Setting the title view is straightforward
         viewHolder.titleView.setText(method.getName());
-        viewHolder.imageView.setImageResource(R.drawable.ic_shhobby);
+
+        String uri = "@drawable/ic_" + method.getID().toLowerCase();  // where myresource (without the extension) is the file
+
+        int imageResource = getContext().getResources().getIdentifier(uri, null, getContext().getPackageName());
+
+        //imageview = (ImageView)findViewById(R.id.imageView);
+        Drawable res = getContext().getResources().getDrawable(imageResource);
+        viewHolder.imageView.setImageDrawable(res);
+
+        //viewHolder.imageView.setImageResource(R.drawable.ic_shhobby);
         // Setting image view is also simple
         //Get image ID, depending on the mood
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_heart);

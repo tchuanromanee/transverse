@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
+    android:id="@id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -12,19 +12,19 @@
     tools:context=".AddNewEntryFragment">
 
         <ImageButton
-            android:id="@+id/tagsA2"
+            android:id="@id/tagsA2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="284dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.954"
-            app:layout_constraintStart_toEndOf="@+id/toggleButton3"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            app:layout_constraintStart_toEndOf="@id/toggleButton3"
+            app:layout_constraintTop_toBottomOf="@id/tagsHeader"
             app:srcCompat="@drawable/ic_add" />
 
         <TextView
-            android:id="@+id/triggersHeader"
+            android:id="@id/triggersHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -34,11 +34,11 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
+            app:layout_constraintTop_toBottomOf="@id/dysphoriaSeekbar"
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:id="@+id/timeandDateHeader"
+            android:id="@id/timeandDateHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -48,24 +48,24 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/triggerButton2"
+            app:layout_constraintTop_toBottomOf="@id/triggerButton2"
             tools:ignore="RtlSymmetry" />
 
         <ImageButton
-            android:id="@+id/triggersInfoButton"
+            android:id="@id/triggersInfoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="12dp"
             android:backgroundTint="@color/colorWhite"
-            app:layout_constraintStart_toEndOf="@+id/triggersHeader"
-            app:layout_constraintTop_toBottomOf="@+id/dysphoriaSeekbar"
+            app:layout_constraintStart_toEndOf="@id/triggersHeader"
+            app:layout_constraintTop_toBottomOf="@id/dysphoriaSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
 
 
 
         <TextView
-            android:id="@+id/basicsHeader"
+            android:id="@id/basicsHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -82,7 +82,7 @@
 
 
         <SeekBar
-            android:id="@+id/moodSeekbar"
+            android:id="@id/moodSeekbar"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,24 +93,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+            app:layout_constraintTop_toBottomOf="@id/basicsHeader" />
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:layout_above="@+id/moodSeekbar"
+            android:layout_above="@id/moodSeekbar"
             android:layout_marginStart="@dimen/iconMargin"
             android:stretchColumns="*"
-            app:layout_constraintTop_toTopOf="@+id/basicsHeader">
+            app:layout_constraintTop_toTopOf="@id/basicsHeader">
 
             <TableRow
-                android:id="@+id/moodRow"
+                android:id="@id/moodRow"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/mood1Button2"
+                    android:id="@id/mood1Button2"
                     android:layout_width="@dimen/icon"
                     android:layout_height="@dimen/icon"
                     android:layout_weight="1"
@@ -119,10 +119,10 @@
                     android:contentDescription="The worst mood"
                     android:src="@drawable/ic_mood1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+                    app:layout_constraintTop_toBottomOf="@id/basicsHeader" />
 
                 <ImageView
-                    android:id="@+id/mood2Button"
+                    android:id="@id/mood2Button"
                     android:layout_width="@dimen/icon"
                     android:layout_height="@dimen/icon"
                     android:layout_weight="1"
@@ -130,22 +130,22 @@
                     android:backgroundTint="@color/colorWhite"
                     android:contentDescription="The second worst mood"
                     android:src="@drawable/ic_mood2"
-                    app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
-                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+                    app:layout_constraintStart_toEndOf="@id/physicalDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@id/basicsHeader" />
 
                 <ImageView
-                    android:id="@+id/mood3Button"
+                    android:id="@id/mood3Button"
                     android:layout_width="@dimen/icon"
                     android:layout_height="@dimen/icon"
                     android:layout_weight="1"
                     android:layout_column="0"
                     android:backgroundTint="@color/colorWhite"
                     android:src="@drawable/ic_mood3"
-                    app:layout_constraintStart_toEndOf="@+id/mood2Button"
-                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+                    app:layout_constraintStart_toEndOf="@id/mood2Button"
+                    app:layout_constraintTop_toBottomOf="@id/basicsHeader" />
 
                 <ImageView
-                    android:id="@+id/mood4Button"
+                    android:id="@id/mood4Button"
                     android:layout_width="@dimen/icon"
                     android:layout_height="@dimen/icon"
                     android:layout_weight="1"
@@ -153,11 +153,11 @@
                     android:adjustViewBounds="true"
                     android:backgroundTint="@color/colorWhite"
                     android:src="@drawable/ic_mood4"
-                    app:layout_constraintStart_toEndOf="@+id/mood3Button"
-                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+                    app:layout_constraintStart_toEndOf="@id/mood3Button"
+                    app:layout_constraintTop_toBottomOf="@id/basicsHeader" />
 
                 <ImageView
-                    android:id="@+id/mood5Button"
+                    android:id="@id/mood5Button"
                     android:layout_width="@dimen/icon"
                     android:layout_height="@dimen/icon"
                     android:adjustViewBounds="true"
@@ -165,8 +165,8 @@
                     android:src="@drawable/ic_mood5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/mood4Button"
-                    app:layout_constraintTop_toBottomOf="@+id/basicsHeader" />
+                    app:layout_constraintStart_toEndOf="@id/mood4Button"
+                    app:layout_constraintTop_toBottomOf="@id/basicsHeader" />
 
             </TableRow>
 
@@ -183,7 +183,7 @@
 
 
         <TextView
-            android:id="@+id/tagsHeader"
+            android:id="@id/tagsHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -198,7 +198,7 @@
 
 
         <ToggleButton
-            android:id="@+id/tagButton1"
+            android:id="@id/tagButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
@@ -208,11 +208,11 @@
             android:background="@drawable/toggle_button"
             android:textColor="@color/toggle_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            app:layout_constraintTop_toBottomOf="@id/tagsHeader"
             style="?android:attr/borderlessButtonStyle" />
 
         <ToggleButton
-            android:id="@+id/tagButton2"
+            android:id="@id/tagButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -221,12 +221,12 @@
             android:textOn="Family"
             android:background="@drawable/toggle_button"
             android:textColor="@color/toggle_color"
-            app:layout_constraintStart_toEndOf="@+id/tagButton1"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            app:layout_constraintStart_toEndOf="@id/tagButton1"
+            app:layout_constraintTop_toBottomOf="@id/tagsHeader"
             style="?android:attr/borderlessButtonStyle" />
 
         <ToggleButton
-            android:id="@+id/tagButton3"
+            android:id="@id/tagButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -235,8 +235,8 @@
             android:textOn="Tired"
             android:background="@drawable/toggle_button"
             android:textColor="@color/toggle_color"
-            app:layout_constraintStart_toEndOf="@+id/tagButton2"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
+            app:layout_constraintStart_toEndOf="@id/tagButton2"
+            app:layout_constraintTop_toBottomOf="@id/tagsHeader"
             style="?android:attr/borderlessButtonStyle" />
 
         <!--<ImageButton
@@ -253,18 +253,18 @@
 
 
         <ImageButton
-            android:id="@+id/tagsInfoButton"
+            android:id="@id/tagsInfoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="12dp"
             android:backgroundTint="@color/colorWhite"
-            app:layout_constraintStart_toEndOf="@+id/tagsHeader"
-            app:layout_constraintTop_toBottomOf="@+id/moodSeekbar"
+            app:layout_constraintStart_toEndOf="@id/tagsHeader"
+            app:layout_constraintTop_toBottomOf="@id/moodSeekbar"
             app:srcCompat="@android:drawable/ic_menu_info_details" />
 
         <TextView
-            android:id="@+id/typeHeader"
+            android:id="@id/typeHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -274,11 +274,11 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagButton1"
+            app:layout_constraintTop_toBottomOf="@id/tagButton1"
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:id="@+id/dysphoriaIntensityText"
+            android:id="@id/dysphoriaIntensityText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -287,7 +287,7 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/socialDysphoriaText"
+            app:layout_constraintTop_toBottomOf="@id/socialDysphoriaText"
             tools:ignore="RtlSymmetry" />
 
         <!--<TableLayout
@@ -355,15 +355,15 @@
 
 
                 <ToggleButton
-                    android:id="@+id/physicalDysphoriaButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
+                    android:id="@id/physicalDysphoriaButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_column="0"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@null"
                     android:backgroundTint="@color/colorWhite"
-                    android:drawableBottom="@drawable/toggle_selector"
+                    android:drawableBottom="@drawable/toggle_physical_dysphoria"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="@dimen/largePadding"
                     android:contentDescription="Physical Dysphoria"
@@ -371,10 +371,10 @@
                     android:textOff=""
                     android:textOn=""
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+                    app:layout_constraintTop_toBottomOf="@id/typeHeader" />
 
                 <ToggleButton
-                    android:id="@+id/mentalDysphoriaButton"
+                    android:id="@id/mentalDysphoriaButton"
                     android:layout_width="wrap_content"
                     android:layout_height="16dp"
                     android:layout_column="1"
@@ -389,13 +389,13 @@
                     android:textOff=""
                     android:scaleType="fitCenter"
                     android:textOn=""
-                    app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+                    app:layout_constraintStart_toEndOf="@id/physicalDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@id/typeHeader" />
 
                 <ToggleButton
-                    android:id="@+id/socialDysphoriaButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
+                    android:id="@id/socialDysphoriaButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_column="2"
                     android:layout_gravity="center_horizontal"
                     android:background="@null"
@@ -406,11 +406,11 @@
                     android:gravity="center_horizontal"
                     android:textOff=""
                     android:textOn=""
-                    app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+                    app:layout_constraintStart_toEndOf="@id/mentalDysphoriaButton"
+                    app:layout_constraintTop_toBottomOf="@id/typeHeader" />
 
                 <ToggleButton
-                    android:id="@+id/noDysphoriaButton"
+                    android:id="@id/noDysphoriaButton"
                     android:layout_width="wrap_content"
                     android:layout_height="16dp"
                     android:layout_column="3"
@@ -428,7 +428,7 @@
                     app:layout_constraintTop_toBottomOf="@id/typeHeader" />
 
         <TextView
-            android:id="@+id/physicalDysphoriaText2"
+            android:id="@id/physicalDysphoriaText2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -436,12 +436,12 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:text="Physical"
-            app:layout_constraintEnd_toEndOf="@+id/physicalDysphoriaButton"
+            app:layout_constraintEnd_toEndOf="@id/physicalDysphoriaButton"
             app:layout_constraintStart_toStartOf="@id/physicalDysphoriaButton"
             app:layout_constraintTop_toBottomOf="@id/physicalDysphoriaButton" />
 
         <TextView
-            android:id="@+id/mentalDysphoriaText2"
+            android:id="@id/mentalDysphoriaText2"
             android:layout_width="0dp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
@@ -454,7 +454,7 @@
             app:layout_constraintTop_toBottomOf="@id/mentalDysphoriaButton"/>
 
         <TextView
-            android:id="@+id/socialDysphoriaText"
+            android:id="@id/socialDysphoriaText"
             android:layout_width="0dp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
@@ -467,7 +467,7 @@
             app:layout_constraintTop_toBottomOf="@id/socialDysphoriaButton"/>
 
         <TextView
-            android:id="@+id/noDysphoriaText"
+            android:id="@id/noDysphoriaText"
             android:layout_width="0dp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
@@ -494,7 +494,7 @@
 
 
         <SeekBar
-            android:id="@+id/dysphoriaSeekbar"
+            android:id="@id/dysphoriaSeekbar"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -505,11 +505,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dysphoriaIntensityText" />
+            app:layout_constraintTop_toBottomOf="@id/dysphoriaIntensityText" />
 
 
         <ToggleButton
-            android:id="@+id/triggerButton1"
+            android:id="@id/triggerButton1"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -520,10 +520,10 @@
             android:textOff="Misgendered"
             android:textOn="Misgendered"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/triggersHeader" />
+            app:layout_constraintTop_toBottomOf="@id/triggersHeader" />
 
         <ToggleButton
-            android:id="@+id/triggerButton2"
+            android:id="@id/triggerButton2"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -534,10 +534,10 @@
             android:textOff="Clothing Fit"
             android:textOn="Clothing Fit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/triggerButton1" />
+            app:layout_constraintTop_toBottomOf="@id/triggerButton1" />
 
         <ToggleButton
-            android:id="@+id/triggerButton3"
+            android:id="@id/triggerButton3"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -547,11 +547,11 @@
             android:textColor="@color/toggle_color"
             android:textOff="Comparison"
             android:textOn="Comparison"
-            app:layout_constraintStart_toEndOf="@+id/triggerButton1"
-            app:layout_constraintTop_toBottomOf="@+id/triggersHeader" />
+            app:layout_constraintStart_toEndOf="@id/triggerButton1"
+            app:layout_constraintTop_toBottomOf="@id/triggersHeader" />
 
         <ToggleButton
-            android:id="@+id/triggerButton4"
+            android:id="@id/triggerButton4"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -561,13 +561,13 @@
             android:textColor="@color/toggle_color"
             android:textOff="Mirror"
             android:textOn="Mirror"
-            app:layout_constraintStart_toEndOf="@+id/triggerButton2"
-            app:layout_constraintTop_toBottomOf="@+id/triggersHeader" />
+            app:layout_constraintStart_toEndOf="@id/triggerButton2"
+            app:layout_constraintTop_toBottomOf="@id/triggersHeader" />
 
 
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@id/editTextDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -576,10 +576,10 @@
             android:ems="10"
             android:inputType="date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timeandDateHeader" />
+            app:layout_constraintTop_toBottomOf="@id/timeandDateHeader" />
 
         <EditText
-            android:id="@+id/editTextTime"
+            android:id="@id/editTextTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -587,11 +587,11 @@
             android:focusable="false"
             android:ems="10"
             android:inputType="time"
-            app:layout_constraintStart_toEndOf="@+id/editTextDate"
-            app:layout_constraintTop_toBottomOf="@+id/timeandDateHeader" />
+            app:layout_constraintStart_toEndOf="@id/editTextDate"
+            app:layout_constraintTop_toBottomOf="@id/timeandDateHeader" />
 
         <TextView
-            android:id="@+id/tagsHeader2"
+            android:id="@id/tagsHeader2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/largePadding"
@@ -601,11 +601,11 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+            app:layout_constraintTop_toBottomOf="@id/editTextTime"
             tools:ignore="RtlSymmetry" />
 
         <EditText
-            android:id="@+id/editTextJournal"
+            android:id="@id/editTextJournal"
             android:layout_width="330dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
@@ -616,10 +616,10 @@
             android:text="What happened?"
             android:textAlignment="viewStart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagsHeader2" />
+            app:layout_constraintTop_toBottomOf="@id/tagsHeader2" />
 
         <Button
-            android:id="@+id/submitEntryButton"
+            android:id="@id/submitEntryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -628,7 +628,7 @@
             android:text="Submit"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextJournal" />
+            app:layout_constraintTop_toBottomOf="@id/editTextJournal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

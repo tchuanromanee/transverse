@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             //int drawableIDInt = getResources().getIdentifier(methodID, "drawable", packageName);
             //Drawable drawable = getDrawable(stringIDInt);
             Drawable drawable = getDrawable(R.drawable.ic_heart);
-            SelfHelp newSH = new SelfHelp(methodName, htmlText, drawable);
+            SelfHelp newSH = new SelfHelp(methodName, methodID, htmlText, drawable);
             selfHelpList.add(newSH);
         }
 
