@@ -1,7 +1,6 @@
-package com.example.transverse;
+package com.transverse.transverse;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Dysphoria implements Serializable {
     //private int type;

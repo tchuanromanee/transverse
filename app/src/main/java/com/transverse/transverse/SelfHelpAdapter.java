@@ -1,4 +1,4 @@
-package com.example.transverse;
+package com.transverse.transverse;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -39,10 +39,9 @@ public class SelfHelpAdapter extends ArrayAdapter<SelfHelp> {
         //imageView.setImageResource(book.getImageResource());
         //imageView.setImageResource(R.drawable.ic_heart);
 
-
         // Setting the title view is straightforward
         viewHolder.titleView.setText(method.getName());
-        viewHolder.imageView.setImageResource(R.drawable.ic_heart);
+        viewHolder.imageView.setImageResource(R.drawable.ic_shhobby);
         // Setting image view is also simple
         //Get image ID, depending on the mood
         Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_heart);

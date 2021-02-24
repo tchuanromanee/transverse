@@ -1,5 +1,4 @@
-package com.example.transverse;
-import java.text.DateFormat;
+package com.transverse.transverse;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -11,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
-
-import com.example.transverse.UserEntry;
 
 /**
  * Adapts NewsEntry objects onto views for lists

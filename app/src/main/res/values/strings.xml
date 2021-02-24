@@ -32,10 +32,6 @@
         <![CDATA[<b>Meditation</b> is good because....]]>
     </string>
 
-    <string name="SHBaggy">
-        <![CDATA[<b>Meditation</b> is good because....]]>
-    </string>
-
     <string name="SHMusic">
         <![CDATA[<b>Meditation</b> is good because....]]>
     </string>
@@ -48,6 +44,9 @@
         <![CDATA[<b>Meditation</b> is good because....]]>
     </string>
     <string name="SHPray">
+        <![CDATA[<b>Meditation</b> is good because....]]>
+    </string>
+    <string name="SHClothing">
         <![CDATA[<b>Meditation</b> is good because....]]>
     </string>
 

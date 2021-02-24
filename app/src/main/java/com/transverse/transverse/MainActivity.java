@@ -1,14 +1,10 @@
-package com.example.transverse;
+package com.transverse.transverse;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
@@ -17,10 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -37,9 +30,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 
-import static com.example.transverse.AddNewEntryFragment.writeJsonFile;
+import static com.transverse.transverse.AddNewEntryFragment.writeJsonFile;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     File entriesFile;
@@ -154,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         ArrayList<UserEntry> entriesList = new ArrayList();
         try {
             entriesFile = new File(getFilesDir(), "entries.json");
-            /*if (entriesFile.exists()) {
+            /*\if (entriesFile.exists()) {
                 entriesFile.delete(); //FOR DEBUGGING
             }
             else {

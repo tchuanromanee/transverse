@@ -1,4 +1,4 @@
-package com.example.transverse;
+package com.transverse.transverse;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -6,13 +6,10 @@ import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import java.io.Serializable;
 
 public class EncyEntryFragment extends Fragment {
     private static final String ENTRY_KEY = "entry_key";

@@ -1,4 +1,4 @@
-package com.example.transverse;
+package com.transverse.transverse;
 
 import android.graphics.drawable.Drawable;
 import android.text.Spanned;

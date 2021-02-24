@@ -1,4 +1,4 @@
-package com.example.transverse;
+package com.transverse.transverse;
 
 import java.io.Serializable;
 import java.util.ArrayList;
