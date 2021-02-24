@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/self_help_fragment_img"
-        android:layout_width="@dimen/textHuge"
-        android:layout_height="@dimen/textHuge"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
         android:layout_column="0"
         android:layout_marginStart="@dimen/largePadding"

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.io.Serializable;
@@ -46,7 +47,21 @@ public class SelfHelpViewFragment extends Fragment {
         selfHelpImageView = (ImageView) v.findViewById(R.id.self_help_fragment_img);
 
         description.setText(thisSelfHelp.getDescription());
-        selfHelpImageView.setImageResource(R.drawable.ic_heart);
+
+        String uri = "@drawable/ic_" + thisSelfHelp.getID().toLowerCase();  // where myresource (without the extension) is the file
+
+        int imageResource = getContext().getResources().getIdentifier(uri, null, getContext().getPackageName());
+
+        //imageview = (ImageView)findViewById(R.id.imageView);
+        Drawable res = getContext().getResources().getDrawable(imageResource);
+        selfHelpImageView.setImageDrawable(res);
+
+        //viewHolder.imageView.setImageResource(R.drawable.ic_shhobby);
+        // Setting image view is also simple
+        //Get image ID, depending on the mood
+        //Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_heart);
+
+       // selfHelpImageView.setImageResource(R.drawable.ic_heart);
 
 
         return v;
