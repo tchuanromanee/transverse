@@ -79,7 +79,9 @@ public class EncyclopediaFragment extends Fragment {
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset("encyclopedia.json"));
             JSONArray basicsEntries = obj.getJSONArray("basics");
-            JSONArray faqEntries = obj.getJSONArray("faqs");
+            JSONArray comingoutEntries = obj.getJSONArray("comingout");
+            JSONArray transitioningEntries = obj.getJSONArray("transitioning");
+            JSONArray dysphoriaEncEntries = obj.getJSONArray("dysphoria");
 
             LinearLayout.LayoutParams headerParams=new LinearLayout.LayoutParams
                     ((int) LinearLayout.LayoutParams.WRAP_CONTENT,(int) LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -131,17 +133,91 @@ public class EncyclopediaFragment extends Fragment {
                 encyLinearLayout.addView(newTextView);
                 }
 
+            //Coming Out Entries
+            TextView comingOutHeader = new TextView(getContext());
+            comingOutHeader.setText("Coming Out");
+            //TODO: Don't hardcode padding values
+            comingOutHeader.setPadding(10, 10, 10, 18);
+            comingOutHeader.setTextSize(24);
+            comingOutHeader.setLayoutParams(headerParams);
+            TextViewCompat.setTextAppearance(comingOutHeader, R.style.HeaderText);
+            encyLinearLayout.addView(comingOutHeader);
 
-            TextView faqHeader = new TextView(getContext());
-            faqHeader.setText("FAQs");
-            faqHeader.setPadding(10, 10, 10, 18);
-            faqHeader.setTextSize(24);
-            faqHeader.setLayoutParams(headerParams);
-            encyLinearLayout.addView(faqHeader);
+            for (int i = 0; i < comingoutEntries.length(); i++) {
+                JSONObject jo_inside = comingoutEntries.getJSONObject(i);
+                final String encyEntryname = jo_inside.getString("name");
+                String encyEntryID = jo_inside.getString("id");
+                final String encryStringXMLID = jo_inside.getString("stringXMLID");
+                //TODO: dynamically change style and set onclick listener
+                TextView newTextView = new TextView(getContext());
+                newTextView.setText(encyEntryname);
+                newTextView.setPadding(10, 10, 10, 28);
+                newTextView.setTextSize(16);
+                newTextView.setLayoutParams(entryParams);
+                newTextView.setTextAppearance(R.style.EncyclopediaEntry);
+                newTextView.setBackground(getResources().getDrawable(R.drawable.text_border_bottom));
+                //TextViewCompat.setTextAppearance(newTextView, R.style.EncyclopediaEntry);
+                newTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v){
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID, encyEntryname);
+                        ft.replace(R.id.fragment_container, fragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                });
+                encyLinearLayout.addView(newTextView);
+            }
+
+            //Transitioning Entries
+            TextView transitioningHeader = new TextView(getContext());
+            transitioningHeader.setText("Transitioning");
+            //TODO: Don't hardcode padding values
+            transitioningHeader.setPadding(10, 10, 10, 18);
+            transitioningHeader.setTextSize(24);
+            transitioningHeader.setLayoutParams(headerParams);
+            TextViewCompat.setTextAppearance(transitioningHeader, R.style.HeaderText);
+            encyLinearLayout.addView(transitioningHeader);
+
+            for (int i = 0; i < transitioningEntries.length(); i++) {
+                JSONObject jo_inside = transitioningEntries.getJSONObject(i);
+                final String encyEntryname = jo_inside.getString("name");
+                String encyEntryID = jo_inside.getString("id");
+                final String encryStringXMLID = jo_inside.getString("stringXMLID");
+                //TODO: dynamically change style and set onclick listener
+                TextView newTextView = new TextView(getContext());
+                newTextView.setText(encyEntryname);
+                newTextView.setPadding(10, 10, 10, 28);
+                newTextView.setTextSize(16);
+                newTextView.setLayoutParams(entryParams);
+                newTextView.setTextAppearance(R.style.EncyclopediaEntry);
+                newTextView.setBackground(getResources().getDrawable(R.drawable.text_border_bottom));
+                //TextViewCompat.setTextAppearance(newTextView, R.style.EncyclopediaEntry);
+                newTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v){
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        Fragment fragment = EncyEntryFragment.newInstance(encryStringXMLID, encyEntryname);
+                        ft.replace(R.id.fragment_container, fragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                });
+                encyLinearLayout.addView(newTextView);
+            }
+
+            // Dysphoria Entries
+            TextView dysphoriaHeader = new TextView(getContext());
+            dysphoriaHeader.setText("Dysphoria");
+            dysphoriaHeader.setPadding(10, 10, 10, 18);
+            dysphoriaHeader.setTextSize(24);
+            dysphoriaHeader.setLayoutParams(headerParams);
+            encyLinearLayout.addView(dysphoriaHeader);
 
 
-            for (int i = 0; i < faqEntries.length(); i++) {
-                JSONObject jo_inside = faqEntries.getJSONObject(i);
+            for (int i = 0; i < dysphoriaEncEntries.length(); i++) {
+                JSONObject jo_inside = dysphoriaEncEntries.getJSONObject(i);
                 final String encyEntryname = jo_inside.getString("name");
                 String encyEntryID = jo_inside.getString("id");
                 final String encryStringXMLID = jo_inside.getString("stringXMLID");

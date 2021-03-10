@@ -1,36 +1,112 @@
 { "basics":[
 
     {
-      "name": "What is Gender?",
+      "name": "What is gender?",
       "id": "b01",
       "stringXMLID": "b01"
     },
    {
-      "name": "Gender vs Sex",
+      "name": "Gender vs sex",
       "id": "b02",
       "stringXMLID": "b02"
     },
   {
-    "name": "How Do I Know if I'm Transgender?",
+    "name": "How do I know if I'm transgender?",
     "id": "b03",
     "stringXMLID": "b03"
   },
   {
-    "name": "How Do I Know if I'm Not Faking Being Trans?",
+    "name": "How do I know if I'm not faking being trans?",
     "id": "b04",
     "stringXMLID": "b04"
   }
 ],
-  "faqs":[
+  "comingout":[
 
     {
-      "name": "How do I know if I'm trans?",
-      "id": "f01",
-      "stringXMLID": "ency_gender_basic"
+      "name": "How do I come out?",
+      "id": "c01",
+      "stringXMLID": "c01"
+    },
+    {
+      "name": "Do I need to come out to everyone?",
+      "id": "c02",
+      "stringXMLID": "c02"
+    },
+    {
+      "name": "Coming out through email or letter",
+      "id": "c03",
+      "stringXMLID": "c03"
+    },
+    {
+      "name": "Coming out in person",
+      "id": "c04",
+      "stringXMLID": "c04"
+    },
+    {
+      "name": "Coming out in social media",
+      "id": "c05",
+      "stringXMLID": "c05"
+    },
+    {
+      "name": "Coming out at school",
+      "id": "c06",
+      "stringXMLID": "c06"
+    },
+    {
+      "name": "Interviewing while trans/Coming out at work",
+      "id": "c07",
+      "stringXMLID": "c07"
+    },
+    {
+      "name": "Meeting new people",
+      "id": "c08",
+      "stringXMLID": "c08"
+    }
+  ],
+  "transitioning":[
+
+    {
+      "name": "How do I start transitioning?",
+      "id": "t01",
+      "stringXMLID": "t01"
     },
     {
       "name": "What does transitioning involve?",
-      "id": "f02",
+      "id": "t02",
       "stringXMLID": "ency_gender_basic"
+    }
+  ],
+  "dysphoria":[
+
+    {
+      "name": "What is dysphoria?",
+      "id": "d01",
+      "stringXMLID": "d01"
+    },
+    {
+      "name": "What are the different types of dysphoria?",
+      "id": "d02",
+      "stringXMLID": "d02"
+    },
+    {
+      "name": "How do I manage my dysphoria?",
+      "id": "d03",
+      "stringXMLID": "d03"
+    },
+    {
+      "name": "Will I have dysphoria forever?",
+      "id": "d04",
+      "stringXMLID": "d04"
+    },
+    {
+      "name": "Is it gender dysphoria or body dysmorphia?",
+      "id": "d05",
+      "stringXMLID": "d05"
+    },
+    {
+      "name": "Do I need to experience dysphoria to be trans?",
+      "id": "d06",
+      "stringXMLID": "d06"
     }
   ]}
