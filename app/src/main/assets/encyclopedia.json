@@ -1,15 +1,25 @@
 { "basics":[
 
     {
-      "name": "Transgender",
+      "name": "What is Gender?",
       "id": "b01",
-      "stringXMLID": "ency_gender_basic"
+      "stringXMLID": "b01"
     },
    {
-      "name": "Dysphoria",
+      "name": "Gender vs Sex",
       "id": "b02",
-      "stringXMLID": "ency_gender_basic"
-    }
+      "stringXMLID": "b02"
+    },
+  {
+    "name": "How Do I Know if I'm Transgender?",
+    "id": "b03",
+    "stringXMLID": "b03"
+  },
+  {
+    "name": "How Do I Know if I'm Not Faking Being Trans?",
+    "id": "b04",
+    "stringXMLID": "b04"
+  }
 ],
   "faqs":[
 
