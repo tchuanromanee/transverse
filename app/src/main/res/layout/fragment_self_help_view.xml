@@ -14,17 +14,21 @@
         android:layout_marginStart="@dimen/largePadding"
         android:layout_marginEnd="@dimen/largePadding"
         android:layout_marginTop="@dimen/largePadding"
+        android:layout_marginBottom="18dp"
         android:backgroundTint="@color/colorWhite"
         android:src="@drawable/ic_heart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/self_help_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/largePadding"
+        android:layout_marginEnd="18dp"
         android:layout_marginTop="@dimen/largePadding"
+        android:layout_marginBottom="18dp"
+        android:paddingRight="18dp"
         android:text="UwU"
         android:textSize="@dimen/textNormal"
         app:layout_constraintStart_toStartOf="parent"
