@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".AddNewEntryFragment">
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/tagsA2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toEndOf="@+id/toggleButton3"
             app:layout_constraintTop_toBottomOf="@+id/tagsHeader"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add" />-->
 
         <TextView
             android:id="@+id/triggersHeader"
@@ -286,131 +286,132 @@
             android:textAppearance="@style/HeaderText"
             android:textSize="@dimen/textH1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dysphoriaTable"
+            app:layout_constraintTop_toBottomOf="@id/socialDysphoriaText"
             tools:ignore="RtlSymmetry" />
 
-        <TableLayout
-            android:id="@+id/dysphoriaTable"
-            android:layout_width="match_parent"
+
+        <ToggleButton
+            android:id="@id/physicalDysphoriaButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/toggle_physical_dysphoria"
+            android:contentDescription="Physical Dysphoria"
+            android:gravity="center_horizontal"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintEnd_toStartOf="@+id/mentalDysphoriaButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/typeHeader" />
+
+        <ToggleButton
+            android:id="@id/mentalDysphoriaButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_mental_dysphoria"
+            android:contentDescription="Mental Dysphoria"
+            android:gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintEnd_toStartOf="@+id/socialDysphoriaButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/typeHeader" />
+
+        <ToggleButton
+            android:id="@id/socialDysphoriaButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_column="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/toggle_social_dysphoria"
+            android:contentDescription="Social Dysphoria"
+            android:gravity="center_horizontal"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintEnd_toStartOf="@+id/noDysphoriaButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/typeHeader" />
+
+        <ToggleButton
+            android:id="@id/noDysphoriaButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_column="3"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_no_dysphoria"
+            android:contentDescription="No Dysphoria"
+            android:gravity="center_horizontal"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/typeHeader" />
+
+        <TextView
+            android:id="@+id/physicalDysphoriaText2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_above="@+id/dysphoriaIntensityText"
-            android:layout_marginStart="@dimen/iconMargin"
-            android:stretchColumns="*"
-            app:layout_constraintTop_toTopOf="@+id/typeHeader">
+            android:layout_column="0"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Physical"
+            app:layout_constraintEnd_toEndOf="@id/physicalDysphoriaButton"
+            app:layout_constraintStart_toStartOf="@id/physicalDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/physicalDysphoriaButton" />
 
-            <TableRow
-                android:id="@+id/dysphoriaRowImg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/mentalDysphoriaText2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Mental"
+            app:layout_constraintEnd_toEndOf="@id/mentalDysphoriaButton"
+            app:layout_constraintStart_toStartOf="@id/mentalDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/mentalDysphoriaButton" />
 
-                <ToggleButton
-                    android:id="@+id/physicalDysphoriaButton"
-                    android:layout_width="@dimen/icon"
-                    android:layout_height="@dimen/icon"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:background="@null"
-                    android:button="@drawable/toggle_selector"
-                    android:textOff=""
-                    android:textOn=""
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="@color/colorWhite"
-                    android:contentDescription="Physical Dysphoria"
-                    android:src="@drawable/ic_mood1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
+        <TextView
+            android:id="@+id/socialDysphoriaText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Social"
+            app:layout_constraintEnd_toEndOf="@id/socialDysphoriaButton"
+            app:layout_constraintStart_toStartOf="@id/socialDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/socialDysphoriaButton" />
 
-                <ToggleButton
-                    android:id="@+id/mentalDysphoriaButton"
-                    android:layout_width="@dimen/icon"
-                    android:layout_height="@dimen/icon"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:background="@null"
-                    android:button="@drawable/toggle_selector"
-                    android:textOff=""
-                    android:textOn=""
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="@color/colorWhite"
-                    android:contentDescription="Mental Dysphoria"
-                    android:src="@drawable/ic_mood1"
-                    app:layout_constraintStart_toEndOf="@+id/physicalDysphoriaButton"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
-
-                <ToggleButton
-                    android:id="@+id/socialDysphoriaButton"
-                    android:layout_width="@dimen/icon"
-                    android:layout_height="@dimen/icon"
-                    android:layout_column="0"
-                    android:background="@null"
-                    android:button="@drawable/toggle_selector"
-                    android:textOff=""
-                    android:textOn=""
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="@color/colorWhite"
-                    android:contentDescription="Social Dysphoria"
-                    app:layout_constraintStart_toEndOf="@+id/mentalDysphoriaButton"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
-
-                <ToggleButton
-                    android:id="@+id/noDysphoriaButton"
-                    android:layout_width="@dimen/icon"
-                    android:layout_height="@dimen/icon"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:background="@null"
-                    android:button="@drawable/toggle_selector"
-                    android:textOff=""
-                    android:textOn=""
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="@color/colorWhite"
-                    android:contentDescription="No Dysphoria"
-                    android:src="@drawable/ic_mood1"
-                    app:layout_constraintStart_toEndOf="@+id/socialDysphoriaButton"
-                    app:layout_constraintTop_toBottomOf="@+id/typeHeader" />
-
-            </TableRow>
-            <TableRow
-                android:id="@+id/dysphoriaRowText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    android:id="@+id/physicalDysphoriaText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:text="Physical" />
-
-                <TextView
-                    android:id="@+id/mentalDysphoriaText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:text="Mental"/>
-                <TextView
-                    android:id="@+id/socialDysphoriaText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:text="Social"/>
-
-                <TextView
-                    android:id="@+id/noDysphoriaText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_column="0"
-                    android:text="No Dysphoria"/>
-
-            </TableRow>
-        </TableLayout>
+        <TextView
+            android:id="@+id/noDysphoriaText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="No Dysphoria"
+            app:layout_constraintEnd_toEndOf="@id/noDysphoriaButton"
+            app:layout_constraintStart_toStartOf="@id/noDysphoriaButton"
+            app:layout_constraintTop_toBottomOf="@id/noDysphoriaButton" />
 
 
         <SeekBar
