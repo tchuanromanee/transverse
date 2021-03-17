@@ -121,12 +121,17 @@ public class StatisticsFragment extends Fragment {
 
     public void displayEntries() {
         entriesDisp = (ListView) getView().findViewById(R.id.entriesDisplay);
+     //   ListView lv = (ListView)findViewById(android.R.id.list);
+        TextView emptyText = (TextView) getView().findViewById(R.id.emptyListText);
+        entriesDisp.setEmptyView(emptyText);
 
 
         final UserEntryAdapter userEntryAdapter = new UserEntryAdapter(this, R.layout.user_entry_list_item);
         entriesDisp.setAdapter(userEntryAdapter);
         MainActivity activity = (MainActivity) getActivity();
         ArrayList<UserEntry> allEntries = activity.allEntries;
+
+
         // Populate the list, through the adapter
         for(final UserEntry entry : allEntries) {
             userEntryAdapter.add(entry);
@@ -199,12 +204,14 @@ public class StatisticsFragment extends Fragment {
 
 
     public void displayChart(ArrayList<UserEntry> allEntries) {
-        if (allEntries.size() == 0) {
-            return;
-        }
+
         // // Chart Style // //
         chart = getView().findViewById(R.id.chart);
 
+        if (allEntries.size() == 0) {
+            chart.setVisibility(View.INVISIBLE);
+            return;
+        }
 
         // background color
         chart.setBackgroundColor(Color.WHITE);

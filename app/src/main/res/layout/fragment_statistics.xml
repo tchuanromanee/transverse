@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
+
         <ListView
             android:id="@+id/entriesDisplay"
             android:layout_width="match_parent"
@@ -36,6 +37,15 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="13dp"
             android:layout_marginBottom="32dp" />
+
+        <TextView
+            android:id="@+id/emptyListText"
+            android:visibility = "gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Add a new entry to see this page!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     </RelativeLayout>
 
